@@ -1,0 +1,38 @@
+
+  
+
+
+<body>
+  
+
+    
+  <div class="login-container">
+  <form (ngSubmit)="login()" #loginForm="ngForm" class="login-container">
+   
+      <img src="assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
+      <h1>Faça seu login!</h1>
+    
+     
+      <div class="input-container">
+        <input type="text" id="email" name="email" placeholder="Email" [(ngModel)]="credentials.email" required >
+        <div class="input-circle">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+      </div>
+  
+      
+  
+      <div class="input-container">
+        <input type="password" id="senha" name="senha" placeholder="Senha"  [(ngModel)]="credentials.senha" required>
+        <div class="input-circle">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+      </div>
+  
+  
+      <button type="submit">Entrar</button>
+      
+      
+   
+  </form> <p class="forgot-password">Esqueceu sua senha?</p>
+ </div></body>

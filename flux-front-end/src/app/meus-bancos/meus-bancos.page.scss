@@ -1,0 +1,211 @@
+//ESTILIZAÇÃO DA PÁGINA DE MEUS BANCOS
+/*
+  TCC - FLUX (Regis e Sara)
+  Regis backend
+  Sara frontend
+*/
+
+*{
+    font-family: "poppins";
+}
+
+
+body {
+    background-color: #000000;
+   
+    height: 200vh;
+    margin: 0;
+}
+
+
+.container-global {
+    background-color: #000000;
+    padding: 20px;
+    text-align: center;
+    max-width: 400px; 
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 10px 20px; 
+   
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    background-color: #1A1D1D; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+}
+
+.circle p {
+    margin: 0;
+    color: #66B6FF; 
+}
+.input-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.input-pesquisa {
+    width: 99%;
+    padding-left: 45px; 
+    padding-right: 45px; 
+    border-radius: 50px;
+    background-color: #171C1C;
+    border: none;
+    color: #9395A4;
+    font-size: 18px;
+    height: 40px; 
+    box-sizing: border-box;
+}
+
+.input-container::before {
+    content: url('../../assets/image/pesquisa.png');
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.input-container::after {
+    content: url('../../assets/image/Search icon.png');
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.input-pesquisa::placeholder {
+    color: #9395A4;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-pesquisa:focus {
+    outline: none;
+    border: 2px solid #66B6FF;
+}
+
+.linha-filtros {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+    margin-top: 20px;
+}
+
+.coluna-bancospend, .coluna-maiorsal, .coluna-menorsal {
+    border-radius: 20px;
+    background-color: #1A1D1D;
+    width: 100%;
+    height: 140px;
+    margin: 5px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.circle-bancospend, .circle-maiorsal, .circle-menorsal{
+    width: 40px;
+    height: 40px;
+    background-color: #121616; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+}
+
+
+  
+  .coluna-aum {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .circle-bancos {
+    width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A1D1D;
+    margin: auto;
+  }
+  
+  .circle-bancos img {
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: 10px;
+  }
+  
+  
+  .banco-entrada {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    background-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .banco-entrada img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
+  
+  .descricao {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nome-desc {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .nome-desc h5 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .valor-aum {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: 5px;
+  }
+  
+  .valor-aum p {
+    font-size: 16px;
+    color: #666;
+    margin: 0 5px;
+  }
+  
+ 

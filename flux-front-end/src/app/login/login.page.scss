@@ -1,0 +1,111 @@
+//ESTILIZAÇÃO DA PÁGINA DE LOGIN DO USUÁRIO
+/*
+  TCC - FLUX (Regis e Sara)
+  Regis backend
+  Sara frontend
+*/
+
+body{
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #000000;
+    padding: 20px;
+    text-align: center;
+    max-width: 400px; 
+    width: 100%;
+}
+
+.logo {
+    width: 90px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 20px;
+    padding: 0;
+    font-size: 30px;
+    color: #fff;
+}
+
+
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px; 
+}
+
+.input-container label {
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.input-container input {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    padding: 20px; 
+    padding-left: 80px; 
+    border-radius: 50px;
+    background-color: #171C1C;
+    border: none;
+    color: #9395A4;
+    font-size: 18px; 
+    height: 60px; 
+}
+
+.input-container input:focus {
+    outline: none; 
+    border: 2px solid #000ceb; 
+}
+
+.input-circle {
+    position: absolute;
+    top: 50%;
+    left: 15px; 
+    transform: translateY(-50%);
+    background-color: #000E5A;
+    border-radius: 50%;
+    width: 40px; 
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; 
+    font-size: 18px; 
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    width: 100%;
+    padding: 20px; 
+    font-size: 18px; 
+    background-color: #92D1F9;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #44b7ff;
+}
+
+.forgot-password {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 10px;
+    color: #007bff;
+    cursor: pointer;
+}

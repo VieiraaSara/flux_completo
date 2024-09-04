@@ -1,0 +1,99 @@
+//ESTILIZAÇÃO DA PÁGINA DE APRESENTAÇÃO DO APP
+/*
+  TCC - FLUX (Regis e Sara)
+  Regis backend
+  Sara frontend
+*/
+
+body {
+    background-image: url('../../assets/image/Logina.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding-left: 20px; 
+}
+
+.container-logo {
+    margin-bottom: 20px; 
+    width: 300px; 
+    position: relative; 
+    left: -60px;
+}
+
+.container-logo img {
+    width: 100%; 
+    height: auto;
+}
+
+.texto-slider {
+    margin-bottom: 150px; 
+}
+
+h1 {
+    font-family: 'M PLUS 1', sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 20px;
+    font-size: 40px;
+}
+
+strong {
+    font-family: 'M PLUS 1', sans-serif;
+    font-weight: 700;
+    background: linear-gradient(to bottom right, #010737, #1229FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-left: 90px;
+    padding-bottom: 10px;
+    border: none;
+background: rgba(255, 255, 255, 0.115);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+}
+
+button:hover {
+    background-color: #44B7FF;
+}
+
+.botao-circle {
+    background-color: #101010;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px; 
+}
+
+.botao-circle i {
+    color: #66B6FF;
+    font-size: 20px;
+}

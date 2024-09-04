@@ -1,0 +1,97 @@
+//ESTILIZAÇÃO DA PÁGINA DE AUTENTICAR O CODIGO DE ENVIO
+/* 
+  TCC - FLUX (Regis e Sara)
+  Regis backend
+  Sara frontend
+*/
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.logo-container{
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #dedede;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #adadad;
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+.input-codigo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.input-codigo input {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-size: 24px;
+    border: 2px solid #001293;
+    border-radius: 10px;
+    background-color: #171C1C;
+    margin-right: 5px;
+}
+
+.input-codigo input:last-child {
+    margin-right: 0;
+}
+
+.input-codigo input:focus {
+    outline: none;
+    border-color: #001293;
+    background-color: #000000;
+}
+
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    width: 100%;
+    padding: 20px; 
+    font-size: 18px; 
+    background-color: #92D1F9;
+    color: rgb(0, 0, 0);
+    border: none;
+    margin-top: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.forgot-password {
+    font-size: 14px;
+    color: #cfcfcf;
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    color: #009CFF;
+    text-decoration: none;
+}

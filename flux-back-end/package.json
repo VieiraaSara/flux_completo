@@ -1,0 +1,41 @@
+{
+  "name": "flux-back",
+  "version": "1.0.0",
+  "description": "back-end flux",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./bin/server.js",
+    "test": "echo 'Error: no test specified'; false"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RegisCostaPedro/flux-back-end.git"
+  },
+  "author": "Regis Costa Pedro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RegisCostaPedro/flux-back-end/issues"
+  },
+  "homepage": "https://github.com/RegisCostaPedro/flux-back-end#readme",
+  "dependencies": {
+    "axios": "^1.7.5",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "flux-back": "file:",
+    "got": "^14.4.2",
+    "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.10.3",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
+    "swagger-ui-express": "^5.0.1",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
+  }
+}
