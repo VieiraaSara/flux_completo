@@ -10,14 +10,32 @@ class Banco extends Model {
         allowNull: false,
         primaryKey: true
       },
-      nome_banco: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+      id:{
+        type: DataTypes.INTEGER,
+       
       },
-      descricao: {
-        type: DataTypes.TEXT,
-        allowNull: true
+      
+      name: {
+        type: DataTypes.STRING,
+        
+    
+      },
+      code: {
+        type: DataTypes.STRING,
+    
+    
+      },
+      ispb:{
+        type: DataTypes.STRING,
+       
+      },
+      image: {
+        type: DataTypes.STRING,
+     
+      },
+      spi_participant_type:{
+        type: DataTypes.ENUM('DIRETO','INDIRETO'),
+     
       }
     }, {
       sequelize,
@@ -27,6 +45,5 @@ class Banco extends Model {
   }
 }
 
-Banco.init(conexao);
 
 module.exports = Banco;

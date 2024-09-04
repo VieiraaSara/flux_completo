@@ -26,7 +26,7 @@ ContaBancos.belongsTo(Pix, { foreignKey: 'pix_id', onDelete: 'CASCADE' });
 // Transacao.belongsTo(ContaBancos, { foreignKey: 'contaBancos_id' });
 
 
-  // conexao.sync({ alter: true });
+// conexao.sync({ alter: true });
 
 module.exports = {
   Usuario,
