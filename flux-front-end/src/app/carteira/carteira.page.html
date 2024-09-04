@@ -1,4 +1,4 @@
-<ion-content> 
+<ion-content>
   <div class="container-global" >
     <div class="scrollable-content">
       <div class="header-carteira" >
@@ -8,12 +8,12 @@
             <div class="circle">
               <img src="../../assets/image/Dark.png" alt="">
             </div>
-           
+
             <div class="title-junto">
               <h2>Banco Flux</h2>
-            
+
               <div *ngIf="saldoTotalGeral && saldoTotalGeral.length > 0">
-                <h2 [innerHTML]="saldoTotalGeral"></h2>
+                <h2 [innerHTML]="'R$ '+ saldoTotalGeral"></h2>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@
               <div class="circle-bancos">
                 <img src="../../assets/image/banco.png" alt="Banco">
                 <p>Bancos</p>
-              </div> 
+              </div>
             </div>
             <div class="impressoes">
               <div class="circle-bancos">
@@ -38,13 +38,13 @@
           <h4 style="margin-top: 20px; display: flex; justify-content: start;">Relatório Total</h4>
 
           <!-- Loop para exibir cada item da carteira -->
-        
+
             <div class="banco-entrada">
-              <img src="../../assets/image/bancodobrasil-logo.png" alt="Banco do Brasil">
               <div class="descricao"><div *ngFor="let item of carteira">
+              <img [src]="item.imageBank">
                 <div class="cada" style="margin-bottom: 30px;">
                 <div class="nome-desc">
-                  
+
                   <!-- Aqui você exibe o valor associado ao item -->
                   <h5 style="margin-right: 20px;">{{item.nome_banco}}</h5>
                   <h5>R${{item.valor}}</h5>
