@@ -11,19 +11,14 @@ class BancoRepository {
 
     // Cadastrar banco
     static post = async (body) => {
-        let nomeBanco = body.nome_banco;
-        const bancoExistente = await Banco.findOne({
-            where: { nome_banco: nomeBanco },
-        });
-
-        if (bancoExistente) {
-            console.log("Banco já cadastrado");
-            return {
-                message: "Banco já cadastrado",
-                status: 400
-            };
-        }
-
+      
+console.log(body.id_banco);
+console.log(body.code);
+console.log(body.ispb);
+console.log(body.name);
+console.log(body.id);
+console.log(body);
+console.log(body);
         const res = await Banco.create(body);
 
         return { data: res, status: 201 };
@@ -67,7 +62,10 @@ class BancoRepository {
         const res = await Banco.findByPk(id);
         return res;
     };
-
+    static findOneByName = async (name) => {
+        const res = await Banco.findOne(name);
+        return res;
+    };
 }
 
 

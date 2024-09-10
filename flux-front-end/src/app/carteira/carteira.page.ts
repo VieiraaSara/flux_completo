@@ -17,6 +17,7 @@ export class CarteiraPage implements OnInit {
   descricao:any;
   nome_banco:any;
   id: any;
+  image: any;
 
   constructor(
     private tran: CarteiraService,
@@ -26,7 +27,7 @@ export class CarteiraPage implements OnInit {
 
   ngOnInit() {
     this.decodeToken();
-  
+
     const token = localStorage.getItem('token');
     if (token) {
       this.tran.getHome(token).subscribe(
@@ -34,7 +35,7 @@ export class CarteiraPage implements OnInit {
           if (data && data.totalGeral && Array.isArray(data.resultPorcentAndQuery)) {
             // Acesse o valor único de saldoTotalGeral
             this.saldoTotalGeral = data.totalGeral;
-  
+
             // Mapeie as transações individuais
             this.carteira = data.resultPorcentAndQuery.map((item: any) => ({
               saldoTotalGeral: item.saldoTotalGeral,
@@ -42,6 +43,7 @@ export class CarteiraPage implements OnInit {
               descricao: item.descricao,
               nome_banco: item.nome_banco,
               valor: item.valor,
+              imageBank:item.image,
               detailsVisible: false,
             }));
           } else {

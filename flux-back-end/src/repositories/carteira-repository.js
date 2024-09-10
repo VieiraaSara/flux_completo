@@ -14,7 +14,8 @@ class CarteiraRepository {
     transacao.descricao,
     conta_bancaria.saldo AS saldo_conta_bancaria,
     transacao.data_transacao,
-    banco.nome_banco,
+    banco.name as nome_banco,
+    banco.image,
     (SELECT 
             SUM(c.saldo)
         FROM

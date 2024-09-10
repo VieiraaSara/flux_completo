@@ -1,10 +1,11 @@
 //ESTILIZAÇÃO DA PÁGINA HOME
 
-/* 
+/*
   TCC - FLUX (Regis e Sara)
   Regis backend
   Sara frontend
 */
+
 
 * {
   font-family: "Poppins", sans-serif;
@@ -14,7 +15,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  min-height: 100vh; 
+  min-height: 100vh;
   box-sizing: border-box;
 }
 
@@ -79,6 +80,7 @@ h1 {
   position: absolute;
   bottom: -80px;
   right: -80px;
+
 }
 
 .container-logo img {
@@ -87,27 +89,162 @@ h1 {
   object-fit: contain;
 }
 
-.notifications-container {
-  display: flex;
-  flex-direction: column;
+.notifications-cont {
+  overflow-y: auto;
+  display: grid;
+  place-items: center;
+  min-height: 180px;
   width: 100%;
   max-width: 100%;
   margin: auto;
   padding: 20px;
   box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  -webkit-mask-box-image: -webkit-linear-gradient(
+    top,
+    transparent,
+    transparent 0,
+    white 10%,
+    white 80%,
+    transparent 100%
+  );
+  position: relative;
+  max-height: 300px;
+  padding: 10px;
 }
 
-.notification {
-  background-color: #171c1c;
-  border-radius: 25px;
-  margin-bottom: 10px;
-  padding: 10px;
+.cards {
   position: relative;
-  overflow: hidden;
-  transition: width 0.3s ease;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  width: 100%;
+  max-height: 180px;
+
+}
+.notification {
+  margin-bottom: 10px;
+  background-color: #171c1c;
+  border-radius: 28px;
+  position: absolute;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  border-radius: 0.5rem;
+  pointer-events: none;
+  animation: slideUp 15s infinite;
+  margin-bottom: 0;
+  max-width: 30rem;
+  margin-top: 60px;
+
+  padding: 8px;
+  pointer-events: none;
+}
+
+.scroll-smooth {
+  animation: scrollAnimation 0.5s ease-in-out;
+}
+
+@keyframes scrollAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cards .notification.scroll-smooth {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cards .notification:nth-child(1) {
+  animation-delay: -3s;
+}
+
+.cards .notification:nth-child(2) {
+  animation-delay: 0s;
+}
+
+.cards .notification:nth-child(3) {
+  animation-delay: 3s;
+}
+
+.cards .notification:nth-child(4) {
+  animation-delay: 6s;
+}
+
+.cards .notification:nth-child(5) {
+  animation-delay: 9s;
+}
+
+.cards .notification:nth-child(6) {
+  animation-delay: 12s;
+}
+
+.cards .notification:nth-child(7) {
+  animation-delay: 15s;
+}
+
+.cards .notification:nth-child(8) {
+  animation-delay: 18s;
+}
+
+.cards .notification:nth-child(9) {
+  animation-delay: 21s;
+}
+
+.cards .notification:nth-child(10) {
+  animation-delay: 24s;
+}
+
+.cards .notification:nth-child(11) {
+  animation-delay: 27s;
+}
+
+.cards .notification:nth-child(12) {
+  animation-delay: 30s;
+}
+
+.cards .notification:nth-child(13) {
+  animation-delay: 33s;
+}
+
+.cards .notification:nth-child(14) {
+  animation-delay: 36s;
+}
+
+/* Continue this pattern for more notifications */
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+
+  5%, 20% {
+    transform: translateY(100%) scale(0.9);
+    opacity: 0.2;
+  }
+
+  25%, 40% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    overflow: hidden;
+  }
+
+  45%, 60% {
+    transform: translateY(0) scale(0);
+    opacity: 0.4;
+  }
+
+  65%, 100% {
+    transform: translateY(-100%) scale(0);
+    opacity: 0;
+  }
 }
 
 .notification.expanded {
@@ -121,11 +258,12 @@ h1 {
 }
 
 .notification-logo {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 60%;
   object-fit: cover;
   margin-right: 10px;
+  padding: 5px;
 }
 
 .notification-content {
@@ -149,12 +287,16 @@ h1 {
   border: none;
   cursor: pointer;
   font-size: 16px;
+  z-index: 10; /* Garantir que o botão está acima de outros elementos */
+  position: relative; /* Necessário para aplicar z-index */
+
 }
 
 .notification-details {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  position: absolute;
 }
 
 .notification-details a {
@@ -163,8 +305,6 @@ h1 {
   flex-grow: 1;
   text-align: center;
 }
-
-
 
 .notification-details-container {
   display: none;
@@ -177,24 +317,23 @@ h1 {
 }
 
 ion-content {
-  --offset-bottom: 0 !important; 
+  --offset-bottom: 0 !important;
   --overflow: auto;
   background-color: #000;
-  height: 100vh; 
+  height: 100vh;
   overflow: auto;
 }
 
-
-.scrollable-content { 
+.scrollable-content {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
+  min-height: 100vh;
   box-sizing: border-box;
 }
 .header-carteira {
   background-color: #000e5a;
-  border-top-left-radius: 40px; 
-  border-top-right-radius: 40px; 
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   width: 100%;
@@ -243,8 +382,8 @@ ion-content {
 }
 
 .footer {
-  border-top-left-radius: 40px; 
-  border-top-right-radius: 40px; 
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   width: 100%;
@@ -273,7 +412,7 @@ ion-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1A1D1D;
+  background-color: #1a1d1d;
   margin: auto;
 }
 
@@ -350,19 +489,18 @@ ion-content {
 }
 
 #verbanco {
-  color: #66B6FF !important;
+  color: #66b6ff !important;
 }
 
 #excluir {
-  color: #B02F2F !important;
+  color: #b02f2f !important;
 }
 
 #mais {
-  color: #9395A4 !important;
+  color: #9395a4 !important;
 }
 
-
-.adicionar a{
-  text-decoration: none ;
+.adicionar a {
+  text-decoration: none;
   color: #000;
 }

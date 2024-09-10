@@ -5,7 +5,7 @@ const Banco = require('../models/banco');
 class HomeRepository {
 
     static getHomeData = async (id_user, limit) => {
-   
+
         const query = await Banco.sequelize
             .query(`
                 SELECT 
@@ -14,7 +14,9 @@ class HomeRepository {
                ROUND(transacao.valor, 2) AS valor,
                 transacao.tipo_operacao,
                 transacao.descricao,
-                banco.nome_banco
+                banco.image,
+                banco.name as nome_banco,
+    banco.image
             FROM
                 transacao
                     JOIN

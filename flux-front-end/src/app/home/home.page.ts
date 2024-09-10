@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { TransacaoService } from '../services/transacao.service';
 import { NavController } from '@ionic/angular';
 import { FormBuilder } from '@angular/forms';
 import {jwtDecode} from 'jwt-decode';
-
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -30,7 +31,7 @@ export class HomePage implements OnInit {
             this.notifications = data.map((item: any) => ({
               title: item.descricao,
               subtitle: `Saldo: ${item.valor}, Banco: ${item.nome_banco}`,
-              logoUrl: 'assets/image/bank-logo.png',
+              logoUrl: item.image,
               detailsVisible: false,
             }));
           } else {
@@ -61,8 +62,21 @@ export class HomePage implements OnInit {
       }
     }
   }
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const notifications = document.querySelectorAll('.notification');
 
+    notifications.forEach((notification: Element) => {
+      const distanciaDoTopo = notification.getBoundingClientRect().top;
+
+      if (distanciaDoTopo < window.innerHeight - 50) {
+        notification.classList.add('scroll-smooth');
+      }
+    });
+
+  }
   toggleDetails(notification: any) {
     notification.detailsVisible = !notification.detailsVisible;
   }
+
 }

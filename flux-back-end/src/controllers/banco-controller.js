@@ -56,27 +56,15 @@ class BancoController {
     static cadastrarBanco = async (req, res) => {
 
         try {
-            let contract = new ValidationContract();
-            contract.hasMinLen(req.body.nome_banco, 3, 'O nome do banco deve conter pelo menos 3 caracteres');
-
-            contract.hasMinLen(req.body.descricao, 5, 'A descricao  deve conter pelo menos 5 caracteres');
-
-
-            if (!contract.isValid()) {
-                res.status(400).send(contract.errors()).end();
-                return;
-            }
-
-            const banco = await repository.post({
-                nome_banco: req.body.nome_banco,
-                descricao: req.body.descricao
-
-            });
-            if (banco.status === 201) {
-                res.status(201).send(banco.data);
+            const token = req.body.token || req.query.token || req.headers['x-access-token'];
+            const dadosUsuario = await authService.decodeToken(token);
+          const cadastrar = req.body.cadastrar;
+                const bancosCadastrados = await bancoService.cadastrarInstituicoes(dadosUsuario);
+            if (bancosCadastrados.status === 201) {
+                res.status(201).send(bancosCadastrados.data);
 
             } else {
-                res.status(banco.status).send({ message: banco.message });
+                res.status(bancosCadastrados.status).send({ message: banco.message });
             }
 
 
