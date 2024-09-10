@@ -20,7 +20,7 @@ export class LoginService {
   }
 // A função login pega as credenciais e envia para a url http://localhost:3000/flux/login 
   login(credentials: any) {
-    return this.http.post(`${this.apiUrl}flux/login`, credentials)
+    return this.http.post(`http://localhost:3000/flux/login`, credentials)
       .pipe(
         catchError(this.handleError)
       )
