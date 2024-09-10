@@ -62,7 +62,19 @@ export class HomePage implements OnInit {
       }
     }
   }
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const notifications = document.querySelectorAll('.notification');
 
+    notifications.forEach((notification: Element) => {
+      const distanciaDoTopo = notification.getBoundingClientRect().top;
+
+      if (distanciaDoTopo < window.innerHeight - 50) {
+        notification.classList.add('scroll-smooth');
+      }
+    });
+
+  }
   toggleDetails(notification: any) {
     notification.detailsVisible = !notification.detailsVisible;
   }

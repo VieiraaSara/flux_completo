@@ -32,7 +32,7 @@
 
     <div class="notifications-container">
       <div class="cards">
-        
+
         <div class="notification" *ngFor="let notification of notifications; let i = index"
           [class.expanded]="notification.detailsVisible"
           [ngClass]="{'show': i < 3}">
