@@ -65,6 +65,10 @@ const routes: Routes = [
   {
     path: 'mais-bancos',
     loadChildren: () => import('./mais-bancos/mais-bancos.module').then( m => m.MaisBancosPageModule)
+  },
+  {
+    path: 'messages',
+    loadChildren: () => import('./messages/messages.module').then( m => m.MessagesPageModule)
   }
 ];
 
