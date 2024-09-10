@@ -8,10 +8,6 @@ import { NavController } from '@ionic/angular';
 })
 
 export class LoginPage {
-
-  visible:boolean = true;
-  changetype:boolean =true;
-
   credentials = {
     email: '',
     senha: ''
@@ -27,10 +23,5 @@ export class LoginPage {
     } catch (error) {
       alert('Erro ao fazer login: ');
     }
-  }
-
-  viewpass(){
-    this.visible = !this.visible;
-    this.changetype = !this.changetype;
   }
 }
