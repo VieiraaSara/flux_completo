@@ -14,6 +14,7 @@ class HomeRepository {
                ROUND(transacao.valor, 2) AS valor,
                 transacao.tipo_operacao,
                 transacao.descricao,
+                banco.image,
                 banco.name as nome_banco,
     banco.image
             FROM
