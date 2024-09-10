@@ -69,7 +69,15 @@ const routes: Routes = [
   {
     path: 'messages',
     loadChildren: () => import('./messages/messages.module').then( m => m.MessagesPageModule)
+  },  {
+    path: 'conta-bancaria',
+    loadChildren: () => import('./conta-bancaria/conta-bancaria.module').then( m => m.ContaBancariaPageModule)
+  },
+  {
+    path: 'transacao',
+    loadChildren: () => import('./transacao/transacao.module').then( m => m.TransacaoPageModule)
   }
+
 ];
 
 
