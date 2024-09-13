@@ -143,8 +143,24 @@ h1 {
   pointer-events: none;
 }
 
+.scroll-smooth {
+  animation: scrollAnimation 0.5s ease-in-out;
+}
 
-
+@keyframes scrollAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cards .notification.scroll-smooth {
+  opacity: 1;
+  transform: translateY(0);
+}
 .cards .notification:nth-child(1) {
   animation-delay: -3s;
 }

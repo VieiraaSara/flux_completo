@@ -8,6 +8,7 @@ import { LoginService } from '../services/login.service';
   templateUrl: './cadastro-usuario.page.html',
   styleUrls: ['./cadastro-usuario.page.scss'],
 })
+
 export class CadastroUsuarioPage implements OnInit {
 
   cadastroForm!: FormGroup;
@@ -21,7 +22,7 @@ export class CadastroUsuarioPage implements OnInit {
   ngOnInit() {
     this.cadastroForm = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
-      cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]], 
+      cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -35,7 +36,7 @@ export class CadastroUsuarioPage implements OnInit {
   }
 
   async cadastrar() {
-  
+
     const user = this.cadastroForm.value;
 
     try {

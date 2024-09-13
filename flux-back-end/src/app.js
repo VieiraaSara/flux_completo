@@ -67,9 +67,12 @@ app.use(pixRoute)
 
 
 // ------ Habilita o CORS ------
-app.use(cors({
-    origin: '*', // Permite todas as origens; ajuste conforme necessário
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'x-access-token']
-}));
+const corsOptions = {
+    origin: 'http://localhost:8100',  
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', 
+    credentials: true,  
+    allowedHeaders: 'Content-Type,Authorization', 
+  };
+  app.use(cors(corsOptions));
+
 module.exports = app;

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
 import { ConfigFluxPageRoutingModule } from './config-flux-routing.module';
-
 import { ConfigFluxPage } from './config-flux.page';
 
 @NgModule({
@@ -13,7 +11,8 @@ import { ConfigFluxPage } from './config-flux.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ConfigFluxPageRoutingModule
+    ConfigFluxPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [ConfigFluxPage]
 })

@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     ScrollingModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+
   ],
   declarations: [HomePage]
 })
