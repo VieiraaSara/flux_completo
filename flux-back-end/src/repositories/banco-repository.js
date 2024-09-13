@@ -3,10 +3,12 @@ class BancoRepository {
 
     //Listar bancos
     static get = async () => {
-        const res = await Banco.findAll({
-            // attributes: ['nome_banco', 'descricao']
-        });
-        return res;
+        const res = await Banco.findAll();
+
+        if(!res){
+            return {message: "Bancos não encontrados",status:404}
+        }
+        return  {data: res,status:200};
     };
 
     // Cadastrar banco

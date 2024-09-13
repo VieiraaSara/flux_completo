@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,12 +11,12 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+
 import { environment } from 'src/environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
@@ -25,13 +24,19 @@ import { CadastroUsuarioPage } from './cadastro-usuario/cadastro-usuario.page';
 import { AuthInterceptor } from './interceptor';
 import { AuthService } from './services/auth.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {  IonicRouteStrategy } from '@ionic/angular';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import {IonicInputMaskModule} from "@thiagoprz/ionic-input-mask";
+IonicInputMaskModule
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    FontAwesomeModule,
     HttpClientModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -73,3 +78,4 @@ export function jwtOptionsFactory(authService: AuthService) {
     whitelistedDomains: ['localhost:3000']
   };
 }
+

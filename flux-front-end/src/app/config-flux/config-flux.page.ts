@@ -1,12 +1,13 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { IonAlert, NavController } from '@ionic/angular';
 import { FormBuilder,  FormGroup,  ReactiveFormsModule,  Validators } from '@angular/forms';
 import { jwtDecode } from 'jwt-decode';
 import { ConfigFluxService } from '../services/config-flux.service';
 import { UpdateUserService } from '../services/update-user.service';
 import { CommonModule } from '@angular/common';
-import {ChangeDetectionStrategy, computed, signal} from '@angular/core';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { AuthService } from '../services/auth.service';
+import { DeleteUserService } from '../services/delete-user.service';
 
 export interface Task {
   name: string;
@@ -44,6 +45,8 @@ export class ConfigFluxPage implements OnInit {
     private tran: ConfigFluxService,
     private formBuilder: FormBuilder,
     private updateAccountService: UpdateUserService,
+    private authService: AuthService,
+    private deleteUser: DeleteUserService,
     private navCtrl: NavController) {}
 
   ngOnInit() {
@@ -91,22 +94,26 @@ export class ConfigFluxPage implements OnInit {
 
   }
 
-  decodeToken() {
+  decodeToken(): string | null {
     const token = localStorage.getItem('token');
     if (token) {
       try {
         const tokenPayload: any = jwtDecode(token);
         if (tokenPayload && tokenPayload.id) {
           this.id = tokenPayload.id;
+          return tokenPayload.id;
         } else {
           console.error('Payload do token inválido:', tokenPayload);
         }
+      const userIdToken = tokenPayload.id;
+        return userIdToken;
       } catch (error) {
         console.error('Erro ao decodificar o token:', error);
       }
     } else {
       console.error('Token não encontrado.');
     }
+    return null;
   }
 
   toggleSection(sectionId: string): void {
@@ -125,8 +132,6 @@ export class ConfigFluxPage implements OnInit {
       }
     }
   }
-
-
 
  async atualizarInformacoes() {
   const user = this.editarInformacoesForm.value;
@@ -153,36 +158,66 @@ export class ConfigFluxPage implements OnInit {
     }
   }
 }
-readonly task = signal<Task>({
-  name: 'Parent task',
-  completed: false,
-  subtasks: [
-    {name: 'Child task 1', completed: false},
-    {name: 'Child task 2', completed: false},
-    {name: 'Child task 3', completed: false},
-  ],
-});
-
-readonly partiallyComplete = computed(() => {
-  const task = this.task();
-  if (!task.subtasks) {
-    return false;
-  }
-  return task.subtasks.some(t => t.completed) && !task.subtasks.every(t => t.completed);
-});
-
-update(completed: boolean, index?: number) {
-  this.task.update(task => {
-    if (index === undefined) {
-      task.completed = completed;
-      task.subtasks?.forEach(t => (t.completed = completed));
-    } else {
-      task.subtasks![index].completed = completed;
-      task.completed = task.subtasks?.every(t => t.completed) ?? true;
+async deleteUserById(){
+  const userId = this.decodeToken();
+  const tkn = localStorage.getItem('token');
+  if (userId && tkn) {
+    try {
+      await this.deleteUser.deletarUsuario(userId, tkn).toPromise();
+      this.authService.deleteToken();
+      this.navCtrl.navigateRoot('/cadastro-usuario', { replaceUrl: true });
+    } catch (error) {
+      console.error('Erro ao excluir usuário', error);
     }
-    return {...task};
-  });
+  } else {
+    console.error('ID do usuário ou token não encontrado');
+  }
+
+
+
 }
+
+public alertButtonBack = [
+  {
+    text: 'Cancelar',
+    role: 'cancel',
+    cssClass: 'alert-button-cancel',
+    handler: () => {
+
+    },
+  },
+  {
+    text: 'Sair',
+    role: 'confirm',
+    cssClass: 'alert-button-confirm',
+    handler: () => {
+      this.authService.signOutExternal();
+      this.navCtrl.navigateRoot('/login', { replaceUrl: true });
+    },
+  },
+];
+
+public alertButtonDeleteAccount = [
+  {
+    text: 'Cancelar',
+    role: 'cancel',
+    cssClass: 'alert-button-cancel',
+    handler: () => {
+      this.navCtrl.navigateRoot('/config-flux', { replaceUrl: true });
+    },
+  },
+  {
+    text: 'Excluir conta',
+    role: 'confirm',
+    cssClass: 'alert-button-confirm',
+    handler: () => {
+      this.deleteUserById();
+    },
+  },
+];
+
+
+
 
 
 }

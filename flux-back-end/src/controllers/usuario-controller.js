@@ -75,9 +75,7 @@ class UsuarioController {
 
         try {
             let contract = new ValidationContract();
-            contract.hasMinLen(req.body.nome, 3, 'O nome deve conter pelo menos 3 caracteres');
-            contract.hasMinLen(req.body.cpf, 14, 'O cpf deve conter pelo menos 13 caracteres');
-            contract.hasMaxLen(req.body.cpf, 14, 'O cpf deve ter no máximo 13 caracteres');
+          
             contract.isEmail(req.body.email, 'Email inválido');
             contract.hasMinLen(req.body.senha, 3, 'O senha deve conter pelo menos 3 caracteres');
 
