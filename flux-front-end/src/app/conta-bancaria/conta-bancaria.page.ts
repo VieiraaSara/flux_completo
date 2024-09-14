@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { ContaBancariaService } from 'src/app/services/conta-bancaria.service';
 import { AuthService } from 'src/app/services/auth.service'; 
 
@@ -17,10 +18,13 @@ interface Conta {
 }
 
 
+=======
+>>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
 
 @Component({
   selector: 'app-conta-bancaria',
   templateUrl: './conta-bancaria.page.html',
+<<<<<<< HEAD
   styleUrls: ['./conta-bancaria.page.scss']
 })
 export class ContaBancariaPage implements OnInit {
@@ -97,3 +101,15 @@ export class ContaBancariaPage implements OnInit {
       } 
     } 
 }
+=======
+  styleUrls: ['./conta-bancaria.page.scss'],
+})
+export class ContaBancariaPage implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+>>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522

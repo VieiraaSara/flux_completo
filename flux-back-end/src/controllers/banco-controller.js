@@ -11,8 +11,8 @@ class BancoController {
             const token = req.body.token || req.query.token || req.headers['x-access-token'];
             const dadosUsuario = await authService.decodeToken(token);
 
-            // const bancoList = await repository.get();
-            const bancoList = await bancoService.returnListBanks(dadosUsuario);
+            const bancoList = await repository.get();
+            // const bancoList = await bancoService.returnListBanks(dadosUsuario);
 
             if (!bancoList) {
                 res.status(404).send({
