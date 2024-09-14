@@ -16,4 +16,4 @@ export class CarteiraService {
 
     return this.http.get(`${this.apiUrl}carteira?token=${token}`);
   }
-}
+}2

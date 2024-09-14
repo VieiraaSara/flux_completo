@@ -34,14 +34,10 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@ionic/angular": "^8.0.0",
-<<<<<<< HEAD
     "@thiagoprz/ionic-input-mask": "^0.0.8",
     "cpf-cnpj-validator": "^1.0.3",
     "flux-tcc": "file:",
-=======
-    "flux-tcc": "file:",
     "gsap": "^3.12.5",
->>>>>>> ac0028cd2625d103c32cdf818c1f8ef05fdfe358
     "ionicons": "^7.0.0",
     "jwt-decode": "^4.0.0",
     "maskito": "^0.0.2",

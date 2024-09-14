@@ -38,8 +38,8 @@ export class CadastroUsuarioPage implements OnInit {
 async cadastrar() {
   const formValues = this.cadastroForm.value;
   
-  // Remove os pontos e traços do CPF antes de enviar
-  const cpfLimpo = formValues.cpf.replace(/\D/g, ''); // Remove tudo que não for número
+
+  const cpfLimpo = formValues.cpf.replace(/\D/g, ''); 
   
   if (cpfLimpo.length !== 11) {
     alert('CPF inválido. Deve conter 11 dígitos.');
@@ -48,7 +48,7 @@ async cadastrar() {
 
   const user = {
     ...formValues,
-    cpf: cpfLimpo // Substitui o CPF pela versão sem separadores
+    cpf: cpfLimpo 
   };
 
   try {

@@ -1,43 +1,37 @@
 <ion-content>
-<div class="global">
+  <div class="global">
+    <div class="login-container">
+      <img src="../../assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
+      <h1>Cadastre sua Conta Bancária!</h1>
 
-  
+      <p class="azul">Coloque o valor disponível no seu banco</p>
 
-  <div class="login-container">
-    <img src="assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
-    <h1>Cadastre sua Conta Bancária!</h1>
-    
-    <p class="azul">Coloque o valor disponível no seu banco</p>
-    <div class="input-container">
-      <input type="number" id="valor" name="valor">
+      <div class="valor-container">
+        <button (click)="decreaseValue()">-</button>
+        <input type="number" [(ngModel)]="valor" min="0" step="1" readonly>
+        <button (click)="increaseValue()">+</button>
+      </div>
+
+      <div class="container-disponiveis">
+        <p>Selecione a instituição do seu banco</p>
+        <div class="logo-bancos">
+          <div *ngFor="let banco of bancos?.slice(0, 9)" (click)="selecionarBanco(banco)">
+            <img [src]="banco.image" [alt]="banco.name" [class.selected]="selectedInstitution === banco.id_banco">
+            <p [innerHTML]="banco.name"></p>
+          </div>                  
         </div>
+        <button class="btn-azul" routerLink="/mais-bancos">Veja Mais +</button>
+      </div>
 
-        <div class="container-disponiveis">
-          <p>Selecione a instituição do seu banco</p>
-          <div class="logo-bancos">
-          <img src="../../assets/image/LB1.png" alt="">
-          <img src="../../assets/image/LB2.png" alt="">
-          <img src="../../assets/image/LB3.png" alt="">
-          <img src="../../assets/image/LB4.png" alt="">
-          <img src="../../assets/image/LB5.png" alt="">
-          <img src="../../assets/image/LB6.png" alt="">
-
-        </div>
-        <button class="btn-azul">Veja Mais  +</button>
-        </div>
       <p class="azul">Selecione o tipo da sua conta</p>
-  
+      <select [(ngModel)]="tipoConta" required>
+        <option value="">Selecione o tipo</option>
+        <option value="CORRENTE">Corrente</option>
+        <option value="POUPANCA">Poupança</option>
+        <option value="SALARIO">Salário</option>
+      </select>
 
-    <div class="input-container">
-      <input type="" id="valor" name="valor">
-      
-      
+      <button (click)="cadastrarConta()">Cadastrar Banco</button>
     </div>
-  
-    <button type="submit">Cadastrar Banco</button>
-
-    
-  
-    
-  </div></div>
+  </div>
 </ion-content>

@@ -1,2 +1,6 @@
-# Auto detect text files and perform LF normalization
+# Normalizar automaticamente as quebras de linha
 * text=auto
+
+# Definir explicitamente LF para certos arquivos
+*.js text eol=lf
+*.json text eol=lf

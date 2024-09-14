@@ -6,7 +6,8 @@ class BancoRepository {
         const res = await Banco.findAll({
             // attributes: ['nome_banco', 'descricao']
         });
-        return res;
+        
+        return {data: res, status:200};
     };
 
     // Cadastrar banco

@@ -29,11 +29,11 @@ class ContaBancariaRepository {
 
     // cadastrar conta bancaria
     static post = async (body) => {
-
+        console.log("Request Body:", body);
         const tipo_conta = body.tipo_conta.toUpperCase();
         const usuario = await Usuario.findByPk(body.fkUsuarioId);
         const banco = await Banco.findByPk(body.fkBancoId);
-
+        console.log("Banco ID:", body.fkBancoId);
 
         if (!usuario) {
             return {
