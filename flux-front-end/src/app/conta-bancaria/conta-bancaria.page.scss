@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 //ESTILIZAÇÃO DA PÁGINA DE CADASTRO DO BANCO POR PIX
 /*
   TCC - FLUX (Regis e Sara)
@@ -7,28 +6,23 @@
   Sara frontend
 */
 
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
 .global {
     background-color: #000000;
     display: flex;
     justify-content: center;
     margin: 0;
-<<<<<<< HEAD
   }
   
   .login-container {
-=======
 }
 
 .login-container {
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
     margin-top: 50px;
     background-color: #000000;
     padding: 20px;
     text-align: center;
     max-width: 400px; 
     width: 100%;
-<<<<<<< HEAD
   }
   
   .logo {
@@ -37,9 +31,7 @@
     margin-bottom: 10px;
   }
   
-  h1 {
-=======
-}
+
 
 .logo {
     width: 90px;
@@ -48,26 +40,20 @@
 }
 
 h1 {
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     font-size: 30px;
     color: #fff;
-<<<<<<< HEAD
+
   }
   
-  h5 {
-=======
-}
 
 h5 {
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
     font-family: 'Inter', sans-serif;
     font-size: 20px;
     margin-bottom: 20px;
     color: #fff;
-<<<<<<< HEAD
   }
   
   .input-container {
@@ -79,7 +65,7 @@ h5 {
   }
   
   .input-container input {
-=======
+
 }
 
 .input-container {
@@ -97,7 +83,6 @@ h5 {
 }
 
 .input-container input {
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
     font-family: 'Poppins', sans-serif;
     width: 100%;
     padding: 20px; 
@@ -108,7 +93,6 @@ h5 {
     color: #9395A4;
     font-size: 18px; 
     height: 60px; 
-<<<<<<< HEAD
     text-align: center;
   }
   
@@ -118,7 +102,7 @@ h5 {
   }
   
   .input-circle {
-=======
+
 }
 
 .input-container input:focus {
@@ -127,7 +111,6 @@ h5 {
 }
 
 .input-circle {
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
     position: absolute;
     top: 50%;
     left: 15px; 
@@ -141,15 +124,14 @@ h5 {
     align-items: center;
     color: #FDFDFD; 
     font-size: 18px; 
-<<<<<<< HEAD
+
   }
   
   button {
-=======
+
 }
 
 button {
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     width: 100%;
@@ -160,15 +142,7 @@ button {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-<<<<<<< HEAD
-  }
-  
-  button:hover {
-    background-color: #44b7ff;
-  }
-  
-  .forgot-password {
-=======
+
 }
 
 button:hover {
@@ -176,12 +150,11 @@ button:hover {
 }
 
 .forgot-password {
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
     font-family: 'Poppins', sans-serif;
     margin-top: 10px;
     color: #007bff;
     cursor: pointer;
-<<<<<<< HEAD
+
   }
   
   .container-disponiveis {}
@@ -211,7 +184,7 @@ button:hover {
   }
   
   .btn-azul {
-=======
+
 }
 
 .container-disponiveis{
@@ -243,13 +216,13 @@ button:hover {
 }
 
 .btn-azul{
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
+
     background-color: #000ceb;
     color: #fff;
     width: 50%;
     margin-top: 10px;
     height: 5%;
-<<<<<<< HEAD
+
   }
   
   /* Botões para aumentar/diminuir o valor */
@@ -299,6 +272,4 @@ button:hover {
   }
   
   
-=======
-}
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
+

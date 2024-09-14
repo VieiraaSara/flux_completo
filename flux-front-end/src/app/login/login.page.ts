@@ -43,8 +43,4 @@ export class LoginPage {
     this.visible = !this.visible;
     this.changetype = !this.changetype;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 66b3ce12898191929b0eea5ce3e1939e6551f522
