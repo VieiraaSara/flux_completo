@@ -12,7 +12,7 @@ this.ocupadoService.ocupado();
 return next.handle(req).pipe(
   delay(1000),
   finalize(()=>{
-    this.ocupadoService.desocupado()
+    this.ocupadoService.desocupado();
   })
 )
 }
