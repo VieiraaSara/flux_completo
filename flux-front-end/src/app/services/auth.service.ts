@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  
+  getToken(): string | null {
+    return localStorage.getItem('token'); 
+  }
 
   private apiUrl = environment.baseApiUrl;
 
@@ -52,12 +59,11 @@ export class AuthService {
     return !!token;
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
+
 
   private handleError(error: any) {
     console.error('Erro no serviço:', error);
     return throwError(error);
   }
+
 }

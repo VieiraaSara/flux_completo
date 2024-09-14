@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-
+import { TransacaoService } from '../services/transacao.service';
+import { jwtDecode } from 'jwt-decode';
 @Component({
   selector: 'app-codigo-autenticacao',
   templateUrl: './codigo-autenticacao.page.html',
@@ -7,10 +8,35 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 })
 export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
 
-  constructor() { }
+  email: string = '';
+
+  constructor(
+    private tran: TransacaoService
+  ) { }
 
   ngOnInit() {
+
+    this.decodeToken();
+
+    const token = localStorage.getItem('token');
     
+    
+  }
+
+  decodeToken() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      try {
+        const tokenPayload: any = jwtDecode(token);
+
+        if (tokenPayload && tokenPayload.email) {
+          this.email = tokenPayload.email;
+        }
+      } catch (error) {
+        console.error('Erro ao decodificar o token:', error);
+      }
+    }
   }
 
   ngAfterViewInit() {
@@ -46,6 +72,6 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
 
   resendCode() {
     console.log('Reenviando o código...');
-    // Aqui você pode chamar um serviço para reenviar o código
+    
   }
 }

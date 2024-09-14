@@ -1,49 +1,37 @@
 <ion-content>
+  <div class="container-global">
+    <div class="header">
+      <h1>Bancos Disponíveis</h1>
+    </div>
 
-  <body>
+    <div class="input-container">
+      <input
+        placeholder="Pesquisar bancos"
+        class="input-pesquisa"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearchChange()"
+      />
+    </div>
     
-  
-
-<div class="container-global">
-  <div class="header">
-    <h1>Bancos Disponíveis</h1>
-  </div>
-
-  <div class="input-container">
-    <input placeholder="Pesquisar bancos" class="input-pesquisa">
-</div>
-  
-  <div class="scrollable-content">
-    <div class="footer">
-      
-    
-      <div class="banco-entrada">
-        <img
-          src="../../assets/image/bancodobrasil-logo.png"
-          alt="Banco do Brasil"
-        />
-        <div class="descricao">
-          <div class="nome-desc">
-            <h5 style="margin-right: 15px">Banco do Brasil</h5>
-            <h5 class="azul" style="margin-right: 5px">Selecionar</h5>
-          </div>
-        </div>
-      </div>
-
-      <div class="banco-entrada">
-        <img
-          src="../../assets/image/bancodobrasil-logo.png"
-          alt="Banco do Brasil"
-        />
-        <div class="descricao">
-          <div class="nome-desc">
-            <h5 style="margin-right: 15px">Banco do Brasil</h5>
-            <h5 class="azul" style="margin-right: 5px">Selecionar</h5>
+    <div class="scrollable-content">
+      <div class="footer">
+        <div *ngFor="let banco of filteredBancos" (click)="selecionarBanco(banco)">
+          <div class="banco-entrada">
+            <img
+              [src]="banco.image" [alt]="banco.name" [class.selected]="selectedInstitution === banco.id_banco"
+            />
+            <div class="descricao">
+              <div class="nome-desc">
+                <h5 style="margin-right: 15px" [innerHTML]="banco.name"></h5>
+                <h5 class="azul" style="margin-right: 5px">Selecionar</h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</body>
+
 </ion-content>
+
+

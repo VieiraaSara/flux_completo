@@ -21,7 +21,8 @@ console.log(bancoList);
                 return;
             }
 
-            res.status(200).send(bancoList);
+            console.log(bancoList.name)
+            res.status(200).send(bancoList.data);
         } catch (error) {
             res.status(400).send({
                 message: "Falha ao processar requisição: " + error

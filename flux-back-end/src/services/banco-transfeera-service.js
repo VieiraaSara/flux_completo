@@ -9,25 +9,27 @@ require('dotenv').config();
 class BancoService {
     static returnListBanks = async (USUARIO_TOKEN, nomeInstituicao) => {
         try {
-            const accessToken = await authServiceAPI.returnAccessToken();
+            // const accessToken = await authServiceAPI.returnAccessToken();
 
 
-            const options = {
-                method: 'GET',
-                url: `https://api-sandbox.transfeera.com/bank?pix=true`,
-                headers: {
-                    accept: 'application/json',
-                    'content-type': 'application/json',
-                    'user-Agent': USUARIO_TOKEN.email,
-                    Authorization: `Bearer ${accessToken}`
-                }
-            };
+            // const options = {
+            //     method: 'GET',
+            //     url: `https://api-sandbox.transfeera.com/bank?pix=true`,
+            //     headers: {
+            //         accept: 'application/json',
+            //         'content-type': 'application/json',
+            //         'user-Agent': USUARIO_TOKEN.email,
+            //         Authorization: `Bearer ${accessToken}`
+            //     }
+            // };
 
             // Faz a requisição para a API
-            const response = await axios.request(options);
-
-
-            return response.data; // Retorna a lista de bancos
+            // const response = await axios.request(options);
+const res = await bancoRepository.get();
+                if(res){
+                    return {data: res.data, status: res.status}
+                }
+            // return response.data; // Retorna a lista de bancos
 
         } catch (error) {
             console.error('Error obtaining list of banks:', error);

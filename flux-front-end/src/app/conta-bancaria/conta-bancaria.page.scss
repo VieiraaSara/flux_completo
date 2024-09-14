@@ -1,3 +1,4 @@
+
 //ESTILIZAÇÃO DA PÁGINA DE CADASTRO DO BANCO POR PIX
 /*
   TCC - FLUX (Regis e Sara)
@@ -10,6 +11,9 @@
     display: flex;
     justify-content: center;
     margin: 0;
+  }
+  
+  .login-container {
 }
 
 .login-container {
@@ -19,7 +23,15 @@
     text-align: center;
     max-width: 400px; 
     width: 100%;
-}
+  }
+  
+  .logo {
+    width: 90px;
+    height: 70px;
+    margin-bottom: 10px;
+  }
+  
+
 
 .logo {
     width: 90px;
@@ -33,13 +45,27 @@ h1 {
     padding: 0;
     font-size: 30px;
     color: #fff;
-}
+
+  }
+  
 
 h5 {
     font-family: 'Inter', sans-serif;
     font-size: 20px;
     margin-bottom: 20px;
     color: #fff;
+  }
+  
+  .input-container {
+    position: relative;
+    margin-bottom: 20px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .input-container input {
+
 }
 
 .input-container {
@@ -67,6 +93,16 @@ h5 {
     color: #9395A4;
     font-size: 18px; 
     height: 60px; 
+    text-align: center;
+  }
+  
+  .input-container input:focus {
+    outline: none; 
+    border: 2px solid #000ceb; 
+  }
+  
+  .input-circle {
+
 }
 
 .input-container input:focus {
@@ -88,6 +124,11 @@ h5 {
     align-items: center;
     color: #FDFDFD; 
     font-size: 18px; 
+
+  }
+  
+  button {
+
 }
 
 button {
@@ -101,6 +142,7 @@ button {
     border: none;
     border-radius: 50px;
     cursor: pointer;
+
 }
 
 button:hover {
@@ -112,6 +154,37 @@ button:hover {
     margin-top: 10px;
     color: #007bff;
     cursor: pointer;
+
+  }
+  
+  .container-disponiveis {}
+  
+  .container-disponiveis p {
+    display: flex;
+    justify-content: flex-start;
+    color: #007bff;
+  }
+  
+  .logo-bancos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .logo-bancos img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .azul {
+    display: flex;
+    justify-content: start;
+    color: #007bff;
+  }
+  
+  .btn-azul {
+
 }
 
 .container-disponiveis{
@@ -143,9 +216,60 @@ button:hover {
 }
 
 .btn-azul{
+
     background-color: #000ceb;
     color: #fff;
     width: 50%;
     margin-top: 10px;
     height: 5%;
-}
+
+  }
+  
+  /* Botões para aumentar/diminuir o valor */
+  .valor-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .valor-container button {
+    width: 40px;
+    height: 40px;
+    background-color: #000E5A;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .valor-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .valor-container input {
+    text-align: center;
+    width: 80px;
+    height: 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #171C1C;
+    color: #fff;
+  }
+
+  .logo-bancos img {
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+  }
+  
+  .logo-bancos img.selected {
+    border: 2px solid blue;
+  }
+  
+  
+

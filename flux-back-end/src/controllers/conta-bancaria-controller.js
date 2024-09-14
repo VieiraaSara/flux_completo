@@ -38,12 +38,12 @@ class ContaController {
             const saldo = parseFloat(req.body.saldo);
             const tipo_conta = req.body.tipo_conta
             const fkUsuarioId = dadosUsuario.id;
-            const fkBancoId = req.body.banco_id;
+            const fkBancoId = req.body.fkBancoId;
 
 
 
 
-            const resultado = await service.criarContaBancaria(fkUsuarioId, fkBancoId, tipo_conta, saldo);
+            const resultado = await service.criarContaBancaria(fkUsuarioId, fkBancoId,  saldo, tipo_conta);
 
 
             if (resultado.status === 201) {

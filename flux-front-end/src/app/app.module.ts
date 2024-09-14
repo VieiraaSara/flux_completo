@@ -24,7 +24,6 @@ import { IonicRouteStrategy } from '@ionic/angular';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from './_interceptors/interceptor';
-import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
 @NgModule({
