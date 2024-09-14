@@ -8,7 +8,8 @@ import { CommonModule } from '@angular/common';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AuthService } from '../services/auth.service';
 import { DeleteUserService } from '../services/delete-user.service';
-
+import { NgxSpinnerService } from "ngx-spinner";
+import { LoadingController } from '@ionic/angular';
 export interface Task {
   name: string;
   completed: boolean;
@@ -47,6 +48,8 @@ export class ConfigFluxPage implements OnInit {
     private updateAccountService: UpdateUserService,
     private authService: AuthService,
     private deleteUser: DeleteUserService,
+    private spinner : NgxSpinnerService,
+    private loadingCtrl: LoadingController,
     private navCtrl: NavController) {}
 
   ngOnInit() {
@@ -133,31 +136,28 @@ export class ConfigFluxPage implements OnInit {
     }
   }
 
- async atualizarInformacoes() {
-  const user = this.editarInformacoesForm.value;
-  const token = localStorage.getItem('token');
+  async atualizarInformacoes() {
+    const user = this.editarInformacoesForm.value;
+    const token = localStorage.getItem('token');
 
-  if (token && this.id) {
-    try {
-      const response: any = await this.updateAccountService.atualizarInformacoesUsuario(user, this.id, token);
+    if (token && this.id) {
+      try {
+        const response = await this.updateAccountService.atualizarInformacoesUsuario(user, this.id, token);
 
-      if (response) {
-        alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
+        if (response) {
+          alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
+        
+          this.navCtrl.navigateRoot('/home');
+        } else {
+          console.error('Resposta não contém os dados esperados:', response);
 
-        const newToken = response.token;
-        if (newToken) {
-          localStorage.setItem("token", newToken);
         }
-
-        this.navCtrl.navigateRoot('/home', { replaceUrl: true });
-      } else {
-        console.error('Resposta não contém os dados esperados:', response);
+      } catch (error) {
+        console.error('Erro ao atualizar usuário:', error);
       }
-    } catch (error) {
-      console.error('Erro ao atualizar usuário:', error);
     }
   }
-}
+
 async deleteUserById(){
   const userId = this.decodeToken();
   const tkn = localStorage.getItem('token');
@@ -176,6 +176,15 @@ async deleteUserById(){
 
 
 }
+ async showLoading() {
+  const loading = await  this.loadingCtrl.create({
+    message: 'Atualizando informações',
+    duration: 3000,
+  });
+
+  loading.present();
+}
+
 
 public alertButtonBack = [
   {

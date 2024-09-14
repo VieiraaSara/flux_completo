@@ -13,7 +13,7 @@ class BancoController {
 
             const bancoList = await repository.get();
             // const bancoList = await bancoService.returnListBanks(dadosUsuario);
-
+console.log(bancoList);
             if (!bancoList) {
                 res.status(404).send({
                     message: "Banco não encontrado"

@@ -1,20 +1,18 @@
 <ion-content>
   <div class="container-global">
-    <div class="header" >
+    <div class="header">
       <!-- Imagem perfil do usuário e mensagem de bem-vindo -->
-    <a href="config-flux">  <img
-        src="assets/image/Captura de tela 2024-06-04 205846.png"
-        class="perfil"
-        alt="Perfil"
-
-        />
+      <a href="config-flux">
+        <img src="assets/image/Captura de tela 2024-06-04 205846.png" class="perfil" alt="Perfil" />
       </a>
-      <h4 *ngFor="let not of notifications | slice:0:1; let i=index"
-     >Bem vindo(a) {{not.nome}}!</h4>
-    </div>
 
+     <h4 *ngFor="let not of notifications | slice:0:1; let i=index"
+     >Bem vindo(a) {{not.nome}}!</h4>
+
+
+  </div>
     <div class="container-addbanco">
-      <!-- container para adicionar um novo banco -->
+      <!-- Container para adicionar um novo banco -->
       <p>
         Adicione um novo banco e <br />
         cuide de todo seu dinheiro!
@@ -23,7 +21,6 @@
         <button class="adicionar">
           <a routerLink="/cadastro-banco">Adicionar</a>
         </button>
-        <!-- botão que leva ao cadastro de bancos por chave pix  -->
       </div>
       <div class="container-logo">
         <img src="assets/image/Frame 1logobranco.png" class="logo" alt="Logo" />
@@ -32,33 +29,38 @@
 
     <!-- Sessão que contém as notificações com todas as transações do sistema -->
     <h4>Fluxo da Conta</h4>
-
-    <div class="notifications-container">
-      <div class="cards">
-
-        <div class="notification" *ngFor="let notification of notifications; let i = index"
-          [class.expanded]="notification.detailsVisible"
-          [ngClass]="{'show': i < 3}">
-          <div class="notification-header">
-            <img [src]="notification.logoUrl" class="notification-logo" alt="Logo"/>
-            <div class="notification-content">
-              <p class="notification-title">{{notification.title}}</p>
-              <p class="notification-subtitle">{{notification.subtitle}}</p>
+    <div class="notification" *ngFor="let notification of notifications; let i = index"></div>
+      <div class="notifications-container">
+        <div class="cards">
+          <div class="notification" *ngFor="let notification of notifications; let i = index"
+            [class.expanded]="notification.detailsVisible"
+            [ngClass]="{'show': i < 3}">
+            <div class="notification-header">
+              <img [src]="notification.logoUrl" class="notification-logo" alt="Logo" />
+              <div class="notification-content">
+                <p class="notification-title">{{notification.title}}</p>
+                <p class="notification-subtitle">{{notification.subtitle}}</p>
+              </div>
+              <button class="toggle-details" (click)="toggleDetails(notification)">
+                <img src="assets/image/down.png" alt="" />
+              </button>
             </div>
-            <button class="toggle-details" (click)="toggleDetails(notification)">
-              <img src="assets/image/down.png" alt="" />
-            </button>
-          </div>
 
-          <div class="notification-details" *ngIf="notification.detailsVisible">
-            <a routerLink="">Ver no banco</a>
-            <a href="#excluir" id="excluir">Excluir</a>
-            <a routerLink="">Mais</a>
+            <div class="notification-details" *ngIf="notification.detailsVisible">
+              <a routerLink="">Ver no banco</a>
+              <a href="#excluir" id="excluir">Excluir</a>
+              <a routerLink="">Mais</a>
+            </div>
+            <div class="notification-shadow"></div>
+            <ng-template #noNotifications let-data="data">
+              <h4>Bem-vindo(a) {{ data.nome }}!</h4>
+            </ng-template>
+
           </div>
-          <div class="notification-shadow"></div>
         </div>
       </div>
-    </div>
+
+
 
   </div>
 </ion-content>

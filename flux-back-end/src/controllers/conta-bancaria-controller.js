@@ -42,6 +42,7 @@ class ContaController {
 
 
 
+
             const resultado = await service.criarContaBancaria(fkUsuarioId, fkBancoId, tipo_conta, saldo);
 
 

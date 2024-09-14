@@ -72,6 +72,11 @@ class UsarioRepository {
 
     //Autenticar usuário (login)
     static autenticar = async (data) => {
+     
+        console.log(data.email);
+        console.log(data.email);
+        console.log(data.email);
+        console.log(data.email);
         const usuario = await Usuario.findOne({
             where: {
                 email: data.email

@@ -12,6 +12,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(credentials: any): Promise<string> {
+    alert("credentials " + credentials )
     return this.http.post(`${this.apiUrl}flux/login`, credentials)
       .pipe(
         catchError(this.handleError)
@@ -30,7 +31,7 @@ export class AuthService {
   }
 
   refreshToken(): Observable<any> {
-    const token = this.getToken();  
+    const token = this.getToken();
     if (!token) {
       return throwError(() => new Error('Token não encontrado.'));
     }

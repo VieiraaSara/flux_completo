@@ -1,17 +1,20 @@
 const homeRepository = require('../repositories/home-repository');
 const cateiraRepository = require('../repositories/carteira-repository');
 const Transacao = require('../models/transacao');
+const usuarioRepository = require('../repositories/usuario-repository');
 class TransacaoService {
 
 
     static listarDadosHome = async (id_user, usuario_nome_token) => {
-        const query = await homeRepository.getHomeData(id_user,10);
-        
-        if (!query || query.data == null || query.data.length === 0) {
-            return { status: 200, nome_usuario: usuario_nome_token, message: "Você ainda não realizou transações" };
-        }
 
-        return { status: 200, data: query.data, nome: usuario_nome_token };
+        const query = await homeRepository.getHomeData(id_user,10);
+        const username = usuario_nome_token
+       
+     
+        if (!query || query.data == null || query.data.length === 0) {
+            return { status: 206, data:username,message:'Você ainda não possui transações feitas' }; 
+          }
+        return { status: 200, data: query.data, nome: username };
 
 
     }

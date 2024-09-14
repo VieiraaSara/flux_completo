@@ -16,16 +16,23 @@ export class UpdateUserService {
   atualizarInformacoesUsuario(user: any, id: number, token: string) {
     const tokenUrl = this.authService.getToken();
 
-    // Primeiro faz o PATCH para atualizar o usuário
+
     return this.http.post(`${this.apiUrl}flux/refresh-token?token=${tokenUrl}`, {})
       .toPromise()
       .then((response: any) => {
 
         if (response && response.token) {
           alert('TOKEN GERADO COM SUCESSO: ' + response.token);
-        this.authService.refreshToken();
-            localStorage.setItem('token',response.token);
-          return this.http.patch(`${this.apiUrl}flux/atualizar-usuario/${id}?token=${response.token}`, user).toPromise();
+           this.http.post(`${this.apiUrl}flux/refresh-token?token=${response.token}`, {})
+          localStorage.clear();
+          localStorage.setItem('token',response.token )
+          return this.http.patch(`${this.apiUrl}flux/atualizar-usuario/${id}?token=${response.token}`, user).toPromise()
+          .then((dadosUser: any)=>{
+            alert('TOKEN GERADO COM SUCESSO: 2 ' + JSON.stringify(dadosUser))
+
+            this.authService.login(dadosUser);
+            return dadosUser;
+          });
 
         } else {
           throw new Error('Token não encontrado na resposta da atualização de usuário.');
@@ -39,5 +46,10 @@ export class UpdateUserService {
   }
 
 }
+
+
+
+
+
 
 

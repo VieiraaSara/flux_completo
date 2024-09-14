@@ -18,7 +18,7 @@ class HomeController {
                 return res.status(response.status).json(response.data);
             } else {
 
-                return res.status(response.status).json({ nome_usuario: response.nome_usuario, message: response.message });
+                return res.status(response.status).json({data:response.data,message: response.message});
             }
 
         } catch (error) {

@@ -1,9 +1,9 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable, Injector } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { catchError, Observable, switchMap, throwError } from "rxjs";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { AuthService } from "../app/services/auth.service";
+import { AuthService } from "../services/auth.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -69,7 +69,7 @@ export class AuthInterceptor implements HttpInterceptor {
               return throwError(() => new Error('Não foi possível atualizar o token.'));
             }),
             catchError(() => {
-              
+
               this.router.navigateByUrl('/login');
               this.snackBar.open('Sessão expirada. Faça login novamente.', 'Fechar');
               this.refreshInProgress = false;

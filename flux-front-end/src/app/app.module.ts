@@ -1,34 +1,32 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {
-  FontAwesomeModule,
-  FaIconLibrary,
-} from '@fortawesome/angular-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
+import {
+  FaIconLibrary
+} from '@fortawesome/angular-fontawesome';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
-import { IonicModule } from '@ionic/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IonicModule } from '@ionic/angular';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
-import { environment } from 'src/environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { CadastroUsuarioPage } from './cadastro-usuario/cadastro-usuario.page';
-import { AuthInterceptor } from './interceptor';
-import { AuthService } from './services/auth.service';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import {  IonicRouteStrategy } from '@ionic/angular';
 import { NgModule } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { IonicRouteStrategy } from '@ionic/angular';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { environment } from 'src/environments/environment';
+import { AuthInterceptor } from './_interceptors/interceptor';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { AppRoutingModule } from './app-routing.module';
-import {IonicInputMaskModule} from "@thiagoprz/ionic-input-mask";
-IonicInputMaskModule
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -38,6 +36,7 @@ IonicInputMaskModule
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    NgxSpinnerModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
@@ -52,12 +51,15 @@ MatCheckboxModule,
 
   ],
   providers: [
+
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi: true },
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue:{duration: 2500} }
+    // ,
+    // {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
 })

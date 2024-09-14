@@ -1,10 +1,12 @@
 const { Sequelize, QueryTypes, where } = require('sequelize');
 const Transacao = require("../models/transacao");
 const Banco = require('../models/banco');
+const usarioRepository = require('./usuario-repository');
 
 class HomeRepository {
 
     static getHomeData = async (id_user, limit) => {
+const nome = await usarioRepository.getById(id_user);
 
         const query = await Banco.sequelize
             .query(`
@@ -36,7 +38,7 @@ class HomeRepository {
             });
 
 
-        return { status: 200, data: query };
+        return { status: 200, data: query, nome: nome };
     }
 
 

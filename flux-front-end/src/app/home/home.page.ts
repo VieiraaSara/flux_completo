@@ -1,10 +1,12 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
 import { TransacaoService } from '../services/transacao.service';
 import { NavController } from '@ionic/angular';
 import { FormBuilder } from '@angular/forms';
 import {jwtDecode} from 'jwt-decode';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { NgIfContext } from '@angular/common';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -12,14 +14,17 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 })
 export class HomePage implements OnInit {
   notifications: any[] = [];
+
   nome: string = '';
 i: any;
+
 
 
   constructor(
     private tran: TransacaoService,
     private formBuilder: FormBuilder,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+
   ) {}
 
   ngOnInit() {
@@ -30,6 +35,7 @@ i: any;
     if (token) {
       this.tran.getHome(token).subscribe(
         async (data) => {
+          this.notifications = [];
           if (data && Array.isArray(data)) {
             this.notifications = data.map((item: any) => ({
               title: item.descricao,
@@ -38,8 +44,18 @@ i: any;
               nome:item.nome,
               detailsVisible: false,
             }));
-          } else {
-            console.error('Dados inválidos retornados da API:', data);
+
+          } else if(data){
+
+
+            this.notifications.push({
+
+              subtitle: data.message,
+              nome: data.data
+            });
+
+
+
           }
         },
         (error) => {
@@ -98,7 +114,12 @@ i: any;
               detailsVisible: false,
             }));
           } else {
-            console.error('Dados inválidos retornados da API:', data);
+
+            this.notifications.push({
+
+              subtitle: data.message,
+              nome: data.data
+            });
           }
         },
         (error) => {

@@ -106,17 +106,7 @@ class UsuarioController {
     static atualizarUsuario = async (req, res) => {
 
         try {
-            let contract = new ValidationContract();
-            contract.hasMinLen(req.body.nome, 3, 'O nome deve conter pelo menos 3 caracteres');
-            contract.hasMinLen(req.body.cpf, 14, 'O cpf deve conter pelo menos 13 caracteres');
-            contract.hasMaxLen(req.body.cpf, 14, 'O cpf deve ter no máximo 13 caracteres');
-            contract.isEmail(req.body.email, 'Email inválido');
-            contract.hasMinLen(req.body.senha, 3, 'O senha deve conter pelo menos 3 caracteres');
-
-            if (!contract.isValid()) {
-                res.status(400).send(contract.errors()).end();
-                return;
-            }
+        
 
 
 
@@ -129,9 +119,10 @@ class UsuarioController {
             }
 
         } catch (error) {
-            return res.status(500).send({
-                message: "Falha ao processar requisição: " + error
-            });
+            // return res.status(500).send({
+            //     message: "Falha ao processar requisição: " + error
+            // });
+            throw error;
         }
     }
 
@@ -152,7 +143,11 @@ class UsuarioController {
     //Autenticar usuário (login)
     static autenticar = async (req, res) => {
         try {
-
+     
+            console.log('senha: req.body.senha: ',  req.body.senha);
+            console.log('senha: req.body.senha: ',  req.body.senha);
+            console.log('senha: req.body.senha: ',  req.body.senha);
+            console.log('senha: req.body.senha: ',  req.body.senha);
             const usuario = await repository.autenticar({
                 email: req.body.email,
                 senha: req.body.senha,
@@ -168,7 +163,7 @@ class UsuarioController {
                 id: usuario.id_usuario,
                 email: usuario.email,
                 nome: usuario.nome,
-                roles: usuario.roles // pra ajudar o front-end
+                roles: usuario.roles 
 
             });
 
@@ -197,14 +192,14 @@ class UsuarioController {
 
             const usuario = await repository.getById(usuario_id_token);
          
-            console.log('usuario: ', usuario);
+           
 
        
             if (!usuario || !usuario.data) {
                 res.status(404).send({ message: 'Usuário não encontrado' });
                 return;
             }
-console.log('---------------------------------------------');
+
 
             // Criando novo token de um usuário existente
             const tokenData = await authService.generateToken({
