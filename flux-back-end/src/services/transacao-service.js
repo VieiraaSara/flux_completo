@@ -8,7 +8,7 @@ class TransacaoService {
         const query = await homeRepository.getHomeData(id_user,10);
         
         if (!query || query.data == null || query.data.length === 0) {
-            return { status: 200, nome_usuario: usuario_nome_token, message: "Você ainda não realizou transações" };
+            return { status: 204, nome_usuario: usuario_nome_token, message: "Você ainda não realizou transações" };
         }
 
         return { status: 200, data: query.data, nome: usuario_nome_token };

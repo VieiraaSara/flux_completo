@@ -77,11 +77,14 @@ class UsuarioService {
         try {
             const senha = body.senha;
 
+
+            const hashedPassword = await bcrypt.hash(senha, 10);
+
             const usuario = await repository.put(id, {
                 nome: body.nome,
                 cpf: body.cpf,
                 email: body.email,
-                senha: senha
+                senha: hashedPassword
 
             });
 

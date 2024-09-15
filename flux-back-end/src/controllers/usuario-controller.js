@@ -49,7 +49,7 @@ class UsuarioController {
 
             const id = req.params.id
 
-          
+            // const usuario = await service.getById(data.id);
             const usuario = await service.getById(id);
 
 
@@ -75,7 +75,9 @@ class UsuarioController {
 
         try {
             let contract = new ValidationContract();
-          
+            contract.hasMinLen(req.body.nome, 3, 'O nome deve conter pelo menos 3 caracteres');
+            contract.hasMinLen(req.body.cpf, 14, 'O cpf deve conter pelo menos 13 caracteres');
+            contract.hasMaxLen(req.body.cpf, 14, 'O cpf deve ter no máximo 13 caracteres');
             contract.isEmail(req.body.email, 'Email inválido');
             contract.hasMinLen(req.body.senha, 3, 'O senha deve conter pelo menos 3 caracteres');
 
@@ -119,7 +121,6 @@ class UsuarioController {
             }
 
 
-
             const usuario = await service.update(req.params.id, req.body);
 
             if (usuario.status === 201) {
@@ -141,7 +142,7 @@ class UsuarioController {
             const resultado = await repository.delete(req.params.id);
 
             return res.status(resultado.status).json({ message: resultado.message });
-
+           
         } catch (error) {
             res.status(404).send({
                 message: "Falha ao processar requisição"
@@ -152,7 +153,7 @@ class UsuarioController {
     //Autenticar usuário (login)
     static autenticar = async (req, res) => {
         try {
-
+            console.log(req.body.senha)
             const usuario = await repository.autenticar({
                 email: req.body.email,
                 senha: req.body.senha,
@@ -196,30 +197,27 @@ class UsuarioController {
             const usuario_id_token = data.id;
 
             const usuario = await repository.getById(usuario_id_token);
-         
-            console.log('usuario: ', usuario);
 
-       
-            if (!usuario || !usuario.data) {
+            if (!usuario) {
                 res.status(404).send({ message: 'Usuário não encontrado' });
                 return;
             }
-console.log('---------------------------------------------');
 
             // Criando novo token de um usuário existente
             const tokenData = await authService.generateToken({
-                id: usuario.data.id_usuario,
-                email: usuario.data.email,
-                nome: usuario.data.nome,
-                roles: usuario.data.roles
+                id: usuario.id_usuario,
+                email: usuario.email,
+                nome: usuario.nome,
+                roles: usuario.roles //coloca no refresh token
             })
-            
 
-       
-            return res.status(201).send({
-                token:  tokenData
+            res.status(201).send({
+                token: token,
+                data: {
+                    email: usuario.email,
+                    nome: usuario.nome
+                }
             });
-
         } catch (error) {
             console.error('Erro ao autenticar cliente:', error);
             res.status(500).send({

@@ -2,15 +2,12 @@
   <div class="container-global">
     <div class="header" >
       <!-- Imagem perfil do usuário e mensagem de bem-vindo -->
-    <a href="config-flux">  <img
+      <img
         src="assets/image/Captura de tela 2024-06-04 205846.png"
         class="perfil"
         alt="Perfil"
-
-        />
-      </a>
-      <h4 *ngFor="let not of notifications | slice:0:1; let i=index"
-     >Bem vindo(a) {{not.nome}}!</h4>
+      />
+      <h4>Bem vindo(a) {{nome}}!</h4>
     </div>
 
     <div class="container-addbanco">
@@ -58,7 +55,109 @@
           <div class="notification-shadow"></div>
         </div>
       </div>
-    </div>
+    </div></div>
 
+  <div class="scrollable-content">
+    <div class="header-carteira">
+      <div class="title-point">
+        <h1>Saldo total</h1>
+        <div class="title-direita">
+          <div class="circle">
+            <img src="../../assets/image/Dark.png" alt="" />
+          </div>
+          <div class="title-junto">
+            <h2>Banco Flux</h2>
+            <h2>R$5.459,45</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="coluna">
+          <div class="bancos">
+            <div class="circle-bancos">
+              <img src="../../assets/image/banco.png" alt="Banco" />
+              <p>Bancos</p>
+            </div>
+          </div>
+          <div class="impressoes">
+            <div class="circle-bancos">
+              <img src="../../assets/image/impressao.png" alt="Impressão" />
+              <p>Impressões</p>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="margin-top: 20px; display: flex; justify-content: start">
+          Relatório Total
+        </h4>
+
+        <div class="banco-entrada">
+          <img
+            src="../../assets/image/bancodobrasil-logo.png"
+            alt="Banco do Brasil"
+          />
+          <div class="descricao">
+            <div class="nome-desc">
+              <h5 style="margin-right: 20px">Banco do Brasil</h5>
+              <h5>R$40,00</h5>
+            </div>
+            <div class="valor-aum">
+              <p style="margin-right: 50px">Drogaria Raia</p>
+              <img
+                style="margin-left: 50px"
+                src="../../assets/image/queda.png"
+                alt="Aumento"
+              />
+              <p>2.5%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="banco-entrada">
+          <img
+            src="../../assets/image/bancodobrasil-logo.png"
+            alt="Banco do Brasil"
+          />
+          <div class="descricao">
+            <div class="nome-desc">
+              <h5 style="margin-right: 20px">Banco do Brasil</h5>
+              <h5>R$40,00</h5>
+            </div>
+            <div class="valor-aum">
+              <p style="margin-right: 50px">Drogaria Raia</p>
+              <img
+                style="margin-left: 50px"
+                src="../../assets/image/queda.png"
+                alt="Aumento"
+              />
+              <p>2.5%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="banco-entrada">
+          <img
+            src="../../assets/image/bancodobrasil-logo.png"
+            alt="Banco do Brasil"
+          />
+          <div class="descricao">
+            <div class="nome-desc">
+              <h5 style="margin-right: 20px">Banco do Brasil</h5>
+              <h5>R$40,00</h5>
+            </div>
+            <div class="valor-aum">
+              <p style="margin-right: 50px">Drogaria Raia</p>
+              <img
+                style="margin-left: 50px"
+                src="../../assets/image/queda.png"
+                alt="Aumento"
+              />
+              <p>2.5%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

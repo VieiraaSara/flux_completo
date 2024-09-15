@@ -9,7 +9,6 @@ class CarteiraRepository {
             .query(`
                      SELECT 
     usuario.id_usuario,
-    usuario.nome,
    ROUND(transacao.valor, 2) AS valor,
     transacao.tipo_operacao,
     transacao.descricao,

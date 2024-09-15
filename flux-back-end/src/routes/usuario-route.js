@@ -9,7 +9,7 @@ router.post('/refresh-token', authService.authorize, controller.refreshToken);
 router.get('/listar-usuarios', authService.authorize, controller.listarUsuarios);
 router.get('/buscar-usuario/:id', authService.authorize, controller.buscarUsuarioPeloID);
 router.get('/buscar-usuario/', authService.authorize, controller.buscarUsuarioPeloID); // metodo passando o id pelo token e ja vindo o usuário que esta registrado
-router.patch('/atualizar-usuario/:id', authService.authorize, controller.atualizarUsuario); 
-router.delete('/excluir-usuario/:id',authService.authorize, controller.deletarUsuario);
+router.put('/atualizar-usuario/:id', authService.authorize, controller.atualizarUsuario); 
+router.delete('/excluir-usuario/:id', controller.deletarUsuario);
 
 module.exports = router;

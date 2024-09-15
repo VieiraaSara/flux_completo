@@ -1,183 +1,123 @@
-.container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  max-width: 600px;
-  width: 100%;
-}
 
-h1 {
-  font-family: "Inter", sans-serif;
-  font-size: 30px;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 20px;
-}
+  
+  .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+  }
 
-.section {
-  margin: 20px 0;
-}
-
-.section h2 {
-  font-family: "Poppins", sans-serif;
-  font-size: 20px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #ffffff;
-  position: relative;
-}
-
-.arrow {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  padding-left: 4px;
-}
-
-.collapsible {
-  display: none;
-  margin-top: 10px;
-}
-
-.collapsible.show {
-  display: block;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.input-container {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.input-container label {
-  font-family: "Poppins", sans-serif;
-  display: block;
-  text-align: left;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #ffffff;
-  font-size: 18px;
-}
-
-.input-container input {
-  font-family: "Poppins", sans-serif;
-  width: 100%;
-  padding: 20px;
-  padding-left: 60px;
-  border-radius: 50px;
-  background-color: #171c1c;
-  border: none;
-  color: #9395a4;
-  font-size: 18px;
-  height: 60px;
-}
-
-input.input-style {
-  background: none;
-  border: none;
-  padding: 5px 0px 5px 0px;
-  margin: 14px 0px 4px 0px;
-  border-bottom: 2px solid #e7e7e7;
-  font-size: 20px;
-  width: 360px;
-  text-indent: 1em;
-}
-input.input-style:focus {
-  outline: none;
-  border-bottom: 2px solid #ffffff;
-  font-size: 20px;
-  width: 360px;
-  text-indent: 1em;
-  padding: 5px 0px 5px 0px;
-  margin: 14px 0px 4px 0px;
-}
-
-.input-container input:focus {
-  outline: none;
-  border: 2px solid #000ceb;
-}
-
-.input-circle {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  background-color: #000e5a;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  font-size: 18px;
-}
-
-button {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  width: 100%;
-  padding: 20px;
-  font-size: 18px;
-  background-color: #92d1f9;
-  color: #000000;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.2s ease-in-out;
-}
-
-button:hover {
-  background-color: #44b7ff;
-}
-
-ul.list-btns {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-li.list-itens {
-  list-style: none;
-  padding: 6px;
-}
-
-
-ion-button.btn-s {
-  --background: transparent;
-  --color: red;
-  --border: 1px solid red;
-  --border-radius: 30px;
-  --font-size: 16px;
-  --font-weight: 600;
-  --padding: 10px 30px;
-  --box-shadow: none;
-  transition: 0.7ms ease-in;
-}
-
-ion-button.btn-s:hover {
-  --background: rgb(107, 0, 0);
-  --color: #ffffff;
-}
-
-ion-checkbox {
-  --size: 32px;
-  --checkbox-background-checked: #44b7ff;
-  font-size: 20px;
-}
-
-ion-checkbox::part(container) {
-  border-radius: 6px;
-  border: 2px solid #000e5a;
-}
-
-
-
+ 
+  
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    margin: 20px 0;
+  }
+  
+  .section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    position: relative;
+  }
+  
+  .arrow {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .collapsible {
+    display: none;
+    margin-top: 10px;
+  }
+  
+  .collapsible.show {
+    display: block;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .input-container label {
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .input-container input {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    padding: 20px;
+    padding-left: 60px;
+    border-radius: 50px;
+    background-color: #171C1C;
+    border: none;
+    color: #9395A4;
+    font-size: 18px;
+    height: 60px;
+  }
+  
+  .input-container input:focus {
+    outline: none;
+    border: 2px solid #000ceb;
+  }
+  
+  .input-circle {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    background-color: #000E5A;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 18px;
+  }
+  
+  button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    width: 100%;
+    padding: 20px;
+    font-size: 18px;
+    background-color: #92D1F9;
+    color: #000000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #44b7ff;
+  }
+  

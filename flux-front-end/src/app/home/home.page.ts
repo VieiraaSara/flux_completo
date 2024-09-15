@@ -13,8 +13,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 export class HomePage implements OnInit {
   notifications: any[] = [];
   nome: string = '';
-i: any;
-
 
   constructor(
     private tran: TransacaoService,
@@ -24,7 +22,6 @@ i: any;
 
   ngOnInit() {
     this.decodeToken();
-    this.loadNotifications();
 
     const token = localStorage.getItem('token');
     if (token) {
@@ -35,7 +32,6 @@ i: any;
               title: item.descricao,
               subtitle: `Saldo: ${item.valor}, Banco: ${item.nome_banco}`,
               logoUrl: item.image,
-              nome:item.nome,
               detailsVisible: false,
             }));
           } else {
@@ -51,8 +47,8 @@ i: any;
     }
   }
 
- async decodeToken() {
-    const token =  localStorage.getItem('token');
+  decodeToken() {
+    const token = localStorage.getItem('token');
 
     if (token) {
       try {
@@ -64,8 +60,6 @@ i: any;
       } catch (error) {
         console.error('Erro ao decodificar o token:', error);
       }
-    }else{
-
     }
   }
   @HostListener('window:scroll', ['$event'])
@@ -84,29 +78,5 @@ i: any;
   toggleDetails(notification: any) {
     notification.detailsVisible = !notification.detailsVisible;
   }
-  loadNotifications() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.tran.getHome(token).subscribe(
-        (data) => {
-          if (data && Array.isArray(data)) {
-            this.notifications = data.map((item: any) => ({
-              title: item.descricao,
-              subtitle: `Saldo: ${item.valor}, Banco: ${item.nome_banco}`,
-              logoUrl: item.image,
-              nome: item.nome,
-              detailsVisible: false,
-            }));
-          } else {
-            console.error('Dados inválidos retornados da API:', data);
-          }
-        },
-        (error) => {
-          console.error('Erro ao buscar dados da API', error);
-        }
-      );
-    } else {
-      console.error('Token não encontrado.');
-    }
-  }
+
 }

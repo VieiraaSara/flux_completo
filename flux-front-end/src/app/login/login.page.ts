@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { NavController } from '@ionic/angular';
-import { AuthService } from '../services/auth.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -19,20 +17,12 @@ export class LoginPage {
     senha: ''
   };
 
-  constructor(private authService:AuthService, private loginService: LoginService, private navCtrl: NavController) {}
+  constructor(private loginService: LoginService, private navCtrl: NavController) {}
 
   async login() {
     try {
-      alert(this.credentials.email);
-      alert(this.credentials.senha);
-      const token =await this.authService.login(this.credentials);
-      if(!localStorage.getItem('token')){
-
-        localStorage.setItem('token', token);
-
-      }else{
-      localStorage.getItem('token');
-      }
+      const token = await this.loginService.login(this.credentials);
+      localStorage.setItem('token', token);
       this.navCtrl.navigateRoot('/home');
     } catch (error) {
       alert('Erro ao fazer login: ');
@@ -43,4 +33,5 @@ export class LoginPage {
     this.visible = !this.visible;
     this.changetype = !this.changetype;
   }
+
 }

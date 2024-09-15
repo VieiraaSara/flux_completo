@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@angular/material": "^18.2.3",
-    "ngx-mask": "^18.0.0",
-    "primeng": "^17.18.10"
-  }
-}
