@@ -1,5 +1,5 @@
-<body>
-  
+<ion-content>
+  <div class="global">
 
   <div class="login-container">
     <img src="assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
@@ -7,7 +7,7 @@
     <h5>Cadastre seu Banco</h5>
   
     <div class="input-container">
-      <input type="text" id="chavePix" name="chavePix" placeholder="Chave Pix">
+      <input type="text" [(ngModel)]="key" id="chavePix" name="chavePix" placeholder="Chave Pix">
       <div class="input-circle">
         <i class="fa-brands fa-pix"></i>
       </div>
@@ -17,16 +17,25 @@
 
     <div class="container-disponiveis">
       <p>Selecione a conta do seu banco</p>
-      <div class="logo-bancos">
-        <div *ngFor="let conta of contas?.slice(0, 9)" (click)="selecionarConta(conta)">
-          
-        </div>                  
-      </div>
-      <button class="btn-azul" routerLink="/mais-bancos">Veja Mais +</button>
+      
+        <ion-list>
+          <ion-item *ngFor="let conta of contas" (click)="selecionarBanco(conta)">
+            <ion-avatar slot="start">
+              <img [src]="conta.Banco.image" alt="{{ conta.Banco.name }}">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ conta.Banco.name }}</h2>
+              <p>Saldo: {{ conta.saldo | currency }}</p>
+              <p>Tipo de Conta: {{ conta.tipo_conta }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>                  
+     
+      <button class="btn-azul" routerLink="/list-contaB">Veja Mais +</button>
     </div>
 
     <p class="azul">Selecione o tipo da sua chave Pix</p>
-    <select [(ngModel)]="tipoConta" required>
+    <select [(ngModel)]="key_type" required>
       <option value="">Selecione o tipo</option>
       <option value="EMAIL">Email</option>
       <option value="CNPJ">Cnpj</option>
@@ -37,8 +46,9 @@
 
 
   
-    <button type="submit">Cadastrar Banco</button>
+    <button (click)="cadastrarPix()">Cadastrar Banco</button>
 
    
     
-  </div></body>
+  </div></div>
+</ion-content>

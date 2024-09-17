@@ -12,7 +12,6 @@ export class TransacaoService {
   constructor(private http: HttpClient) {}
 
   getHome(token: string): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get(`${this.apiUrl}home?token=${token}`);
   }

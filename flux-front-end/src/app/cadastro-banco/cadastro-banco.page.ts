@@ -3,30 +3,42 @@ import { ContaBancariaService } from '../services/conta-bancaria.service';
 import { AuthService } from '../services/auth.service';
 import { PixService } from '../services/pix.service';
 
+interface Banco {
+  id_banco: number;
+  name: string;
+  image: string;
+}
 
 interface Conta {
   fkBancoId: number;
-  saldo: number;
+  usuario_id: number;
+  id_conta: number;
+  saldo: string;
   tipo_conta: string;
+  Banco: Banco; 
 }
 
-
-
+interface Pix{
+  key_type: string
+  key:string
+  conta_bancaria_id: number
+  
+  
+}
 @Component({
   selector: 'app-cadastro-banco',
   templateUrl: './cadastro-banco.page.html',
   styleUrls: ['./cadastro-banco.page.scss'],
 })
 export class CadastroBancoPage implements OnInit {
-  chavePix: string = ''; 
-  tipoConta: string = ''; 
+  key: string = ''; 
+  key_type: string = ''; 
   selectedInstitution: number | null = null;
-  contas: Conta[] = [];
+  contas: Conta[] = [];  // Mudança para "contas", porque o dado principal é Conta, não Banco
   token: string | null = null;
 
   constructor(
-    private contaBancariaService: ContaBancariaService,
-    private authService: AuthService ,
+    private authService: AuthService,
     private pixService: PixService
   ) {}
 
@@ -39,49 +51,48 @@ export class CadastroBancoPage implements OnInit {
     }
   }
 
-  
-
   listarContasBancarias() {
     if (this.token) {
       this.pixService.getContaBancaria(this.token)
-        .then((response: Conta[]) => {
-          console.log('Resposta da API:', response); 
-          this.contas = response; 
+        .then((response: Conta[]) => {  
+          console.log('Resposta da API:', response);
+          this.contas = response;  // Agora você salva as contas
         })
         .catch((err) => {
-          console.error('Erro ao listar instituições:', err);
+          console.error('Erro ao listar contas bancárias:', err);
         });
     }
   }
 
-  selecionarConta(conta: Conta) {
-    // this.selectedInstitution = conta.id_conta;
-    console.log(this.selectedInstitution)
+  selecionarBanco(conta: Conta) {
+    this.selectedInstitution = conta.id_conta;
+    console.log(this.selectedInstitution);
   }
 
-  cadastrarConta() {
-    if (this.chavePix && this.tipoConta && this.selectedInstitution !== null && this.token) {
   
-      
-        // const pix: Pix = {
-          // chavepix: this.chavePix,
-          // fkContaId: this.selectedInstitution,
-          // tipo_pix: this.tipoPix
-        // };
 
-        console.log(this.selectedInstitution)
-        console.log(typeof this.tipoConta); 
-
-        // console.log('Dados do pix:', pix);
-
+  cadastrarPix() {
+    if (this.key && this.key_type && this.selectedInstitution !== null && this.token) {
+      const pix: Pix = {
+        key_type: this.key_type,
+        key: this.key,
+        conta_bancaria_id: this.selectedInstitution
         
-        // this.pixService.cadastrarPix(this.token, pix)
-          // .then(() => {
-            // console.log('Pix cadastrado com sucesso!');
-        // })
-          // .catch((err: any) => {
-            // console.error('Erro ao cadastrar conta:', err);
-          // });
-      } 
-    } 
+        
+      };
+
+      console.log(this.selectedInstitution);
+      console.log(this.key_type); 
+      console.log(this.key);
+      console.log('Dados do pix:', pix);
+
+      this.pixService.cadastrarPix(this.token, pix)
+        .then(() => {
+          console.log('Pix cadastrado com sucesso!');
+        })
+        .catch((err: any) => {
+          console.error('Erro ao cadastrar conta:', err);
+        });
+    }
+  }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,61 +8,66 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  
-  getToken(): string | null {
-    return localStorage.getItem('token'); 
-  }
-
   private apiUrl = environment.baseApiUrl;
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: any): Promise<string> {
-    alert("credentials " + credentials )
-    return this.http.post(`${this.apiUrl}flux/login`, credentials)
-      .pipe(
-        catchError(this.handleError)
-      )
-      .toPromise()
-      .then((response: any) => response.token);
+  // Get the token from localStorage
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
-  public signOutExternal = () => {
-    localStorage.removeItem('token');
-    console.log("token deleted");
+  login(credentials: any): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}flux/login`, credentials)
+      .pipe(catchError(this.handleError));
   }
 
-  saveToken(token: string) {
+  // Save token to localStorage
+  saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
+  // Refresh token
   refreshToken(): Observable<any> {
     const token = this.getToken();
     if (!token) {
       return throwError(() => new Error('Token não encontrado.'));
     }
 
-    const header = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(`${this.apiUrl}flux/refresh-token`, { token }, { headers: header, withCredentials: true })
+    return this.http.post<any>(`${this.apiUrl}flux/refresh-token`, {}, { 
+      headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` }), 
+      withCredentials: true 
+    })
       .pipe(
+        tap(response => {
+          if (response && response.token) {
+            console.log('Token gerado com sucesso:', response.token);
+            this.saveToken(response.token);
+          }
+        }),
         catchError(this.handleError)
       );
   }
 
-  deleteToken() {
+  // Sign out and remove token
+  signOutExternal(): void {
+    this.deleteToken();
+    console.log("Token removido");
+  }
+
+  // Delete token from localStorage
+  deleteToken(): void {
     localStorage.removeItem('token');
   }
 
+  // Check if the user is authenticated
   get isAuthenticated(): boolean {
-    const token = this.getToken();
-    return !!token;
+    return !!this.getToken();
   }
 
-
-
+  // Handle errors
   private handleError(error: any) {
     console.error('Erro no serviço:', error);
-    return throwError(error);
+    return throwError(() => new Error('Ocorreu um erro no serviço.'));
   }
-
 }

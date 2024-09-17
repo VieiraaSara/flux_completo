@@ -7,13 +7,22 @@ class ContaBancariaRepository {
     // listar contas bancarias  do usuario
     static get = async (usuario_id_TOKEN) => {
 
+
+        
+
         // Lista todas as contas pertencente ao usário
         const contaEncontrada = await Conta.findAll({
+            include: [
+              {
+                model: Banco,
+                attributes: ['id_banco', 'name', 'image']
+              }
+            ],
             where: {
-                usuario_id: usuario_id_TOKEN
-            }
-        }
-        )
+              usuario_id: usuario_id_TOKEN
+            },
+
+          });
         //  Verifica se a conta existe no banco
         if (!contaEncontrada) {
             return {
