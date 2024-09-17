@@ -47,8 +47,7 @@
     [centeredSlides]="true"
     [slidesPerView]="3"
 
-   
-    >
+   >
         <!-- Slides de Notificação -->
         <swiper-slide class="notification" *ngFor="let notification of notifications; let i = index"
           [class.expanded]="notification.detailsVisible" [ngClass]="{'show': i < 3}">
@@ -81,4 +80,5 @@
 
 
   </div>
+
 </ion-content>

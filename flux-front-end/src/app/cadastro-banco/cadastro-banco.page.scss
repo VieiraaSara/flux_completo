@@ -5,13 +5,14 @@
   Sara frontend
 */
 
-body {
+
+
+.global {
     background-color: #000000;
     display: flex;
     justify-content: center;
-    height: 200vh;
     margin: 0;
-}
+  }
 
 .login-container {
     margin-top: 100px;
@@ -45,7 +46,7 @@ h5 {
 
 .input-container {
     position: relative;
-    margin-bottom: 20px; 
+
 }
 
 .input-container label {

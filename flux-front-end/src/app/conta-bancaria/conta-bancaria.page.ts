@@ -72,6 +72,9 @@ export class ContaBancariaPage implements OnInit {
     console.log(this.selectedInstitution)
   }
 
+  get bancosFiltrados() {
+    return this.bancos.filter(banco => ['Sicredi', 'Banco do Brasil','Santander','Bradesco','Itaú','Sicoob','Banco Inter','Nu Pagamentos S.A.'].includes(banco.name));
+  }
   cadastrarConta() {
     if (this.valor > 0 && this.tipoConta && this.selectedInstitution !== null && this.token) {
   

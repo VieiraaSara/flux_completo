@@ -164,18 +164,58 @@ button:hover {
     justify-content: flex-start;
     color: #007bff;
   }
+  .container-disponiveis {
+    text-align: center;
+    padding: 20px;
+  }
   
   .logo-bancos {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 30px; /* Espaçamento entre os elementos */
+  }
+
+  .logo-bancos p{
+    color: #ffffff;
+    font-size: 10px;
+  }
+  
+  .logo-bancos div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20px; /* Largura de cada item */
+    margin: 5px;
   }
   
   .logo-bancos img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
+    width: 20px;  /* Tamanho menor para as logos */
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: 5px; /* Espaçamento entre logo e nome */
   }
+  
+  /* Força duas fileiras com até 5 logos em cada uma */
+  .logo-bancos {
+    max-width: 500px; /* Controla a largura máxima da grade */
+  }
+  
+  @media (max-width: 768px) {
+    .logo-bancos {
+      gap: 10px; /* Reduz o espaçamento em telas menores */
+    }
+  
+    .logo-bancos img {
+      width: 25px;  /* Tamanho menor ainda em telas menores */
+      height: 25px;
+    }
+  
+    .logo-bancos div {
+      width: 60px; /* Reduz a largura dos itens em telas menores */
+    }
+  }
+  
   
   .azul {
     display: flex;
@@ -183,19 +223,7 @@ button:hover {
     color: #007bff;
   }
   
-  .btn-azul {
-
-}
-
-.container-disponiveis{
-  
-}
-
-.container-disponiveis p{
-    display: flex;
-    justify-content: flex-start;
-    color: #007bff;
-}
+ 
 
 .logo-bancos{
     display: flex;
@@ -262,13 +290,12 @@ button:hover {
 
   .logo-bancos img {
     cursor: pointer;
-    width: 100px;
-    height: 100px;
     margin: 10px;
   }
   
   .logo-bancos img.selected {
     border: 2px solid blue;
+    border-radius: 30px;
   }
   
   

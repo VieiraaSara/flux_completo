@@ -3,17 +3,26 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-interface Conta {
-  fkBancoId: number;
-  saldo: number;
-  tipo_conta: string;
-}
-
 interface Banco {
-  id_banco:number;
-  id: number;
+  id_banco: number;
   name: string;
   image: string;
+}
+
+interface Conta {
+  fkBancoId: number;
+  usuario_id: number;
+  id_conta: number;
+  saldo: string;
+  tipo_conta: string;
+  Banco: Banco;  
+}
+
+interface Pix{
+  key_type: string
+  key:string
+  conta_bancaria_id: number
+  
   
 }
 
@@ -22,24 +31,23 @@ interface Banco {
 })
 export class PixService {
   private apiUrl = environment.baseApiUrl;  
-  
+
   constructor(private http: HttpClient) {}
 
-  cadastrarPix(token: string, conta: Conta): Promise<any> {
-    return this.http.post(`${this.apiUrl}cadastrar-chave?token=${token}`, conta).toPromise();
+  cadastrarPix(token: string, pix: Pix
+  ): Promise<any> {
+    return this.http.post(`${this.apiUrl}cadastrar-chave?token=${token}`, pix).toPromise();
   }
- 
 
-
+  // Ajuste: Método retorna uma lista de Contas, e não apenas Bancos
   getContaBancaria(token: string): Promise<Conta[]> {
     return this.http.get<Conta[]>(`${this.apiUrl}conta/listar-contas?token=${token}`)
       .pipe(
         catchError(this.handleError)
       )
       .toPromise()
-      .then(response => response || []); 
+      .then(response => response || []);  // Garante que o retorno seja uma lista de contas
   }
-  
 
   private handleError(error: any) {
     console.error('Erro ocorreu:', error);

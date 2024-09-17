@@ -145,9 +145,6 @@ class UsuarioController {
         try {
      
             console.log('senha: req.body.senha: ',  req.body.senha);
-            console.log('senha: req.body.senha: ',  req.body.senha);
-            console.log('senha: req.body.senha: ',  req.body.senha);
-            console.log('senha: req.body.senha: ',  req.body.senha);
             const usuario = await repository.autenticar({
                 email: req.body.email,
                 senha: req.body.senha,

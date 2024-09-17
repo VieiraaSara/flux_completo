@@ -23,19 +23,16 @@ export class LoginPage {
 
   async login() {
     try {
-      alert(this.credentials.email);
-      alert(this.credentials.senha);
-      const token =await this.authService.login(this.credentials);
-      if(!localStorage.getItem('token')){
-
+      const response = await this.authService.login(this.credentials).toPromise();
+      const token = response?.token;
+      if (token) {
         localStorage.setItem('token', token);
-
-      }else{
-      localStorage.getItem('token');
+        this.navCtrl.navigateRoot('tabs/home');
+      } else {
+        alert('Token não recebido');
       }
-      this.navCtrl.navigateRoot('/home');
     } catch (error) {
-      alert('Erro ao fazer login: ');
+      alert('Erro ao fazer login:');
     }
   }
 
