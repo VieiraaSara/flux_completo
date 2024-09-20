@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CarteiraService } from '../services/carteira.service';
 import { FormBuilder } from '@angular/forms';
 import { NavController } from '@ionic/angular';
@@ -18,7 +18,7 @@ export class CarteiraPage implements OnInit {
   nome_banco:any;
   id: any;
   image: any;
-
+  condicao: boolean = true;
   constructor(
     private tran: CarteiraService,
     private formBuilder: FormBuilder,
@@ -61,7 +61,19 @@ export class CarteiraPage implements OnInit {
   }
 
 
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const notifications = document.querySelectorAll('.container-global');
 
+    notifications.forEach((notification: Element) => {
+      const distanciaDoTopo = notification.getBoundingClientRect().top;
+
+      if (distanciaDoTopo < window.innerHeight - 50) {
+        notification.classList.add('scroll-smooth');
+      }
+    });
+
+  }
 
   decodeToken() {
     const token = localStorage.getItem('token');

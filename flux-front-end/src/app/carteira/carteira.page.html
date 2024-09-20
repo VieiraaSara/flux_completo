@@ -1,7 +1,7 @@
 <ion-content>
-  <div class="container-global" >
+  <div class="container-global">
     <div class="scrollable-content">
-      <div class="header-carteira" >
+      <div class="header-carteira">
         <div class="title-point">
           <h1>Saldo total</h1>
           <div class="title-direita">
@@ -36,32 +36,35 @@
             </div>
           </div>
 
-          <h4 style="margin-top: 20px; display: flex; justify-content: start;">Relatório Total</h4>
+          <h4 class="relatorio-total">Relatório Total</h4>
 
           <!-- Loop para exibir cada item da carteira -->
 
-            <div class="banco-entrada">
-              <div class="descricao"><div *ngFor="let item of carteira">
-              <img [src]="item.imageBank">
-                <div class="cada" style="margin-bottom: 30px;">
-                <div class="nome-desc">
+          <div class="banco-entrada">
+            <div class="descricao">
+              <div *ngFor="let item of carteira" class="grid">
+                <img  [src]="item.imageBank" class="img-bank">
+                <div class="cada" >
+                  <div class="nome-desc">
+                    <h5 class="nome-banco" >{{item.nome_banco}}</h5>
+                    <!-- Aqui você exibe o valor associado ao item -->
 
-                  <!-- Aqui você exibe o valor associado ao item -->
-                  <h5 style="margin-right: 20px;">{{item.nome_banco}}</h5>
-                  <h5>R${{item.valor}}</h5>
+                    <h5 class="valor">R$ {{item.valor}}</h5>
+                  </div>
+                  <div class="valor-aum">
+                    <p class="p-desc">{{item.descricao}}</p>
+                   <ion-icon name="chevron-down-outline"></ion-icon>
+                   <!-- começar o ng style -->
+                    <p class="porcentagem">  {{item.porcentagem}}</p>
+                  </div>
                 </div>
-                <div class="valor-aum">
-                  <p>{{item.descricao}}</p>
-                  <img style="margin-left: 30px;" src="../../assets/image/queda.png" alt="Aumento">
-                  <p>{{item.porcentagem}}</p>
-                </div>
-              </div></div>
+              </div>
             </div>
           </div>
         </div>
-          <!-- Fim do loop -->
-        </div>
+        <!-- Fim do loop -->
       </div>
     </div>
+  </div>
 
 </ion-content>

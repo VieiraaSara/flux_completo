@@ -5,6 +5,7 @@ const pixAuthService = require('../services/auth-transfeera-service');
 const Usuario = require('../models/usuario');
 const Banco = require('../models/banco');
 const ContaBancos = require('../models/conta-bancos');
+const { ContaBancaria } = require('../models');
 require('dotenv').config();
 
 class PixRepository {
@@ -17,7 +18,18 @@ class PixRepository {
                     model: Pix,
                     attributes: ['id_pix', 'key', 'key_type', 'created_at', 'status',]
                 },
+                {
+                    model: ContaBancaria,
+                    
+                    include: [
+                        {
+                            model: Banco,
+                            attributes: ['id_banco', 'name', 'image']
+                        }
+                    ],
+                }
             ],
+
             where: {
                 usuario_id: usuario_ID_TOKEN
             },

@@ -25,10 +25,10 @@ class BancoService {
 
             // Faz a requisição para a API
             // const response = await axios.request(options);
-const res = await bancoRepository.get();
-                if(res){
-                    return {data: res.data, status: res.status}
-                }
+            const res = await bancoRepository.get();
+            if (res) {
+                return { data: res.data, status: res.status }
+            }
             // return response.data; // Retorna a lista de bancos
 
         } catch (error) {

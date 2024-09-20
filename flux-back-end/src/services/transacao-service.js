@@ -1,5 +1,6 @@
 const homeRepository = require('../repositories/home-repository');
 const cateiraRepository = require('../repositories/carteira-repository');
+const transacaoRepository = require('../repositories/transacao-repository');
 const Transacao = require('../models/transacao');
 const usuarioRepository = require('../repositories/usuario-repository');
 class TransacaoService {
@@ -63,7 +64,16 @@ class TransacaoService {
 
     }
 
+    static listarExtratoGeral = async(id_user) =>{
+        const query = await transacaoRepository.buscarExtratoGeral(id_user);
 
+        if (!query || query.data.length === 0) {
+            return {
+                status: 204, message: "Você ainda não realizou transações"
+            };
+        }
+        return {data: query.data, status:200}
+    }
 }
 
 module.exports = TransacaoService;

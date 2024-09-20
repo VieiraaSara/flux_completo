@@ -1,187 +1,225 @@
-
 * {
-    font-family: "Poppins", sans-serif;
-  }
-  
-  ion-content {
-    --offset-bottom: 0 !important;
-    --overflow: auto;
-    background-color: #000;
-    overflow: auto;
+  font-family: "Poppins", sans-serif;
+}
+
+ion-content {
+  --offset-bottom: 0 !important;
+  --overflow: auto;
+  background-color: #000;
+  overflow-y: hidden;
 }
 
 .container-global {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 
-.scrollable-content { 
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; 
-    box-sizing: border-box;
+.scrollable-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  box-sizing: border-box;
 }
 
-  .header-carteira {
-    background-color: #000e5a; 
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    width: 100%;
-    height: 300px;
-  }
-  
-  .title-point {
-    display: flex;
-    flex-direction: column;
-  }
+.header-carteira {
+  background-color: #000e5a;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+  height: 300px;
+}
 
-  .title-point h1{
-    margin: 20px;
-  }
-  
-  .circle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: 50px;
-    width: 65px;
-    height: 65px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 35px;
-  }
-  
-  .circle img {
-    border-radius: 50%;
-    width: 100%;
-    height: 50px;
-  }
-  
-  .title-direita {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .title-junto {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-  }
-  
-  .title-junto h2 {
-    padding: 0;
-    margin: 0;
-  }
-  
-  .footer {
-    border-top-left-radius: 40px; 
-    border-top-right-radius: 40px; 
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    width: 100%;
-    margin-top: 70px;
-    padding: 20px;
-    background-color: #000000;
-    text-align: center;
-  }
-  
-  .coluna {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  
-  .coluna-aum {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .circle-bancos {
-    width: 150px;
-    height: 50px;
-    border-radius: 50px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1A1D1D;
-    margin: auto;
-  }
-  
-  .circle-bancos img {
-    max-width: 100%;
-    max-height: 100%;
-    margin-right: 10px;
-  }
-  
-  .impressoes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .impressoes p {
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
-  .bancos {
-    font-size: 14px;
-  }
-  
-  .banco-entrada {
-    display: flex;
-    align-items: flex-start;
-    background-color: #000000;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .banco-entrada img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-  }
-  
-  .descricao {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .nome-desc {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .nome-desc h5 {
-    font-size: 20px;
-    margin: 0;
-  }
-  
-  .valor-aum {
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
-  }
-  
-  .valor-aum p {
-    font-size: 14px;
-    color: #666;
-    margin: 0 5px;
-  }
-  
-  .valor-aum img {
-    width: 10px;
-    height: 7px;
-    margin: 0 5px;
-  }
+.title-point {
+  display: flex;
+  flex-direction: column;
+}
 
-  
+.title-point h1 {
+  margin: 20px;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 50px;
+  width: 65px;
+  height: 65px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 35px;
+}
+
+.circle img {
+  border-radius: 50%;
+  width: 100%;
+  height: 50px;
+}
+
+.title-direita {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.title-junto {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.title-junto h2 {
+  padding: 0;
+  margin: 0;
+}
+
+.footer {
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+  margin-top: 70px;
+  padding-top: 20px;
+  background-color: #000000;
+  text-align: center;
+}
+
+.coluna {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.coluna-aum {
+  display: flex;
+  flex-direction: column;
+}
+
+.circle-bancos {
+  width: 150px;
+  height: 50px;
+  border-radius: 50px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1d1d;
+  margin: auto;
+}
+.relatorio-total {
+  margin-top: 20px;
+  display: flex;
+  justify-content: start;
+  text-indent: 1em;
+}
+.circle-bancos img {
+  max-width: 100%;
+  max-height: 100%;
+  margin-right: 10px;
+}
+
+.impressoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.impressoes p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.bancos {
+  font-size: 14px;
+}
+
+.banco-entrada {
+  display: flex;
+  align-items: flex-start;
+  background-color: #000000;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+
+}
+
+.banco-entrada img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+
+}
+
+.descricao {
+  display: flex;
+  flex-direction: column;
+}
+.cada{
+  transform: translateY(-15px);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 60px 200px;
+  grid-template-rows: 30px 40px;
+}
+.nome-desc {
+  display: flex;
+  justify-content: space-between;
+  width: 40vh;
+
+}
+h5.nome-banco {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 5px;
+
+}
+.nome-desc {
+  display: flex;
+  font-size: 20px;
+  margin: 0;
+
+}
+h5.valor {
+  display: flex;
+  justify-content: flex-end;
+
+
+}
+.valor-aum {
+
+width: 40vh;
+display: grid;
+grid-template-columns: 180px 40px 200px;
+}
+
+.img-bank {
+
+  object-fit: cover;
+}
+
+.valor-aum p {
+  display: flex;
+  align-items: flex-end;
+  font-size: 14px;
+  color: #666;
+  margin: 0 5px;
+
+}
+
+ion-icon {
+  position: relative;
+  color: #FF6464;
+  font-size: 18px;
+  justify-content: flex-end;
+  align-content: end;
+  margin: 0 25px;
+
+
+}

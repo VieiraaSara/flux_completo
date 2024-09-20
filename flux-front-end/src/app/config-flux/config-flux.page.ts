@@ -145,11 +145,11 @@ export class ConfigFluxPage implements OnInit {
         const response = await this.updateAccountService.atualizarInformacoesUsuario(user, this.id, token);
 
         if (response) {
-          alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
-        
-          this.navCtrl.navigateRoot('/home');
+          // alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
+
+          this.navCtrl.navigateRoot('tabs/home');
         } else {
-          console.error('Resposta não contém os dados esperados:', response);
+          // console.error('Resposta não contém os dados esperados:', response);
 
         }
       } catch (error) {
@@ -212,7 +212,7 @@ public alertButtonDeleteAccount = [
     role: 'cancel',
     cssClass: 'alert-button-cancel',
     handler: () => {
-      this.navCtrl.navigateRoot('/config-flux', { replaceUrl: true });
+      this.navCtrl.navigateRoot('tabs/config-flux', { replaceUrl: true });
     },
   },
   {

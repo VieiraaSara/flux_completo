@@ -54,7 +54,8 @@ const pixRoute = require('./routes/pix-route');
 const homeRoute = require('./routes/home-route');
 const carteiraRoute = require('./routes/carteira-route')
 const contaBancosRoute = require('./routes/conta-bancos-route');
-const { Sequelize } = require('sequelize');
+const ExtratoRoute = require('./routes/extrato-route');
+
 // rotas de acesso 
 app.use('/', indexRoute);
 app.use(homeRoute);
@@ -63,6 +64,7 @@ app.use('/login', usuarioRoute);
 app.use('/flux', usuarioRoute);
 app.use('/banco', bancoRoute);
 app.use('/conta', contaBancariaRoute,contaBancosRoute);
+app.use(ExtratoRoute);
 app.use(pixRoute)
 
 

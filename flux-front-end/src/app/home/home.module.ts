@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faV } from '@fortawesome/free-solid-svg-icons';
+import { Swiper } from 'swiper/types';
 @NgModule({
   imports: [
     IonicModule,

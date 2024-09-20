@@ -22,13 +22,13 @@ export class UpdateUserService {
       .then((response: any) => {
 
         if (response && response.token) {
-          alert('TOKEN GERADO COM SUCESSO: ' + response.token);
+          // alert('TOKEN GERADO COM SUCESSO: ' + response.token);
            this.http.post(`${this.apiUrl}flux/refresh-token?token=${response.token}`, {})
           localStorage.clear();
           localStorage.setItem('token',response.token )
           return this.http.patch(`${this.apiUrl}flux/atualizar-usuario/${id}?token=${response.token}`, user).toPromise()
           .then((dadosUser: any)=>{
-            alert('TOKEN GERADO COM SUCESSO: 2 ' + JSON.stringify(dadosUser))
+            // alert('TOKEN GERADO COM SUCESSO: 2 ' + JSON.stringify(dadosUser))
 
             this.authService.login(dadosUser);
             return dadosUser;
