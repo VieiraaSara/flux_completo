@@ -96,8 +96,8 @@ class PixService {
 
     static verificarChave = async (idPix, emailUsuario, accessToken, verifyCode) => {
         try {
-
             if (verifyCode.length !== 6) {
+
                 return {
                     message: 'A chave deve conter apenas 6 dígitos numéricos',
                     status: 400
