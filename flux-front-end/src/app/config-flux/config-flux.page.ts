@@ -147,7 +147,7 @@ export class ConfigFluxPage implements OnInit {
         if (response) {
           alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
         
-          this.navCtrl.navigateRoot('/home');
+          this.navCtrl.navigateRoot('tabs/home');
         } else {
           console.error('Resposta não contém os dados esperados:', response);
 
@@ -212,7 +212,7 @@ public alertButtonDeleteAccount = [
     role: 'cancel',
     cssClass: 'alert-button-cancel',
     handler: () => {
-      this.navCtrl.navigateRoot('/config-flux', { replaceUrl: true });
+      this.navCtrl.navigateRoot('tabs/config-flux', { replaceUrl: true });
     },
   },
   {

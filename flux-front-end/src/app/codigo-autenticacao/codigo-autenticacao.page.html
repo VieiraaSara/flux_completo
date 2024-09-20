@@ -1,31 +1,23 @@
 <ion-content>
-  <body>
-    
- 
   <div class="login-container">
     <div class="logo-container">
-    <img src="assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
-  </div>
+      <img src="assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
+    </div>
     <h1>Cheque seu email!</h1>
     <p>Nós enviamos um código de verificação para {{email}}, acesse seu email!</p>
-    
-    
+
     <form id="codigo-form">
       <div class="input-codigo">
-       
-        <input type="text" maxlength="1" inputmode="numeric" />
-        <input type="text" maxlength="1" inputmode="numeric" />
-        <input type="text" maxlength="1" inputmode="numeric" />
-        <input type="text" maxlength="1" inputmode="numeric" />
-        <input type="text" maxlength="1" inputmode="numeric" />
-        <input type="text" maxlength="1" inputmode="numeric" />
+        <input type="text" maxlength="1" inputmode="numeric"/>
+        <input type="text" maxlength="1" inputmode="numeric"/>
+        <input type="text" maxlength="1" inputmode="numeric"/>
+        <input type="text" maxlength="1" inputmode="numeric"/>
+        <input type="text" maxlength="1" inputmode="numeric"/>
+        <input type="text" maxlength="1" inputmode="numeric"/>
       </div>
-  
-     
-      <button type="submit" class="verificar-btn">Verificar</button>
+      <button type="button" class="verificar-btn">Verificar</button>
     </form>
-  
-    <p class="forgot-password">Não recebeu seu código? <strong><a (click)="resendCode()">Clique aqui</a></strong></p>
 
-  </div> </body>
+    <p class="forgot-password">Não recebeu seu código? <strong><a (click)="resendCode()">Clique aqui</a></strong></p>
+  </div> 
 </ion-content>

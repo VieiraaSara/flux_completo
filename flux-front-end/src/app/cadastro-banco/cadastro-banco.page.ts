@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContaBancariaService } from '../services/conta-bancaria.service';
 import { AuthService } from '../services/auth.service';
 import { PixService } from '../services/pix.service';
+import { Router } from '@angular/router';
 
 interface Banco {
   id_banco: number;
@@ -19,6 +20,7 @@ interface Conta {
 }
 
 interface Pix{
+  id?:string
   key_type: string
   key:string
   conta_bancaria_id: number
@@ -31,15 +33,17 @@ interface Pix{
   styleUrls: ['./cadastro-banco.page.scss'],
 })
 export class CadastroBancoPage implements OnInit {
+  id: string = '';
   key: string = ''; 
   key_type: string = ''; 
   selectedInstitution: number | null = null;
-  contas: Conta[] = [];  // Mudança para "contas", porque o dado principal é Conta, não Banco
+  contas: Conta[] = [];  
   token: string | null = null;
 
   constructor(
     private authService: AuthService,
-    private pixService: PixService
+    private pixService: PixService,
+    private router: Router  
   ) {}
 
   ngOnInit() {
@@ -56,7 +60,7 @@ export class CadastroBancoPage implements OnInit {
       this.pixService.getContaBancaria(this.token)
         .then((response: Conta[]) => {  
           console.log('Resposta da API:', response);
-          this.contas = response;  // Agora você salva as contas
+          this.contas = response;
         })
         .catch((err) => {
           console.error('Erro ao listar contas bancárias:', err);
@@ -69,30 +73,28 @@ export class CadastroBancoPage implements OnInit {
     console.log(this.selectedInstitution);
   }
 
-  
-
   cadastrarPix() {
     if (this.key && this.key_type && this.selectedInstitution !== null && this.token) {
       const pix: Pix = {
         key_type: this.key_type,
         key: this.key,
         conta_bancaria_id: this.selectedInstitution
-        
-        
       };
-
-      console.log(this.selectedInstitution);
-      console.log(this.key_type); 
-      console.log(this.key);
-      console.log('Dados do pix:', pix);
-
+  
       this.pixService.cadastrarPix(this.token, pix)
-        .then(() => {
-          console.log('Pix cadastrado com sucesso!');
+        .then((response) => {
+          console.log('Pix cadastrado com sucesso!', response);
+          if (response && response.id) {
+            this.id = response.id;  
+            console.log('ID do Pix:', this.id);
+            localStorage.setItem('id_pix', this.id);  
+            this.router.navigate(['/codigo-autenticacao']);
+          }
         })
         .catch((err: any) => {
-          console.error('Erro ao cadastrar conta:', err);
+          console.error('Erro ao cadastrar Pix:', err);
         });
     }
   }
+  
 }

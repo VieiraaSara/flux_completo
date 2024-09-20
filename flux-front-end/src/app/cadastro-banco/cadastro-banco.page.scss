@@ -135,3 +135,7 @@ button:hover {
 .logo-bancos img{
     margin-right: 10px;
 }
+
+div::selection{
+     border: 2px solid blue;
+    }
