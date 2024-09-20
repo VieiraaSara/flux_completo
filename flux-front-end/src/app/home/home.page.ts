@@ -14,9 +14,7 @@ import { NgIfContext } from '@angular/common';
 })
 export class HomePage implements OnInit {
   notifications: any[] = [];
-
   nome: string = '';
-i: any;
 
 
 
@@ -129,5 +127,9 @@ i: any;
     } else {
       console.error('Token não encontrado.');
     }
+  }
+
+  swiperSlideChanged(e: any){
+    console.log('cahnged: ', e);
   }
 }

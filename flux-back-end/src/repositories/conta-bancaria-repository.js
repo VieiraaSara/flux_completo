@@ -13,16 +13,18 @@ class ContaBancariaRepository {
         // Lista todas as contas pertencente ao usário
         const contaEncontrada = await Conta.findAll({
             include: [
-              {
-                model: Banco,
-                attributes: ['id_banco', 'name', 'image']
-              }
+                {
+                    model: Banco,
+                    attributes: ['id_banco', 'name', 'image']
+                }
             ],
             where: {
-              usuario_id: usuario_id_TOKEN
+                usuario_id: usuario_id_TOKEN
             },
 
-          });
+        });
+        console.log(contaEncontrada);
+
         //  Verifica se a conta existe no banco
         if (!contaEncontrada) {
             return {
@@ -32,6 +34,7 @@ class ContaBancariaRepository {
         }
 
         const res = contaEncontrada;
+
         return { data: res, status: 200 };
 
     }
@@ -67,7 +70,7 @@ class ContaBancariaRepository {
     }
 
     // atualizar conta bancaria do usuário
-    static put = async (contaBancaria_id, novoSaldo,fkUsuarioId) => {
+    static put = async (contaBancaria_id, novoSaldo, fkUsuarioId) => {
 
         const contaEncontrada = await Conta.findByPk(contaBancaria_id);
 
@@ -129,7 +132,7 @@ class ContaBancariaRepository {
     }
     // Buscar uma conta bancaira do usuário
     static findOne = async (body) => {
-       
+
         const res = await Conta.findOne({
             where: {
                 id_conta: body.contaBancaria_id,
@@ -137,9 +140,9 @@ class ContaBancariaRepository {
             }
         });
 
-          if (!res) {
-        return { message: "Você não possui contas bancarias registradas", status: 404 }
-    }
+        if (!res) {
+            return { message: "Você não possui contas bancarias registradas", status: 404 }
+        }
         return { data: res, status: 200 };
     };
     // Buscar conta bancaira pelo PK dela
