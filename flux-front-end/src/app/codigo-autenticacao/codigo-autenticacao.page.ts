@@ -1,6 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TransacaoService } from '../services/transacao.service';
 import { jwtDecode } from 'jwt-decode';
+import { PixService } from '../services/pix.service';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-codigo-autenticacao',
   templateUrl: './codigo-autenticacao.page.html',
@@ -9,22 +13,33 @@ import { jwtDecode } from 'jwt-decode';
 export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
 
   email: string = '';
+  token: string | null = null;
+  id: string = ''; 
+  code: string = ''; 
 
   constructor(
-    private tran: TransacaoService
-  ) { }
+    private tran: TransacaoService,
+    private pixService: PixService,
+    private router : Router
+  ) {}
 
   ngOnInit() {
-
     this.decodeToken();
 
-    const token = localStorage.getItem('token');
-    
+    const storedIdPix = localStorage.getItem('id_pix');
+    if (storedIdPix) {
+      this.id = storedIdPix; 
+      console.log('ID do Pix recuperado:', this.id);
+    } else {
+      console.warn('ID do Pix não encontrado no localStorage.');
+    }
+
     
   }
 
   decodeToken() {
     const token = localStorage.getItem('token');
+    this.token = token;
 
     if (token) {
       try {
@@ -40,38 +55,84 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log('ngAfterViewInit chamado');
     this.setupCodeInputHandler();
   }
 
+
+  //concatena os inputs para pegar o código
+  getCodeFromInputs(): string {
+    const inputs = document.querySelectorAll('.input-codigo input') as NodeListOf<HTMLInputElement>;
+    let code = '';
+    console.log(inputs)
+    inputs.forEach((input) => {
+      code += input.value;
+    });
+    return code;
+    
+  }
+  
+
   setupCodeInputHandler() {
     const inputs = document.querySelectorAll('.input-codigo input') as NodeListOf<HTMLInputElement>;
-    const form = document.getElementById('codigo-form') as HTMLFormElement | null;
+  
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', (event) => {
+        const target = event.target as HTMLInputElement;
+        
 
-    if (form) {
-      inputs.forEach((input, index) => {
-        input.addEventListener('input', (event) => {
-          const target = event.target as HTMLInputElement;
-          if (target.value.length === 1) {
-            if (index < inputs.length - 1) {
-              (inputs[index + 1] as HTMLElement).focus(); 
-            } else {
-              form.submit(); 
+        if (target.value.length === 1) {
+          if (index < inputs.length - 1) {
+            (inputs[index + 1] as HTMLElement).focus();
+          } else {
+            const code = this.getCodeFromInputs();
+            if (code.length === inputs.length) {
+              this.verifyCode(new Event('submit')); 
             }
           }
-        });
-
-        input.addEventListener('keydown', (event) => {
-          const keyboardEvent = event as KeyboardEvent;
-          if (keyboardEvent.key === 'Backspace' && input.value === '' && index > 0) {
-            (inputs[index - 1] as HTMLElement).focus(); 
-          }
-        });
+        }
       });
+  
+  
+      input.addEventListener('keydown', (event) => {
+        const keyboardEvent = event as KeyboardEvent;
+        if (keyboardEvent.key === 'Backspace' && input.value === '' && index > 0) {
+          (inputs[index - 1] as HTMLElement).focus();
+        }
+      });
+    });
+  }
+  
+  verifyCode(event: Event) {
+    event.preventDefault();
+    console.log('verify code chamado');
+    const code = this.getCodeFromInputs();
+    
+    if (code && this.token && this.id !== null) {
+      const id = this.id;
+      const token = this.token as string;
+      const code = this.getCodeFromInputs();
+      console.log(code);
+      console.log(token);
+      console.log(id);
+      debugger
+      // Primeira verificação
+      this.pixService.verifyCode(id,token, JSON.stringify({code: code}))
+        .then(() => {
+          debugger
+          console.log('Primeira verificação bem-sucedida!');
+        })
+        .catch((err: any) => {
+          console.error('Erro ao verificar código:', err);
+          
+        });
+    } else {
+      console.warn('Código, token ou id_pix ausente.');
     }
   }
-
+  
+  
   resendCode() {
     console.log('Reenviando o código...');
-    
   }
 }

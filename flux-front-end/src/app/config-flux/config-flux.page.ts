@@ -145,7 +145,7 @@ export class ConfigFluxPage implements OnInit {
         const response = await this.updateAccountService.atualizarInformacoesUsuario(user, this.id, token);
 
         if (response) {
-          // alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
+          alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
 
           this.navCtrl.navigateRoot('tabs/home');
         } else {
