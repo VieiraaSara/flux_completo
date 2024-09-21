@@ -4,37 +4,23 @@
   </div>
 
   <div class="container-global">
-    <div class="card-extrtotal">
+    <div class="card-extrtotal"  (click)="imprimirExtratoGeral($event)">
       <div class="circle-card">
         <img src="../../assets/image/Star 1star.png" alt="">
       </div>
       <p>Imprimir o Extrato Total da Conta</p>
     </div>
 
-    <div class="bancos">
+    <div class="bancos" *ngFor="let conta of listContas">
       <div class="card-extrabanco">
-        <img src="../../assets/image/bancodobrasil-logo.png" alt="">
-        <h5>Banco do Brasil</h5>
-        <p>Imprimir</p>
+        <img src="{{conta.image}}" alt="">
+        <h5>{{conta.nome_instituicao}}</h5>
+        <p (click)="imprimirExtratoContaBancaria(conta.id_conta)"> Imprimir</p>
       </div>
 
-      <div class="card-extrabanco">
-        <img src="../../assets/image/bancodobrasil-logo.png" alt="">
-        <h5>Bradesco</h5>
-        <p>Imprimir</p>
-      </div>
 
-      <div class="card-extrabanco">
-        <img src="../../assets/image/bancodobrasil-logo.png" alt="">
-        <h5>PicPay</h5>
-        <p>Imprimir</p>
-      </div>
 
-      <div class="card-extrabanco">
-        <img src="../../assets/image/bancodobrasil-logo.png" alt="">
-        <h5>NuBank</h5>
-        <p>Imprimir</p>
-      </div>
+
     </div>
   </div>
 </ion-content>

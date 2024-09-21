@@ -126,7 +126,7 @@ class ContaController {
 
             // Decodifica o token
             const dadosUsuario = await authService.decodeToken(token);
-
+                
 
             const conta = await repository.getById(req.params.id, dadosUsuario.id);
 

@@ -26,7 +26,7 @@ FROM
         JOIN
     usuario ON conta_bancaria.usuario_id = usuario.id_usuario 
     WHERE usuario.id_usuario = :id_user
-    ORDER BY conta_bancaria.saldo DESC
+    ORDER BY conta_bancaria.saldo DESC 
 
     `, {
          replacements: { id_user: id_user, limit: limit },
