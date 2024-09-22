@@ -13,13 +13,13 @@ import html2canvas from 'html2canvas';
 })
 export class ImpressaoBancoPage implements OnInit {
   data: any[] = [];
-  nome:any ;
+  nome: any;
   cpf: any;
-  key:any ;
-  nome_instituicao_financeira:any ;
+  key: any;
+  nome_instituicao_financeira: any;
   data_transacao: any;
-  descricao:any ;
-  valor:any ;
+  descricao: any;
+  valor: any;
   saldo_total_geral: any;
   saidas: any;
   entradas: any;
@@ -36,16 +36,16 @@ export class ImpressaoBancoPage implements OnInit {
           // Verifique se parsedData é um array
           if (Array.isArray(parsedData)) {
             this.data = parsedData.map((item: any) => ({
-              nome:item.nome ,
-              cpf:item. cpf,
-              key:item.key ,
-              nome_instituicao_financeira:item.nome_instituicao_financeira ,
-              data_transacao:item. data_transacao,
-              descricao:item.descricao ,
-              valor:item.valor ,
-              saldo_total_geral:item. saldo_total_geral,
-              saidas:item. saidas,
-              entradas:item. entradas,
+              nome: item.nome,
+              cpf: item.cpf,
+              key: item.key,
+              nome_instituicao_financeira: item.nome_instituicao_financeira,
+              data_transacao: item.data_transacao,
+              descricao: item.descricao,
+              valor: item.valor,
+              saldo_total_geral: item.saldo_total_geral,
+              saidas: item.saidas,
+              entradas: item.entradas,
 
             }));
             console.log('Dados recebidosPDF:', this.data);
@@ -82,40 +82,40 @@ export class ImpressaoBancoPage implements OnInit {
     const imgData = canvas.toDataURL('image/png');
 
 
-    const pdf = new jsPDF('p', 'cm', [10, 90]); 
+    const pdf = new jsPDF('p', 'cm', [10, 90]);
 
 
     const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = pdf.internal.pageSize.getHeight();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
 
 
-  const contentHeight = canvas.height / 60 * 1.15;
-  const pageHeight = pdfHeight;
-  let position = 0;
+    const contentHeight = canvas.height / 60 * 1.15;
+    const pageHeight = pdfHeight;
+    let position = 0;
 
-  console.log('pdfHeight: ', pdfHeight);
-  console.log('pdfWidth: ', pdfWidth);
-  console.log('contentHeight: ', contentHeight);
-
-
-  while (position < contentHeight) {
-    const remainingHeight = contentHeight - position;
+    console.log('pdfHeight: ', pdfHeight);
+    console.log('pdfWidth: ', pdfWidth);
+    console.log('contentHeight: ', contentHeight);
 
 
-    pdf.addImage(imgData, 'PNG', 0, -position, pdfWidth, contentHeight);
+    while (position < contentHeight) {
+      const remainingHeight = contentHeight - position;
 
 
-    if (remainingHeight > pageHeight) {
-      pdf.addPage();
-      position += pageHeight;
-    } else {
-      break;
+      pdf.addImage(imgData, 'PNG', 0, -position, pdfWidth, contentHeight);
+
+
+      if (remainingHeight > pageHeight) {
+        pdf.addPage();
+        position += pageHeight;
+      } else {
+        break;
+      }
     }
-  }
 
 
-  const pdfSaved = pdf.save('extrato_geral.pdf');
-  return pdfSaved;
+    const pdfSaved = pdf.save('extrato_geral.pdf');
+    return pdfSaved;
   }
 
   saveByteArray(reportName: string, byte: Uint8Array) {
@@ -127,7 +127,7 @@ export class ImpressaoBancoPage implements OnInit {
     URL.revokeObjectURL(link.href);
   }
 
-  voltar($event: MouseEvent){
+  voltar($event: MouseEvent) {
     this.navCtrl.navigateBack('/tabs/impressao-extrato');
   }
 }
