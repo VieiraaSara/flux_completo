@@ -55,6 +55,8 @@ const homeRoute = require('./routes/home-route');
 const carteiraRoute = require('./routes/carteira-route')
 const contaBancosRoute = require('./routes/conta-bancos-route');
 const ExtratoRoute = require('./routes/extrato-route');
+const contasFlux =require('./routes/conta-bancos-route');
+
 
 // rotas de acesso 
 app.use('/', indexRoute);
@@ -66,7 +68,7 @@ app.use('/banco', bancoRoute);
 app.use('/conta', contaBancariaRoute,contaBancosRoute);
 app.use(ExtratoRoute);
 app.use(pixRoute)
-
+app.use(contasFlux);
 
 // ------ Habilita o CORS ------
 const corsOptions = {

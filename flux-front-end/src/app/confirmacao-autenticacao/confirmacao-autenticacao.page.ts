@@ -43,9 +43,7 @@ console.log(data.token);
 console.log(data.id);
 this.pixService.verifyCode(data.id,data.token, data.code).subscribe(response => {
 
-  this.navCtrl.navigateForward('/tabs/meus-bancos'
-
-  );
+  this.navCtrl.navigateForward('/tabs/meus-bancos');
 
 }, error => {
   console.error('Erro ao vericicar codigo:', error);

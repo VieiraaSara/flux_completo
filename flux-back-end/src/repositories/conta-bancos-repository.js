@@ -5,9 +5,17 @@ class ContaBancosRepository {
 
     // listar contas bancarias  do usuario
     static get = async (usuario_id_TOKEN) => {
-
+        console.log('REPOSITORY',usuario_id_TOKEN);
         // Lista todas as contas pertencente ao usário
         const contaEncontrada = await ContaBancos.findAll({
+            include:[
+               { model: ContaBancaria},
+               { model: Pix},
+            ]
+             
+             
+              
+             ,
             where: {
                 usuario_id: usuario_id_TOKEN
             }
@@ -16,7 +24,7 @@ class ContaBancosRepository {
         //  Verifica se a conta existe no banco
         if (!contaEncontrada) {
             return {
-                message: 'Conta não encontrada ou inexistente',
+                message: 'Você não possui contas bancárias disponíveis para realizar transações',
                 status: 404
             };
         }
