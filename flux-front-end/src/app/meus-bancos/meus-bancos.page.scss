@@ -162,50 +162,73 @@ body {
   
   
   .banco-entrada {
-    margin-top: 20px;
-    display: flex;
-    align-items: flex-start;
-    background-color: #000000;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .banco-entrada img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-  }
-  
-  .descricao {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .nome-desc {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .nome-desc h5 {
-    font-size: 18px;
-    margin: 0;
-  }
-  
-  .valor-aum {
     display: flex;
     align-items: center;
-    justify-content: end;
-    margin-top: 5px;
-  }
-  
-  .valor-aum p {
+    background-color: #000000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Mantém responsivo */
+    flex-direction: row; /* Elementos lado a lado */
+}
+
+.banco-entrada img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.descricao {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nome-desc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nome-desc h5 {
+    margin: 0;
     font-size: 16px;
-    color: #666;
-    margin: 0 5px;
-  }
-  
- 
+    color: #ffffff;
+}
+
+.valor-aum {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.valor-aum p {
+    font-size: 14px;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Responsividade para mobile */
+@media screen and (max-width: 600px) {
+    .banco-entrada {
+        flex-direction: column; /* Organiza os elementos verticalmente em telas pequenas */
+        align-items: flex-start;
+    }
+
+    .banco-entrada img {
+        margin-bottom: 10px;
+    }
+
+    .nome-desc {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .valor-aum {
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+}

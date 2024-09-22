@@ -41,13 +41,17 @@ export class PixService {
 
 
   verifyCode( id: string, token: string, code: any):Observable<any> {
-console.log(code);
-console.log(code);
-console.log(code);
-console.log(code);
     return this.http.put<any>(`${this.apiUrl}pix/key/${id}/verify?token=${token}`, {"code":code}).pipe(
       catchError(this.handleError)
     )
+  }
+
+  resendCode(id: string, token: string, code: any): Observable<any>{
+    return this.http.put<any>(`${this.apiUrl}pix/key/${id}/resendVerificationCode?token=${token}`, {"code":code})
+  }
+
+  getChavePix(token:string) : Observable<any> {
+    return this.http.get(`${this.apiUrl}pix?token=${token}`)
   }
 
   getContaBancaria(token: string): Promise<Conta[]> {

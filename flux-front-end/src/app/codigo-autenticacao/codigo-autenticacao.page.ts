@@ -1,10 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TransacaoService } from '../services/transacao.service';
-import { jwtDecode } from 'jwt-decode';
 import { PixService } from '../services/pix.service';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-
+import { jwtDecode } from 'jwt-decode'; // Corrigindo o import do jwt-decode
 
 @Component({
   selector: 'app-codigo-autenticacao',
@@ -35,8 +34,6 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
     } else {
       console.warn('ID do Pix não encontrado no localStorage.');
     }
-
-
   }
 
   decodeToken() {
@@ -61,8 +58,6 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
     this.setupCodeInputHandler();
   }
 
-
-  // concatena os inputs para pegar o código
   getCodeFromInputs(): string {
     const inputs = document.querySelectorAll('.input-codigo input') as NodeListOf<HTMLInputElement>;
     let code = '';
@@ -71,9 +66,7 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
       code += input.value;
     });
     return code;
-
   }
-
 
   setupCodeInputHandler() {
     const inputs = document.querySelectorAll('.input-codigo input') as NodeListOf<HTMLInputElement>;
@@ -81,7 +74,6 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
     inputs.forEach((input, index) => {
       input.addEventListener('input', (event) => {
         const target = event.target as HTMLInputElement;
-
 
         if (target.value.length === 1) {
           if (index < inputs.length - 1) {
@@ -94,7 +86,6 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
           }
         }
       });
-
 
       input.addEventListener('keydown', (event) => {
         const keyboardEvent = event as KeyboardEvent;
@@ -117,33 +108,34 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
       console.log(code);
       console.log(token);
       console.log(id);
-      console.log('CODE JSON', code);
-      // Primeira verificação
-      this.pixService.verifyCode(id,token, code).subscribe(response => {
-        const dataToSend = {
-          id: id,
-          token: token,
-          code: code
-        };
+
+      this.pixService.verifyCode(id, token, code).subscribe(response => {
+        const dataToSend = { id, token, code };
         this.navCtrl.navigateForward('/confirmacao-autenticacao', {
-
-          queryParams: {data: JSON.stringify(dataToSend)}
+          queryParams: { data: JSON.stringify(dataToSend) }
         });
-
       }, error => {
-        console.error('Erro ao vericicar codigo:', error);
+        console.error('Erro ao verificar código:', error);
       });
-
-
-
-
     } else {
       console.warn('Código, token ou id_pix ausente.');
     }
   }
 
-
+  // Implementação do método resendCode
   resendCode() {
-    console.log('Reenviando o código...');
+    if (this.token && this.id) {
+      console.log('Reenviando o código...');
+
+      this.pixService.resendCode(this.id, this.token, this.code).subscribe(response => {
+        console.log('Código reenviado com sucesso:', response);
+        // Aqui você pode exibir uma mensagem de sucesso para o usuário
+      }, error => {
+        console.error('Erro ao reenviar o código:', error);
+        // Aqui você pode exibir uma mensagem de erro para o usuário
+      });
+    } else {
+      console.warn('Token ou ID ausente. Não foi possível reenviar o código.');
+    }
   }
 }

@@ -33,10 +33,8 @@ export class CarteiraPage implements OnInit {
       this.tran.getHome(token).subscribe(
         async (data) => {
           if (data && data.totalGeral && Array.isArray(data.resultPorcentAndQuery)) {
-            // Acesse o valor único de saldoTotalGeral
             this.saldoTotalGeral = data.totalGeral;
 
-            // Mapeie as transações individuais
             this.carteira = data.resultPorcentAndQuery.map((item: any) => ({
               saldoTotalGeral: item.saldoTotalGeral,
               porcentagem: item.porcentagem,
