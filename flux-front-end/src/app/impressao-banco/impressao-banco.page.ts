@@ -13,13 +13,13 @@ import html2canvas from 'html2canvas';
 })
 export class ImpressaoBancoPage implements OnInit {
   data: any[] = [];
-  nome:any ;
+  nome: any;
   cpf: any;
-  key:any ;
-  nome_instituicao_financeira:any ;
+  key: any;
+  nome_instituicao_financeira: any;
   data_transacao: any;
-  descricao:any ;
-  valor:any ;
+  descricao: any;
+  valor: any;
   saldo_total_geral: any;
   saidas: any;
   entradas: any;
@@ -36,16 +36,16 @@ export class ImpressaoBancoPage implements OnInit {
           // Verifique se parsedData é um array
           if (Array.isArray(parsedData)) {
             this.data = parsedData.map((item: any) => ({
-              nome:item.nome ,
-              cpf:item. cpf,
-              key:item.key ,
-              nome_instituicao_financeira:item.nome_instituicao_financeira ,
-              data_transacao:item. data_transacao,
-              descricao:item.descricao ,
-              valor:item.valor ,
-              saldo_total_geral:item. saldo_total_geral,
-              saidas:item. saidas,
-              entradas:item. entradas,
+              nome: item.nome,
+              cpf: item.cpf,
+              key: item.key,
+              nome_instituicao_financeira: item.nome_instituicao_financeira,
+              data_transacao: item.data_transacao,
+              descricao: item.descricao,
+              valor: item.valor,
+              saldo_total_geral: item.saldo_total_geral,
+              saidas: item.saidas,
+              entradas: item.entradas,
 
             }));
             console.log('Dados recebidosPDF:', this.data);
@@ -106,7 +106,6 @@ export class ImpressaoBancoPage implements OnInit {
   
     // Obter os dados da imagem como base64
     const imgData = canvas.toDataURL('image/png');
-  
     // Definir o PDF no formato A4
     const pdf = new jsPDF('p', 'mm', 'a4'); // Formato A4
     const pdfWidth = pdf.internal.pageSize.getWidth(); // Largura A4 = 210mm
@@ -157,7 +156,7 @@ export class ImpressaoBancoPage implements OnInit {
   
   
   
-  
+
   saveByteArray(reportName: string, byte: Uint8Array) {
     const blob = new Blob([byte], { type: "application/pdf" });
     const link = document.createElement('a');
@@ -167,7 +166,7 @@ export class ImpressaoBancoPage implements OnInit {
     URL.revokeObjectURL(link.href);
   }
 
-  voltar($event: MouseEvent){
+  voltar($event: MouseEvent) {
     this.navCtrl.navigateBack('/tabs/impressao-extrato');
   }
 }

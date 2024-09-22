@@ -1,24 +1,27 @@
 <ion-content>
 
+
   <div class="container" >
     <header class="header" >
       <button class="back-button" style="color: black;"  (click)="voltar($event)"><img src="../../assets/image/Vector 14seta.png" alt=""> </button>
 
-      <h1>Informações da Conta </h1>
+
+      <h1>Informações da Conta</h1>
       <ion-icon name="share" (click)="share($event)"></ion-icon>
     </header>
 
     <hr class="separator">
 <div id="pdfContent">
+
     <div class="info-section" *ngFor="let dat of data   | slice:0:1">
-      <div class="info-item" >
+      <div class="info-item">
         <span>Cliente</span>
         <span>{{dat.nome}}</span>
         <span>{{dat.cpf}}</span>
       </div>
     </div>
 
-    <hr class="separator">
+    <hr class="separator" />
 
     <div class="info-section" *ngFor="let dat of data  | slice:0:1">
       <div class="info-item">
@@ -27,15 +30,13 @@
       </div>
     </div>
 
-
-
-    <hr class="separator">
+    <hr class="separator" />
 
     <footer class="footer">
       <p>Extrato Bancário</p>
     </footer>
 
-    <hr class="separator">
+    <hr class="separator" />
 
     <div class="info-section">
       <div class="info-item" *ngFor="let dat of data  | slice:0:1">
@@ -44,23 +45,24 @@
       </div>
     </div>
 
-    <hr class="separator">
+    <hr class="separator" />
 
     <footer class="footer">
       <p>Detalhes</p>
     </footer>
 
-    <hr class="separator">
-<div *ngFor="let dat of data">
-    <div class="info-section">
-      <div class="info-item" >
-        <span>{{dat.nome_instituicao_financeira}}</span>
-        <span>{{dat.valor_disponivel}}</span>
+    <hr class="separator" />
+    <div *ngFor="let dat of data">
+      <div class="info-section">
+        <div class="info-item">
+          <span>{{dat.nome_instituicao_financeira}}</span>
+          <span>{{dat.valor_disponivel}}</span>
+        </div>
       </div>
+      <hr class="separator" />
     </div>
     <hr class="separator">
   
-  </div>
 
 
 
@@ -74,8 +76,7 @@
       </div>
     </div>
 
-
-    <hr class="separator">
+    <hr class="separator" />
 
     <div class="info-section">
       <div class="info-item">
@@ -84,8 +85,7 @@
       </div>
     </div>
 
-
-    <hr class="separator">
+    <hr class="separator" />
 
     <div class="info-section">
       <div class="info-item">
@@ -95,6 +95,6 @@
     </div>
 
   </div></div>
-  <button class="fixed-button" (click)="gerarPDF($event)">Imprimir</button>
 
+  <button class="fixed-button" (click)="gerarPDF($event)">Imprimir</button>
 </ion-content>
