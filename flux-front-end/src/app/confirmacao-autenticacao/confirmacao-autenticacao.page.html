@@ -1,5 +1,6 @@
 <ion-content>
-  <body>
+  <body >
+    <div *ngFor="let dat of data">
     <div class="exit">
       <img src="../../assets/image/X.png" alt="" />
     </div>
@@ -9,7 +10,8 @@
       <h1>Parabéns,</h1>
       <h2>Sua conta Flux foi verificada!</h2>
     </div>
-    <button type="submit" >Confirmar Código</button>
+    <button type="submit" (click)="confirmarCodigo(dat)">Confirmar Código</button>
+    </div>
     </div>
   </body>
 </ion-content>

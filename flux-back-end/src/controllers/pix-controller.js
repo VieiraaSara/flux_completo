@@ -46,14 +46,15 @@ class PixController {
         try {
             const idPix = req.params.id;
             const verifyCode = req.body.code;
-
+         
+            console.log('verifyCode: ', verifyCode);
             const token = req.body.token || req.query.token || req.headers['x-access-token'];
             const dadosUsuario = await authService.decodeToken(token);
             const emailUsuario = dadosUsuario.email;
 
             const accessToken = await authServiceAPI.returnAccessToken();
             const response = await pixService.verificarChave(idPix, emailUsuario, accessToken, verifyCode);
-
+            console.log('verifyCode: ', verifyCode);
             console.log(response.data);
 
             if (response.status === 200) {

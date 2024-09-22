@@ -37,7 +37,8 @@ class PixService {
                 },
                 data: { key: key, key_type: key_typeUpCase }
             };
-
+            console.log("EMAIL ENVIADO PARA ", dadosUsuario.email);
+         console.log(options);
             const response = await axios.request(options);
             const createdKey = response.data;
             const id_pix = createdKey.id;
@@ -96,6 +97,7 @@ class PixService {
 
     static verificarChave = async (idPix, emailUsuario, accessToken, verifyCode) => {
         try {
+            console.log(verifyCode);
             if (verifyCode.length !== 6) {
 
                 return {
@@ -133,8 +135,8 @@ class PixService {
 
             const statusResponse = await axios.request(statusOptions);
             const keyRegistredStatus = statusResponse.data.status;
-
-            const updatedStatus = keyRegistredStatus === 'REGISTRADA' ? 'REGISTRADA' : keyRegistredStatus;
+console.log('STATUS DA CHAVE', statusResponse.data.status);
+            const updatedStatus = keyRegistredStatus == 'REGISTRADA' ? 'REGISTRADA' : keyRegistredStatus;
 
             const updateResult = await repository.put({
                 id_pix: idPix,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 interface Banco {
@@ -15,33 +15,39 @@ interface Conta {
   id_conta: number;
   saldo: string;
   tipo_conta: string;
-  Banco: Banco;  
+  Banco: Banco;
 }
 
 interface Pix {
   id?: string;
   key_type: string;
   key: string;
-  conta_bancaria_id: number;  
+  conta_bancaria_id: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class PixService {
-  private apiUrl = environment.baseApiUrl;  
+  private apiUrl = environment.baseApiUrl;
 
   constructor(private http: HttpClient) {}
 
   cadastrarPix(token: string, pix: Pix): Promise<any> {
     return this.http.post(`${this.apiUrl}cadastrar-chave?token=${token}`, pix)
       .toPromise()
-      .then(response => response); 
+      .then(response => response);
   }
-  
 
-  verifyCode( id: string, token: string, code: any): Promise<any> {
-    return this.http.put<any>(`${this.apiUrl}pix/key/${id}/verify?token=${token}`, code).toPromise().catch(Err=>(console.log(Err)));
+
+  verifyCode( id: string, token: string, code: any):Observable<any> {
+console.log(code);
+console.log(code);
+console.log(code);
+console.log(code);
+    return this.http.put<any>(`${this.apiUrl}pix/key/${id}/verify?token=${token}`, {"code":code}).pipe(
+      catchError(this.handleError)
+    )
   }
 
   getContaBancaria(token: string): Promise<Conta[]> {
@@ -50,13 +56,13 @@ export class PixService {
         catchError(this.handleError)
       )
       .toPromise()
-      .then(response => response || []); 
+      .then(response => response || []);
   }
 
   private handleError(error: any) {
     console.error('Erro ocorreu:', error);
     let errorMessage = 'Algo deu errado, tente novamente mais tarde.';
-    
+
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Erro: ${error.error.message}`;
     } else {
@@ -75,7 +81,7 @@ export class PixService {
           break;
       }
     }
-    
-    return Promise.reject(new Error(errorMessage)); 
+
+    return Promise.reject(new Error(errorMessage));
   }
 }
