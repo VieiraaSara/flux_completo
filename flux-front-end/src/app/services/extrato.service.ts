@@ -20,6 +20,14 @@ export class ExtratoService {
     );
 
   }
+
+  getExtratoBancario(token: string,contaBancariaID: any):Observable<any> {
+
+    return this.http.get(`${this.apiUrl}imprimir-extrato-bancario/${contaBancariaID}?token=${token}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: any) {
     console.error('Erro ocorreu:', error);
     let errorMessage = 'Algo deu errado, tente novamente mais tarde.';

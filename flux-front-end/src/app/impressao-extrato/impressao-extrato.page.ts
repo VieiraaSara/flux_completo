@@ -108,10 +108,30 @@ export class ImpressaoExtratoPage implements OnInit {
   }
 
   imprimirExtratoContaBancaria(contaBancariaID: any) {
-    console.log(contaBancariaID);
-    // aqui tem que levar o usuário para imprimir o extrato de sua conta bancaria
-  }
+  
+    const token = localStorage.getItem('token');
+
+    if(token && this.id){
+      try {
+        console.log('Imprimindo extrato da conta bancaria: ' , contaBancariaID);
+        this.extratoService.getExtratoBancario(token,contaBancariaID).subscribe(response => {
+          console.log('Dados recebidos do serviço:', response);
+
+
+          this.navCtrl.navigateForward('/impressao-banco', {
+            queryParams: { data: JSON.stringify(Array.isArray(response) ? response : [response]) }
+          });
+
+        }, error => {
+          console.error('Erro ao obter extrato:', error);
+        });
+
+      } catch (error) {
+        console.error('Erro ao gerar impressão de extrato', error);
+      }
 
   }
 
+  }
+}
 

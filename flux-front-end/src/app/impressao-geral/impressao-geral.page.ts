@@ -63,13 +63,15 @@ export class ImpressaoGeralPage implements OnInit {
 
   async gerarPDF(event: MouseEvent) {
     const element = document.getElementById('pdfContent');
+
+
     if (!element) return;
 
 
-    const canvas = await html2canvas(element, { scale: 4});
+    const canvas = await html2canvas(element, { scale: 2});
     const imgData = canvas.toDataURL('image/png');
 
-    // Criar um novo PDF com jsPDF
+
     const pdf = new jsPDF('p', 'mm', 'a6');
 
 
@@ -81,7 +83,7 @@ export class ImpressaoGeralPage implements OnInit {
 
 
     const pdfSaved = pdf.save('extrato_geral.pdf');
-return pdfSaved;
+    return pdfSaved;
   }
 
   saveByteArray(reportName: string, byte: Uint8Array) {
@@ -91,5 +93,8 @@ return pdfSaved;
     link.download = reportName;
     link.click();
     URL.revokeObjectURL(link.href);
+  }
+  voltar($event: MouseEvent){
+    this.navCtrl.navigateBack('/tabs/impressao-extrato');
   }
 }
