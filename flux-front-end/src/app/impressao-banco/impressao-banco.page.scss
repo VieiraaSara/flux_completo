@@ -70,9 +70,22 @@ body {
     background-color: #92D1F9; /* Cor de fundo do botão */
     color: #000000; /* Cor do texto */
     border: none;
-    padding: 20px;
+    padding: 20px; 
     font-size: 18px;
     text-align: center;
     cursor: pointer;
   }
+  
+  #pdfContent {
+    width: 100%; /* Ocupar 100% da largura */
+    margin: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: left; /* Alinhar o texto à esquerda */
+  }
+  
+  #pdfContent h1, #pdfContent p {
+    margin: 0 0 15px 0; /* Adiciona espaçamento entre elementos */
+  }
+  
   

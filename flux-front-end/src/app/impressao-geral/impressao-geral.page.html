@@ -1,6 +1,6 @@
 <ion-content>
 
-  <div class="container" id="pdfContent">
+  <div class="container" >
     <header class="header" >
       <button class="back-button" style="color: black;"  (click)="voltar($event)"><img src="../../assets/image/Vector 14seta.png" alt=""> </button>
 
@@ -9,7 +9,7 @@
     </header>
 
     <hr class="separator">
-
+<div id="pdfContent">
     <div class="info-section" *ngFor="let dat of data   | slice:0:1">
       <div class="info-item" >
         <span>Cliente</span>
@@ -59,6 +59,7 @@
       </div>
     </div>
     <hr class="separator">
+  
   </div>
 
 
@@ -93,7 +94,7 @@
       </div>
     </div>
 
-  </div>
+  </div></div>
   <button class="fixed-button" (click)="gerarPDF($event)">Imprimir</button>
 
 </ion-content>
