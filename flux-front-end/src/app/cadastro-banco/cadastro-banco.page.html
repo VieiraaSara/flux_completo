@@ -4,13 +4,22 @@
   <div class="login-container">
     <img src="assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
     <h1>Comece já!</h1>
+<<<<<<< HEAD
     <h5>Cadastre sua Conta Bancaria</h5>
   
+=======
+    <h5>Cadastre seu Banco</h5>
+
+>>>>>>> db55eb3047bf6bddd1cdf46070df9bb02de0c6d1
     <div class="input-container">
       <input type="text" [(ngModel)]="key" id="chavePix" name="chavePix" placeholder="Chave Pix">
       <div class="input-circle">
         <i class="fa-brands fa-pix"></i>
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> db55eb3047bf6bddd1cdf46070df9bb02de0c6d1
     </div>
 
 
@@ -18,7 +27,7 @@
       <p>Selecione a conta do seu banco</p>
       <div class="item">
         <ion-list>
-          <ion-item *ngFor="let conta of contas" (click)="selecionarBanco(conta)">
+          <ion-item *ngFor="let conta of contas" (click)="selecionarBanco(conta)" color="list-items">
             <ion-avatar slot="start">
               <img [src]="conta.Banco.image" alt="{{ conta.Banco.name }}">
             </ion-avatar>
@@ -28,7 +37,7 @@
               <p>Tipo de Conta: {{ conta.tipo_conta }}</p>
             </ion-label>
           </ion-item>
-        </ion-list>                  
+        </ion-list>
      </div>
       <button class="btn-azul" routerLink="/list-contaB">Veja Mais +</button>
     </div>
@@ -45,10 +54,10 @@
 
 
 
-  
+
     <button (click)="cadastrarPix()">Cadastrar Banco</button>
 
-   
-    
+
+
   </div></div>
 </ion-content>
