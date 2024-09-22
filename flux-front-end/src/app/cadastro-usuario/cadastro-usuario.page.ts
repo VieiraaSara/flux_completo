@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { LoginService } from '../services/login.service';
 import { AuthService } from '../services/auth.service';
 
@@ -19,7 +19,8 @@ export class CadastroUsuarioPage implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private navCtrl: NavController,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastController : ToastController
   ) { }
 
   ngOnInit() {
@@ -39,6 +40,16 @@ export class CadastroUsuarioPage implements OnInit {
     return senha === confirmPassword ? null : { notSame: true };
   }
 
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 5000, 
+      position: 'bottom', // Posição do toast (top, bottom, middle)
+      cssClass: 'toast-container'
+    });
+    toast.present();
+  }
+  
 
 async cadastrar() {
   const formValues = this.cadastroForm.value;
@@ -47,7 +58,7 @@ async cadastrar() {
   const cpfLimpo = formValues.cpf.replace(/\D/g, ''); 
   
   if (cpfLimpo.length !== 11) {
-    alert('CPF inválido. Deve conter 11 dígitos.');
+    this.presentToast('CPF inválido. Deve conter 11 dígitos.');
     return;
   }
 
@@ -59,10 +70,10 @@ async cadastrar() {
 
   try {
     await this.loginService.cadastrar(user);
-    alert('Cadastro realizado com sucesso!');
+    this.presentToast('Conta Cadastrada com sucesso!');
     this.navCtrl.navigateRoot('/login');
   } catch (error) {
-    alert('Erro ao cadastrar.');
+    this.presentToast('Erro ao cadastrar.');
     console.log(error);
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TransacaoService } from '../services/transacao.service';
 import { PixService } from '../services/pix.service';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { jwtDecode } from 'jwt-decode'; // Corrigindo o import do jwt-decode
 
 @Component({
@@ -16,17 +16,20 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
   token: string | null = null;
   id: string = '';
   code: string = '';
-
+  key: string = '';
   constructor(
     private tran: TransacaoService,
     private pixService: PixService,
     private router : Router,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
+    // Decodifica o token e extrai informações do payload
     this.decodeToken();
-
+  
+    // Recupera o ID do Pix armazenado no localStorage
     const storedIdPix = localStorage.getItem('id_pix');
     if (storedIdPix) {
       this.id = storedIdPix;
@@ -34,7 +37,28 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
     } else {
       console.warn('ID do Pix não encontrado no localStorage.');
     }
+  
+    // Recuperar o token armazenado no localStorage
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.token = token; // Armazena o token na variável da instância
+  
+      // Chama o serviço Pix para buscar a chave, usando this.token
+      this.pixService.getChavePix(this.token).subscribe(
+        response => {
+          this.key = response.key;  // Atribui a chave recebida à variável 'key'
+          console.log('Chave Pix recebida:', this.key);
+        },
+        error => {
+          console.error('Erro ao buscar chave Pix:', error);
+          // Aqui você pode exibir uma mensagem de erro, se necessário
+        }
+      );
+    } else {
+      console.warn('Token não encontrado no localStorage.');
+    }
   }
+  
 
   decodeToken() {
     const token = localStorage.getItem('token');
@@ -52,6 +76,7 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
       }
     }
   }
+  
 
   ngAfterViewInit() {
     console.log('ngAfterViewInit chamado');
@@ -96,6 +121,16 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
     });
   }
 
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 5000, 
+      position: 'bottom', // Posição do toast (top, bottom, middle)
+      cssClass: 'toast-container'
+    });
+    toast.present();
+  }
+
   verifyCode(event: Event) {
     event.preventDefault();
     console.log('verify code chamado');
@@ -111,6 +146,7 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
 
       this.pixService.verifyCode(id, token, code).subscribe(response => {
         const dataToSend = { id, token, code };
+        this.presentToast('Código correto!');
         this.navCtrl.navigateForward('/confirmacao-autenticacao', {
           queryParams: { data: JSON.stringify(dataToSend) }
         });
@@ -129,7 +165,7 @@ export class CodigoAutenticacaoPage implements OnInit, AfterViewInit {
 
       this.pixService.resendCode(this.id, this.token, this.code).subscribe(response => {
         console.log('Código reenviado com sucesso:', response);
-        // Aqui você pode exibir uma mensagem de sucesso para o usuário
+        
       }, error => {
         console.error('Erro ao reenviar o código:', error);
         // Aqui você pode exibir uma mensagem de erro para o usuário

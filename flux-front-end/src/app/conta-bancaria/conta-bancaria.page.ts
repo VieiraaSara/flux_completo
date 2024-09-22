@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ContaBancariaService } from 'src/app/services/conta-bancaria.service';
 import { AuthService } from 'src/app/services/auth.service'; 
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 interface Banco {
   id_banco:number;
@@ -32,7 +34,9 @@ export class ContaBancariaPage implements OnInit {
 
   constructor(
     private contaBancariaService: ContaBancariaService,
-    private authService: AuthService 
+    private authService: AuthService,
+    private toastController: ToastController,
+    private router: Router 
   ) {}
 
   ngOnInit() {
@@ -75,6 +79,18 @@ export class ContaBancariaPage implements OnInit {
   get bancosFiltrados() {
     return this.bancos.filter(banco => ['Sicredi', 'Banco do Brasil','Santander','Bradesco','Itaú','Sicoob','Banco Inter','Nu Pagamentos S.A.'].includes(banco.name));
   }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 5000, 
+      position: 'bottom', // Posição do toast (top, bottom, middle)
+      cssClass: 'toast-container'
+    });
+    toast.present();
+  }
+  
+
   cadastrarConta() {
     if (this.valor > 0 && this.tipoConta && this.selectedInstitution !== null && this.token) {
   
@@ -92,7 +108,9 @@ export class ContaBancariaPage implements OnInit {
 
         this.contaBancariaService.cadastrarConta(this.token, conta)
           .then(() => {
-            console.log('Conta cadastrada com sucesso!');
+            this.presentToast('Conta Cadastrada com sucesso!');
+            console.log('Conta Bancária cadastrada com sucesso!');
+            this.router.navigate(['/codigo-autenticacao']);
           })
           .catch((err: any) => {
             console.error('Erro ao cadastrar conta:', err);

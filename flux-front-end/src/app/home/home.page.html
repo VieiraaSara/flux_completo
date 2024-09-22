@@ -1,11 +1,6 @@
 <ion-content>
   <div class="container-global">
     <div class="header">
-      <!-- Imagem perfil do usuário e mensagem de bem-vindo -->
-      <a href="config-flux">
-        <img src="assets/image/Captura de tela 2024-06-04 205846.png" class="perfil" alt="Perfil" />
-      </a>
-
       <h4 *ngFor="let not of notifications | slice:0:1; let i=index">Bem vindo(a) {{not.nome}}!</h4>
 
 

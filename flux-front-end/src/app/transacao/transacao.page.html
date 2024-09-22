@@ -1,47 +1,49 @@
 <ion-content>
   <div class="global">
-  
-    
-  
     <div class="login-container">
-      <img src="assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
+      <img src="../../assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
+      <h1>Faça sua transação!</h1>
 
-      <h1>Faça uma transação</h1>
-      
-      <p class="azul">Coloque o valor da Transação</p>
-
-      <div class="input-container">
-        <input type="number" id="valor" name="valor">
-          </div>
-  
-          <div class="container-disponiveis">
-            <p>Selecione a instituição do seu banco</p>
-            <div class="logo-bancos">
-            <img src="../../assets/image/LB1.png" alt="">
-            <img src="../../assets/image/LB2.png" alt="">
-            <img src="../../assets/image/LB3.png" alt="">
-            <img src="../../assets/image/LB4.png" alt="">
-            <img src="../../assets/image/LB5.png" alt="">
-            <img src="../../assets/image/LB6.png" alt="">
-  
-          </div>
-          <button class="btn-azul">Veja Mais  +</button>
-          </div>
-
-        <p class="azul">Selecione o tipo da sua conta</p>
-    
-  
-      <div class="input-container">
-        <input type="" id="valor" name="valor">
-        
-        
+      <!-- Valor da transação -->
+      <p class="azul">Coloque o valor da sua transação</p>
+      <div class="valor-container">
+        <button (click)="decreaseValue()">-</button>
+        <input type="number" [(ngModel)]="valor" min="0" step="1" readonly>
+        <button (click)="increaseValue()">+</button>
       </div>
-    
-      <button type="submit">Cadastrar Banco</button>
 
-      
-    
-      
-    </div></div>
-  </ion-content>
-  
+      <!-- Selecione o banco de envio -->
+      <div class="container-disponiveis">
+        <p>Selecione a instituição que envia essa transação</p>
+        <div class="logo-bancos">
+          <div *ngFor="let banco of bancosFiltrados" (click)="selecionarBancoEnvio(banco)">
+            <img [src]="banco.image" [alt]="banco.name" [class.selected]="selectedInstitutionEnvio?.id_conta === banco.id_conta">
+            <p [innerHTML]="banco.name"></p>
+          </div>
+        </div>
+        <button class="btn-azul" routerLink="/mais-bancos">Veja Mais +</button>
+      </div>
+
+      <!-- Selecione o banco de recebimento -->
+      <div class="container-disponiveis">
+        <p>Selecione a instituição que receba essa transação</p>
+        <div class="logo-bancos">
+          <div *ngFor="let banco of bancosFiltrados" (click)="selecionarBancoRecebimento(banco)">
+            <img [src]="banco.image" [alt]="banco.name" [class.selected]="selectedInstitutionRecebimento?.id_conta === banco.id_conta">
+            <p [innerHTML]="banco.name"></p>
+          </div>
+        </div>
+        <button class="btn-azul" routerLink="/mais-bancos">Veja Mais +</button>
+      </div>
+
+      <!-- Descrição da transação -->
+      <div class="descricao-container">
+        <p>Escreva a descrição da sua transação (opcional)</p>
+        <input type="text" [(ngModel)]="descricao">
+      </div>
+
+      <!-- Botão para enviar a transação -->
+      <button (click)="enviarTransacao()">Enviar transação</button>
+    </div>
+  </div>
+</ion-content>

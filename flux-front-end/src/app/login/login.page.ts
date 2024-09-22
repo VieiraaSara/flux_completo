@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 
 export class LoginPage {
 
+
   visible:boolean = true;
   changetype:boolean =true;
 
@@ -19,7 +20,24 @@ export class LoginPage {
     senha: ''
   };
 
-  constructor(private authService:AuthService, private loginService: LoginService, private navCtrl: NavController) {}
+  constructor(private authService:AuthService,
+     private loginService: LoginService,
+      private navCtrl: NavController,
+    private toastController: ToastController
+    ) {}
+
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 5000, 
+      position: 'top', // Posição do toast (top, bottom, middle)
+      cssClass: 'toast-container'
+    });
+    toast.present();
+  }
+  
+
 
   async login() {
     try {
@@ -27,6 +45,7 @@ export class LoginPage {
       const token = response?.token;
       if (token) {
         localStorage.setItem('token', token);
+        this.presentToast('Login correto.Bem-vindo!');
         this.navCtrl.navigateRoot('tabs/home');
       } else {
         alert('Token não recebido');

@@ -7,10 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { CadastroUsuarioPageRoutingModule } from './cadastro-usuario-routing.module';
 
 import { CadastroUsuarioPage } from './cadastro-usuario.page';
+import { MessageService } from 'primeng/api';
 
 
 
 @NgModule({
+  providers:[MessageService],
   imports: [
     CommonModule,
     ReactiveFormsModule,  

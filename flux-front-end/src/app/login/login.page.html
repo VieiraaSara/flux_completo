@@ -3,7 +3,7 @@
 
 
 <body>
-  
+
 
     
   <div class="login-container">
@@ -23,15 +23,13 @@
       
   
       <div class="input-container">
-        <input [type]="changetype?'password':'text'" id="senha" name="senha" placeholder="Senha"  [(ngModel)]="credentials.senha" required>
-
+        <input [type]="changetype ? 'password' : 'text'" id="senha" name="senha" placeholder="Senha" [(ngModel)]="credentials.senha" required>
         <div class="input-circle">
           <i class="fa-solid fa-lock"></i>
         </div>
-        
-           <!-- Icone de olho riscado  <i class="fa-solid fa-eye-slash" style="color: #000e5a;"></i>-->
-        <span class="eyeicon" (click)="viewpass()"><i [ngClass]="visible?'fa-solid fa-eye-slash':'fa-solid fa-eye'" style="color: #000A7E;"></i></span>
-       
+        <span class="eyeicon" (click)="viewpass()">
+          <i [ngClass]="visible ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'" style="color: #000A7E;"></i>
+        </span>
       </div>
   
   
@@ -39,5 +37,7 @@
       
       
    
-  </form> <p class="forgot-password">Esqueceu sua senha?</p>
+  </form> 
+  <p class="forgot-password">Não tem uma conta? <strong><a [routerLink]="['/cadastro-usuario']">Clique aqui</a></strong></p>
+  <!--<p class="forgot-password">Esqueceu sua senha?</p>-->
  </div></body>

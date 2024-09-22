@@ -69,10 +69,6 @@ const routes: Routes = [
     loadChildren: () => import('./mais-bancos/mais-bancos.module').then(m => m.MaisBancosPageModule)
   },
   {
-    path: 'messages',
-    loadChildren: () => import('./messages/messages.module').then(m => m.MessagesPageModule)
-  },
-  {
     path: 'conta-bancaria',
     loadChildren: () => import('./conta-bancaria/conta-bancaria.module').then(m => m.ContaBancariaPageModule)
   },
