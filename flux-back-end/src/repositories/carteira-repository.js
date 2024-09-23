@@ -60,7 +60,7 @@ WHERE
         }
       );
 
-      return { status: 200, data: queryIfNotTransaction };
+      return { status: 206, data: queryIfNotTransaction };
     }
 
     return { status: 200, data: query };
