@@ -109,7 +109,7 @@ console.log(transacaoEnvio);
       this.transacaoService.fazerTransacao(this.token, transacaoEnvio.id_contaBancos, transacaoEnvio).subscribe(
         (response) => {
           console.log('Transação realizada com sucesso', response);
-          this.router.navigate(['/confirmacao-transacao']);
+          this.router.navigate(['/tabs/home']);
         },
         (error) => {
           console.error('Erro ao realizar transação', error);
