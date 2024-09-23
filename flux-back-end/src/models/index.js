@@ -20,9 +20,8 @@ ContaBancaria.belongsTo(Usuario, { foreignKey: 'usuario_id', onDelete: 'CASCADE'
 ContaBancos.belongsTo(Usuario, { foreignKey: 'usuario_id', onDelete: 'CASCADE' });
 ContaBancos.belongsTo(ContaBancaria, { foreignKey: 'contaBancaria_id', onDelete: 'CASCADE' });
 
-Pix.belongsTo(ContaBancos, { foreignKey: 'contaBancos_id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Pix.hasOne(ContaBancos, { foreignKey: 'pix_id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 ContaBancos.belongsTo(Pix, { foreignKey: 'pix_id', onDelete: 'CASCADE' });
-
 // Transacao.belongsTo(ContaBancos, { foreignKey: 'contaBancos_id' });
 
 ContaBancaria.belongsTo(Banco, { foreignKey: 'banco_id' });

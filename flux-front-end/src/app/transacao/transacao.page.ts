@@ -16,6 +16,7 @@ export class TransacaoPage implements OnInit {
   selectedInstitutionEnvio: any = null;
   selectedInstitutionRecebimento: any = null;
   token: string | null = '';
+  id_contaBancos: any;
 
   constructor(
     private transacaoService: TransacaoService,
@@ -30,20 +31,36 @@ export class TransacaoPage implements OnInit {
 
   carregarBancos() {
     if (this.token) {
-      this.pixService.getContaBancaria(this.token).then(contas => {
-        this.bancosFiltrados = contas.map(conta => ({
-          id_banco: conta.fkBancoId,
-          name: conta.Banco.name,
-          image: conta.Banco.image,
-          id_conta: conta.id_conta,
-          saldo: conta.saldo,
-          tipo_conta: conta.tipo_conta,
-          usuario_id: conta.usuario_id
-        }));
+      this.transacaoService.getContasFlux(this.token).then(contasFlux => {
+
+        if (Array.isArray(contasFlux)) {
+          console.log(contasFlux);
+
+
+          this.bancosFiltrados = contasFlux.map(conta => {
+            console.log('ID Conta Bancos:', conta.id_contaBancos);
+            console.log('Conta:', conta.Contum);
+            console.log('Banco Image:', conta.Contum.Banco.image);
+
+           return{ id_contaBancos: conta.id_contaBancos,
+
+            name: conta.Contum.Banco.name,
+            image: conta.Contum.Banco.image,
+            id_conta:conta.id_contaBancos,
+            saldo: conta.saldo,
+            tipo_conta: conta.tipo_conta,
+            usuario_id: conta.usuario_id
+          }});
+
+        } else {
+          console.error('A resposta da API não é um array:', contasFlux);
+
+        }
+      }).catch(error => {
+        console.error('Erro ao carregar contas:', error);
       });
     }
   }
-
   decreaseValue() {
     if (this.valor > 0) this.valor--;
   }
@@ -52,30 +69,44 @@ export class TransacaoPage implements OnInit {
     this.valor++;
   }
 
-  selecionarBancoEnvio(banco: any) {
+  selecionarBancoEnvio(banco: any,id_banco:any,contaBancosID:any) {
+    console.log(banco);
+    console.log('BANCO ENVIAR',id_banco);
+    // console.log('CONTA BANCOS',contaBancosID);
     this.selectedInstitutionEnvio = banco;
   }
 
-  selecionarBancoRecebimento(banco: any) {
+  selecionarBancoRecebimento(banco: any,id_banco:any,contaBancosID:any) {
+    console.log(banco);
+    console.log('BANCO RECEBER',id_banco);
+    // console.log('CONTA BANCOS',contaBancosID);
+
+
     this.selectedInstitutionRecebimento = banco;
   }
 
+
+
   enviarTransacao() {
+    console.log('CHEGOU AS COIAS ');
     if (!this.selectedInstitutionEnvio || !this.selectedInstitutionRecebimento || this.valor <= 0) {
       console.error('Selecione os bancos e informe um valor válido');
       return;
     }
 
     const transacaoEnvio = {
-      id_conta: this.selectedInstitutionEnvio.id_conta,
+      id_contaBancos:this.id_contaBancos,
+      id_conta_bancaria_origem: this.selectedInstitutionEnvio.id_conta,
+      id_conta_bancaria_destino:this.selectedInstitutionRecebimento.id_conta,
       usuario_id: this.selectedInstitutionEnvio.usuario_id,
-      banco_id: this.selectedInstitutionEnvio.id_banco,
-      saldo: this.valor.toFixed(2),
-      tipo_conta: this.selectedInstitutionEnvio.tipo_conta
-    };
 
+      valor_transferencia: this.valor.toFixed(2),
+      descricao:this.descricao
+
+    };
+console.log(transacaoEnvio);
     if (this.token) {
-      this.transacaoService.fazerTransacao(this.token, transacaoEnvio.id_conta, transacaoEnvio).subscribe(
+      this.transacaoService.fazerTransacao(this.token, transacaoEnvio.id_contaBancos, transacaoEnvio).subscribe(
         (response) => {
           console.log('Transação realizada com sucesso', response);
           this.router.navigate(['/confirmacao-transacao']);

@@ -54,6 +54,7 @@ export class PixService {
     return this.http.get(`${this.apiUrl}pix?token=${token}`)
   }
 
+  
   getContaBancaria(token: string): Promise<Conta[]> {
     return this.http.get<Conta[]>(`${this.apiUrl}conta/listar-contas?token=${token}`)
       .pipe(

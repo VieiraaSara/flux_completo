@@ -8,8 +8,6 @@ class ContaBancariaRepository {
     static get = async (usuario_id_TOKEN) => {
 
 
-        
-
         // Lista todas as contas pertencente ao usário
         const contaEncontrada = await Conta.findAll({
             include: [

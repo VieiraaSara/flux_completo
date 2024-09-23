@@ -14,10 +14,10 @@ class ExtratoController {
         usuario_id_token
       );
       if (response.status === 200) {
-        console.log(response);
+      
         return res.status(response.status).json(response.data);
       } else {
-        console.log(response);
+     
         return res
           .status(response.status)
           .json({ data: response.data, message: response.message });
