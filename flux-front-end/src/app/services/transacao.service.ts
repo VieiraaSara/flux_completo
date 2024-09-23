@@ -20,8 +20,13 @@ export class TransacaoService {
     return this.http.get(`${this.apiUrl}home?token=${token}`);
   }
 
+  getContasFlux(token: string): Promise<any>{
+
+    return this.http.get(`${this.apiUrl}listar-contas-flux?token=${token}`).toPromise();
+  }
+
   fazerTransacao(token:string, id_contaBancos:  any, transacaoEnvio:any): Observable<any>{
     console.log(id_contaBancos)
-    return this.http.post(`${this.apiUrl}conta/realizar-transferencia/conta-bancaria/${id_contaBancos}?token=${token}`, transacaoEnvio)
+    return this.http.post(`${this.apiUrl}conta/realizar-transferencia?token=${token}`, transacaoEnvio)
   }
 }

@@ -16,7 +16,7 @@
       <div class="container-disponiveis">
         <p>Selecione a instituição que envia essa transação</p>
         <div class="logo-bancos">
-          <div *ngFor="let banco of bancosFiltrados" (click)="selecionarBancoEnvio(banco)">
+          <div *ngFor="let banco of bancosFiltrados" (click)="selecionarBancoEnvio(banco, banco.id_conta, banco.id_contaBancos)">
             <img [src]="banco.image" [alt]="banco.name" [class.selected]="selectedInstitutionEnvio?.id_conta === banco.id_conta">
             <p [innerHTML]="banco.name"></p>
           </div>
@@ -28,7 +28,8 @@
       <div class="container-disponiveis">
         <p>Selecione a instituição que receba essa transação</p>
         <div class="logo-bancos">
-          <div *ngFor="let banco of bancosFiltrados" (click)="selecionarBancoRecebimento(banco)">
+          <div *ngFor="let banco of bancosFiltrados" (click)="selecionarBancoRecebimento(banco, banco.id_conta, banco.id_contaBancos)">
+            <input type="hidden" value="{{ banco.id_contaBancos }}">
             <img [src]="banco.image" [alt]="banco.name" [class.selected]="selectedInstitutionRecebimento?.id_conta === banco.id_conta">
             <p [innerHTML]="banco.name"></p>
           </div>
