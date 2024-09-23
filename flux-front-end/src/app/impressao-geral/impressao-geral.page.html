@@ -41,7 +41,7 @@
     <div class="info-section">
       <div class="info-item" *ngFor="let dat of data  | slice:0:1">
         <span>Saldo Total</span>
-        <span>{{dat.saldo_total_geral}}</span>
+        <span [innerHTML]="'R$ '+ dat.saldo_total_geral"></span>
       </div>
     </div>
 
@@ -56,13 +56,14 @@
       <div class="info-section">
         <div class="info-item">
           <span>{{dat.nome_instituicao_financeira}}</span>
-          <span>{{dat.valor_disponivel}}</span>
+          
+          <span [innerHTML]="'R$ '+ dat.valor_disponivel"></span>
         </div>
       </div>
       <hr class="separator" />
     </div>
     <hr class="separator">
-  
+
 
 
 
