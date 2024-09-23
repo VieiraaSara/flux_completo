@@ -1,5 +1,5 @@
 const pixRepository = require('../repositories/pix-repository');
-const { ContaBancos, ContaBancaria, Pix } = require('../models');
+const { ContaBancos, ContaBancaria, Pix, Banco } = require('../models');
 
 class ContaBancosRepository {
 
@@ -8,19 +8,21 @@ class ContaBancosRepository {
         console.log('REPOSITORY',usuario_id_TOKEN);
         // Lista todas as contas pertencente ao usário
         const contaEncontrada = await ContaBancos.findAll({
-            include:[
-               { model: ContaBancaria},
-               { model: Pix},
-            ]
-             
-             
-              
-             ,
+            include: [
+              {
+                model: ContaBancaria,
+                include: { model: Banco }
+              },
+              {
+                model: Pix
+              }
+            ],
             where: {
-                usuario_id: usuario_id_TOKEN
+              usuario_id: usuario_id_TOKEN
             }
-        }
-        )
+          });
+        
+        
         //  Verifica se a conta existe no banco
         if (!contaEncontrada) {
             return {
@@ -35,38 +37,30 @@ class ContaBancosRepository {
     }
 
     static findOne = async (body) => {
-
-
-
         const contaEncontrada = await ContaBancos.findOne({
-            where: {usuario_id: body.usuario_id },
-            include: {
-                model: ContaBancaria,
-                as: "Contum",
-                attributes: ['saldo'] 
-              }
-
+          include: {
+            model: ContaBancaria,
+           
+          },
+          where: {
+            usuario_id: body.usuario_id,  
+            id_contaBancos: body.contaBancaria_id  
+          },
         });
-   
+      
         if (!contaEncontrada) {
-            return {
-                message: 'Conta não encontrada ou inexistente',
-                status: 404
-            };
+          return {
+            message: 'Conta não encontrada ou inexistente',
+            status: 404,
+          };
         }
-
-        if (!contaEncontrada) {
-            return {
-                message: 'Conta não encontrada ou inexistente',
-                status: 404
-            };
-        }
-
+      
         const res = contaEncontrada;
-     
+    
         return { data: res, status: 200 };
+      };
 
-    }
+
     // relacionar o pix com a conta bancos
     static post = async (body) => {
 
