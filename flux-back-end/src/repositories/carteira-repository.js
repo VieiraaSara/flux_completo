@@ -1,12 +1,12 @@
-const { Sequelize, QueryTypes, where } = require('sequelize');
+const { Sequelize, QueryTypes, where } = require("sequelize");
 const Transacao = require("../models/transacao");
-const Banco = require('../models/banco');
+const Banco = require("../models/banco");
+const ContaBancaria = require("../models/conta-bancaria");
 
 class CarteiraRepository {
-
-    static get = async (id_user,limit) => {
-        const query = await Banco.sequelize
-            .query(`
+  static get = async (id_user, limit) => {
+    const query = await Banco.sequelize.query(
+      `
                      SELECT 
     usuario.id_usuario,
     usuario.nome,
@@ -38,18 +38,33 @@ WHERE
     ORDER BY transacao.data_transacao DESC
     LIMIT  :limit
 
-    `, {
-                replacements: { id_user: id_user, limit: limit },
-                type: QueryTypes.SELECT
-            });
+    `,
+      {
+        replacements: { id_user: id_user, limit: limit },
+        type: QueryTypes.SELECT,
+      }
+    );
 
+    if (query.length === 0) {
+     const queryIfNotTransaction = await ContaBancaria.sequelize.query(
+        `
+        SELECT 
+            SUM(c.saldo) as saldoTotalGeral
+        FROM
+            conta_bancaria c
+        WHERE
+            c.usuario_id = :id_user `,
+        {
+          replacements: { id_user: id_user },
+          type: QueryTypes.SELECT,
+        }
+      );
 
-        return { status: 200, data: query };
+      return { status: 200, data: queryIfNotTransaction };
     }
 
-
+    return { status: 200, data: query };
+  };
 }
-
-
 
 module.exports = CarteiraRepository;

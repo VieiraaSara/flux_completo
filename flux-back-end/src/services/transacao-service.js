@@ -65,6 +65,8 @@ class TransacaoService {
     return { status: 200, data: { totalGeral, resultPorcentAndQuery } };
   };
 
+
+  
   static listarExtratoGeral = async (id_user) => {
     const query = await transacaoRepository.buscarExtratoGeral(id_user);
 
