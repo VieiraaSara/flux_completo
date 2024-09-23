@@ -10,81 +10,74 @@
     </div>
 
     <div class="input-container">
-      <input placeholder="Pesquisar Chave Pix" class="input-pesquisa" />
+      <input 
+        placeholder="Pesquisar Chave Pix" 
+        class="input-pesquisa" 
+        (input)="filtrarChaves($event)" 
+      />
     </div>
 
     <div class="linha-filtros">
-      <div class="coluna-bancospend">
+      <div class="coluna-bancospend" (click)="filtrarPorStatusPendente()">
         <div class="circle-bancospend">
           <img src="../../assets/image/Vector.png" alt="" />
         </div>
-
         <p>Bancos <br /> Pendentes</p>
       </div>
-
-      <div class="coluna-maiorsal">
+    
+      <div class="coluna-maiorsal" (click)="filtrarPorMaiorSaldo()">
         <div class="circle-maiorsal">
           <img src="../../assets/image/esquerda.png" alt="" />
         </div>
-
         <p>Maior Saldo</p>
       </div>
-
-      <div class="coluna-menorsal">
+    
+      <div class="coluna-menorsal" (click)="filtrarPorMenorSaldo()">
         <div class="circle-menorsal">
           <img src="../../assets/image/Vector 39.png" alt="" />
         </div>
-
         <p>Menor Saldo</p>
       </div>
     </div>
 
     <div class="scrollable-content">
       <div class="footer">
-        <div *ngFor="let chave of chavesPix">
-          <div
-            class="banco-entrada"
-            [ngStyle]="{
-              'background-color': chave.Pix.status === 'VALIDANDO'
-                ? '#000000'
-                : '#1A1D1D',
-              'margin-top': '20px',
-              'display': 'flex',
-              'align-items': 'center',
-              'border-radius': '10px',
-              'box-shadow': '0 2px 4px rgba(0, 0, 0, 0.1)',
-              'padding': '10px',
-              'margin-bottom': '10px'
-            }"
-          >
-            <img
-              class="banco"
-              [src]="chave.Contum.Banco.image"
-              [alt]="chave.Contum.Banco.name"
-              style="width: 50px; height: 50px; margin-right: 10px"
-            />
-            <div class="descricao" style="display: flex; flex-direction: column; width: 100%">
-              <div class="nome-desc" style="display: flex; align-items: center; width: 100%">
+        <div *ngFor="let chave of filteredChavesPix" 
+             class="banco-entrada" 
+             [ngStyle]="{
+               'background-color': chave.Pix.status === 'VALIDANDO' ? '#000000' : '#1A1D1D',
+               'margin-top': '20px',
+               'display': 'flex',
+               'align-items': 'center',
+               'border-radius': '10px',
+               'box-shadow': '0 2px 4px rgba(0, 0, 0, 0.1)',
+               'padding': '10px',
+               'margin-bottom': '10px'
+             }">
+          <img 
+            class="banco" 
+            [src]="chave.Contum.Banco.image" 
+            [alt]="chave.Contum.Banco.name" 
+            style="width: 50px; height: 50px; margin-right: 10px" 
+          />
+          <div class="descricao" style="display: flex; flex-direction: column; width: 100%">
+            <div class="nome-desc" style="display: flex; align-items: center; width: 100%">
+              <h5 [style.color]="chave.Pix.status === 'VALIDANDO' ? '#DD6A00' : 'green'" style="margin: 0">
+                {{ chave.Pix.key }}
+              </h5>
+              <div style="display: flex; align-items: center; margin-left: 5px">
                 <h5 [style.color]="chave.Pix.status === 'VALIDANDO' ? '#DD6A00' : 'green'" style="margin: 0">
-                  {{ chave.Pix.key }}
+                  {{ chave.Pix.status }}
                 </h5>
-                <div style="display: flex; align-items: center; margin-left: 5px">
-                  <h5 [style.color]="chave.Pix.status === 'VALIDANDO' ? '#DD6A00' : 'green'" style="margin: 0">
-                    {{ chave.Pix.status }}
-                  </h5>
-                </div>
               </div>
-              <div class="valor-aum" style="display: flex; align-items: center; justify-content: flex-end; margin-top: 5px">
-                <p
-                  [style.color]="chave.Pix.status === 'VALIDANDO' ? '#DD6A00' : 'green'"
-                  style="margin: 0; white-space: nowrap; font-size: 10px"
-                >
-                  {{ chave.Pix.status === 'VALIDANDO' ? 'Aguarde até que seu banco se conecte com o FLUX' : chave.Contum.Banco.name }}
-                </p>
-                <p *ngIf="chave.Pix.status !== 'VALIDANDO'" style="color: green; margin-left: 10px">
-                  Saldo: R${{ chave.Contum.saldo }}
-                </p>
-              </div>
+            </div>
+            <div class="valor-aum" style="display: flex; align-items: center; justify-content: flex-end; margin-top: 5px">
+              <p [style.color]="chave.Pix.status === 'VALIDANDO' ? '#DD6A00' : 'green'" style="margin: 0; white-space: nowrap; font-size: 10px">
+                {{ chave.Pix.status === 'VALIDANDO' ? 'Aguarde até que seu banco se conecte com o FLUX' : chave.Contum.Banco.name }}
+              </p>
+              <p *ngIf="chave.Pix.status !== 'VALIDANDO'" style="color: green; margin-left: 10px">
+                Saldo: R${{ chave.Contum.saldo }}
+              </p>
             </div>
           </div>
         </div>

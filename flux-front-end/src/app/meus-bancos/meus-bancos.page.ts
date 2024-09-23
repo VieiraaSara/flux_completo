@@ -10,6 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class MeusBancosPage implements OnInit {
   chavesPix: any[] = [];
+  filteredChavesPix: any[] = [];
   token: string = '';
 
   constructor(
@@ -42,6 +43,7 @@ export class MeusBancosPage implements OnInit {
       this.pixService.getChavePix(this.token).subscribe(
         (response: any) => {
           this.chavesPix = response;
+          this.filteredChavesPix = response; 
         },
         (error) => {
           console.error('Erro ao carregar chaves Pix:', error);
@@ -49,4 +51,33 @@ export class MeusBancosPage implements OnInit {
       );
     }
   }
+
+  filtrarChaves(event: Event) {
+    const valorPesquisa = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredChavesPix = this.chavesPix.filter(chave => 
+      chave.Pix.key.toLowerCase().includes(valorPesquisa)
+    );
+  
+   
+    this.filteredChavesPix.sort((a, b) => 
+      a.Pix.key.toLowerCase().indexOf(valorPesquisa) === 0 ? -1 : 1
+    );
+  }
+
+  filtrarPorStatusPendente() {
+    this.filteredChavesPix = this.chavesPix.filter(chave => chave.Pix.status === 'VALIDANDO');
+  }
+
+  filtrarPorMaiorSaldo() {
+    this.filteredChavesPix = [...this.chavesPix]
+      .filter(chave => chave.Pix.status !== 'VALIDANDO')
+      .sort((a, b) => b.Contum.saldo - a.Contum.saldo);
+  }
+  
+  filtrarPorMenorSaldo() {
+    this.filteredChavesPix = [...this.chavesPix]
+      .filter(chave => chave.Pix.status !== 'VALIDANDO')
+      .sort((a, b) => a.Contum.saldo - b.Contum.saldo);
+  }
+  
 }
