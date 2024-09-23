@@ -10,6 +10,13 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
 
 .container-global {
   display: flex;
@@ -112,6 +119,7 @@ h1 {
   height: 180px;
   // background-color: #00ffff;
    transform: translateY(-85px);
+   
 }
 
 swiper-slide {
@@ -455,13 +463,13 @@ ion-content {
 
 @media (max-width: 768px) {
   .step-by-step {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
   }
 
   .step {
-    width: 80%; 
-    margin-bottom: 20px; 
+    width: 80%;
+    margin-bottom: 20px;
   }
 
   .step-number {

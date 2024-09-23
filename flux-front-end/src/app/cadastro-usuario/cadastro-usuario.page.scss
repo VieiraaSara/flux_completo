@@ -18,7 +18,7 @@ body {
     background-color: #000000;
     padding: 20px;
     text-align: center;
-    max-width: 400px; 
+    max-width: 400px;
     width: 100%;
 }
 
@@ -45,7 +45,7 @@ h5 {
 
 .input-container {
     position: relative;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
 .input-container label {
@@ -60,43 +60,43 @@ h5 {
 .input-container input {
     font-family: 'Poppins', sans-serif;
     width: 100%;
-    padding: 20px; 
-    padding-left: 80px; 
+    padding: 20px;
+    padding-left: 80px;
     border-radius: 50px;
     background-color: #171C1C;
     border: none;
     color: #9395A4;
-    font-size: 18px; 
-    height: 60px; 
+    font-size: 18px;
+    height: 60px;
 }
 
 .input-container input:focus {
-    outline: none; 
-    border: 2px solid #000ceb; 
+    outline: none;
+    border: 2px solid #000ceb;
 }
 
 .input-circle {
     position: absolute;
     top: 50%;
-    left: 15px; 
+    left: 15px;
     transform: translateY(-50%);
     background-color: #000E5A;
     border-radius: 50%;
-    width: 40px; 
+    width: 40px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff; 
-    font-size: 18px; 
+    color: #fff;
+    font-size: 18px;
 }
 
 button {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     width: 100%;
-    padding: 20px; 
-    font-size: 18px; 
+    padding: 20px;
+    font-size: 18px;
     background-color: #92D1F9;
     color: rgb(0, 0, 0);
     border: none;
@@ -116,27 +116,28 @@ button:hover {
 }
 
 small{
-    color: #000ceb;
+    color: #eb0000;
+    font-size: 14px;
 }
 
 .toast-container {
-    background-color: #000A7E; 
-    color: white; 
-    font-family: 'Poppins', sans-serif; 
+    background-color: #000A7E;
+    color: white;
+    font-family: 'Poppins', sans-serif;
     padding: 12px 16px;
-    border-radius: 8px; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
-    position: fixed; 
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 20px; 
-    width: 90%; 
-    max-width: 400px; 
+    bottom: 20px;
+    width: 90%;
+    max-width: 400px;
     text-align: center;
-    z-index: 1000; 
+    z-index: 1000;
   }
-  
-  
+
+
   @keyframes slideIn {
     from {
       transform: translateY(100%);
@@ -145,7 +146,7 @@ small{
       transform: translateY(0);
     }
   }
-  
+
   .toast-container.show {
-    animation: slideIn 0.5s ease-out; 
+    animation: slideIn 0.5s ease-out;
   }

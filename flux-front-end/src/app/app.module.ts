@@ -24,6 +24,9 @@ import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from './_interceptors/interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
+import { CURRENCY_MASK_CONFIG, CurrencyMaskModule,CurrencyMaskConfig } from "ng2-currency-mask";
+import { customCurrencyMaskConfig } from './conta-bancaria/conta-bancaria.module';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,7 +48,7 @@ import { AuthService } from './services/auth.service';
     NoopAnimationsModule,
     FormsModule,
     MatCheckboxModule,
-
+    CurrencyMaskModule
   ],
   providers: [
     {
@@ -54,6 +57,9 @@ import { AuthService } from './services/auth.service';
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+    { provide: CURRENCY_MASK_CONFIG, useValue: customCurrencyMaskConfig },
+
+
     // ,
     // {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
   ],

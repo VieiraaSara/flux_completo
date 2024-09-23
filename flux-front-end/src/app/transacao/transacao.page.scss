@@ -12,7 +12,7 @@
     justify-content: center;
     margin: 0;
   }
-  
+
   .login-container {
 }
 
@@ -21,16 +21,16 @@
     background-color: #000000;
     padding: 20px;
     text-align: center;
-    max-width: 400px; 
+    max-width: 400px;
     width: 100%;
   }
-  
+
   .logo {
     width: 90px;
     height: 70px;
     margin-bottom: 10px;
   }
-  
+
 
 
 .logo {
@@ -47,7 +47,7 @@ h1 {
     color: #fff;
 
   }
-  
+
 
 h5 {
     font-family: 'Inter', sans-serif;
@@ -55,22 +55,22 @@ h5 {
     margin-bottom: 20px;
     color: #fff;
   }
-  
+
   .input-container {
     position: relative;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   .input-container input {
 
 }
 
 .input-container {
     position: relative;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 .input-container label {
@@ -85,48 +85,48 @@ h5 {
 .input-container input {
     font-family: 'Poppins', sans-serif;
     width: 100%;
-    padding: 20px; 
-    padding-left: 80px; 
+    padding: 20px;
+    padding-left: 80px;
     border-radius: 50px;
     background-color: #171C1C;
     border: none;
     color: #9395A4;
-    font-size: 18px; 
-    height: 60px; 
+    font-size: 18px;
+    height: 60px;
     text-align: center;
   }
-  
+
   .input-container input:focus {
-    outline: none; 
-    border: 2px solid #000ceb; 
+    outline: none;
+    border: 2px solid #000ceb;
   }
-  
+
   .input-circle {
 
 }
 
 .input-container input:focus {
-    outline: none; 
-    border: 2px solid #000ceb; 
+    outline: none;
+    border: 2px solid #000ceb;
 }
 
 .input-circle {
     position: absolute;
     top: 50%;
-    left: 15px; 
+    left: 15px;
     transform: translateY(-50%);
     background-color: #000E5A;
     border-radius: 50%;
-    width: 40px; 
+    width: 40px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FDFDFD; 
-    font-size: 18px; 
+    color: #FDFDFD;
+    font-size: 18px;
 
   }
-  
+
   button {
 
 }
@@ -135,8 +135,8 @@ button {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     width: 100%;
-    padding: 20px; 
-    font-size: 18px; 
+    padding: 20px;
+    font-size: 18px;
     background-color: #92D1F9;
     color: rgb(0, 0, 0);
     border: none;
@@ -156,9 +156,9 @@ button:hover {
     cursor: pointer;
 
   }
-  
+
   .container-disponiveis {}
-  
+
   .container-disponiveis p {
     display: flex;
     justify-content: flex-start;
@@ -168,19 +168,21 @@ button:hover {
     text-align: center;
     padding: 20px;
   }
-  
+
   .logo-bancos {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px; /* Espaçamento entre os elementos */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(4,30px);
   }
 
   .logo-bancos p{
     color: #ffffff;
     font-size: 10px;
   }
-  
+
   .logo-bancos div {
     display: flex;
     flex-direction: column;
@@ -188,42 +190,42 @@ button:hover {
     width: 20px; /* Largura de cada item */
     margin: 5px;
   }
-  
+
   .logo-bancos img {
     width: 20px;  /* Tamanho menor para as logos */
     height: 20px;
     border-radius: 10px;
     margin-bottom: 5px; /* Espaçamento entre logo e nome */
   }
-  
+
   /* Força duas fileiras com até 5 logos em cada uma */
   .logo-bancos {
     max-width: 500px; /* Controla a largura máxima da grade */
   }
-  
+
   @media (max-width: 768px) {
     .logo-bancos {
       gap: 10px; /* Reduz o espaçamento em telas menores */
     }
-  
+
     .logo-bancos img {
       width: 25px;  /* Tamanho menor ainda em telas menores */
       height: 25px;
     }
-  
+
     .logo-bancos div {
       width: 60px; /* Reduz a largura dos itens em telas menores */
     }
   }
-  
-  
+
+
   .azul {
     display: flex;
     justify-content: start;
     color: #007bff;
   }
-  
- 
+
+
 
 .logo-bancos{
     display: flex;
@@ -252,7 +254,7 @@ button:hover {
     height: 5%;
 
   }
-  
+
   /* Botões para aumentar/diminuir o valor */
  .valor-container {
     display: flex;
@@ -261,7 +263,7 @@ button:hover {
     gap: 10px;
     margin-bottom: 20px;
   }
-  
+
   .valor-container button {
     width: 40px;
     height: 40px;
@@ -272,20 +274,23 @@ button:hover {
     font-size: 20px;
     cursor: pointer;
   }
-  
+
   .valor-container button:hover {
     background-color: #0056b3;
   }
-  
+
   .valor-container input {
+
+    all: unset;
     text-align: center;
-    width: 80px;
+    width: 30vh;
     height: 40px;
-    font-size: 18px;
+    font-size: 20px;
     border: none;
-    border-radius: 5px;
-    background-color: #171C1C;
+    border-radius: 5px 5px 0 0;
+    background-color: #171c1c7c;
     color: #fff;
+    border-bottom: 1px solid #92D1F9;
   }
 
 
@@ -294,14 +299,14 @@ button:hover {
     align-items: center;
     justify-content: center;
   }
-  
+
   input[type="number"] {
     width: 60px;
     text-align: center;
     margin: 0 10px;
     font-size: 18px;
   }
-  
+
   .circle-btn {
     display: flex;
     justify-content: center;
@@ -314,7 +319,7 @@ button:hover {
     font-size: 24px;
     cursor: pointer;
   }
-  
+
   .circle-btn:hover {
     background-color: #ccc;
   }
@@ -322,11 +327,18 @@ button:hover {
     cursor: pointer;
     margin: 10px;
   }
-  
+
   .logo-bancos img.selected {
-    border: 2px solid blue;
-    border-radius: 30px;
+    padding: 1px;
+    filter: drop-shadow(2px 3px 0px #0056b3);
+    transition: 0.2s ease-in;
   }
-  
-  
+
+.descricao{
+  all: unset;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #92D1F9;
+  background-color: #171c1c7c;
+  font-size: 19px;
+}
 

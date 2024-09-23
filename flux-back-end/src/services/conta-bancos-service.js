@@ -65,6 +65,14 @@ class ContaBancosService {
       const saldoDestino = parseFloat(contaDestino.data.Contum.saldo);
       const novoSaldoDestino = saldoDestino + parseFloat(valor_transferencia);
   
+
+
+      if(contaDestino.data.id_contaBancos === contaBancaria.data.id_contaBancos){
+ 
+        console.log( 'Você não pode realizar uma transferência para uma mesma conta bancária');
+        return {message:'Você não pode realizar uma transferência para uma mesma conta bancária',status:400}
+      }
+
       await Promise.all([
         contaBancariaRepository.put(
           contaBancaria.data.Contum.id_conta,
