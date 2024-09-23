@@ -1,15 +1,15 @@
-const { Sequelize, QueryTypes, where } = require('sequelize');
+const { Sequelize, QueryTypes, where } = require("sequelize");
 const Transacao = require("../models/transacao");
-const Banco = require('../models/banco');
-const usarioRepository = require('./usuario-repository');
+const Banco = require("../models/banco");
+const usarioRepository = require("./usuario-repository");
+const Usuario = require("../models/usuario");
 
 class HomeRepository {
+  static getHomeData = async (id_user, limit) => {
+    const nome = await usarioRepository.getById(id_user);
 
-    static getHomeData = async (id_user, limit) => {
-const nome = await usarioRepository.getById(id_user);
-
-        const query = await Banco.sequelize
-            .query(`
+    const query = await Banco.sequelize.query(
+      `
                 SELECT 
                 usuario.nome,
                 conta_bancaria.id_conta,
@@ -32,18 +32,33 @@ const nome = await usarioRepository.getById(id_user);
                 usuario.id_usuario  = :id_user 
          ORDER BY transacao.data_transacao DESC
     LIMIT  :limit
-    `, {
-                replacements: { id_user: id_user, limit: limit },
-                type: QueryTypes.SELECT
-            });
+    `,
+      {
+        replacements: { id_user: id_user, limit: limit },
+        type: QueryTypes.SELECT,
+      }
+    );
 
+    if (query.length === 0) {
+      const queryIfNotTransaction = await Usuario.sequelize.query(
+        `
+        SELECT 
+            a.nome
+        FROM
+            usuario a
+        WHERE
+            a.id_usuario = :id_user `,
+        {
+          replacements: { id_user: id_user },
+          type: QueryTypes.SELECT,
+        }
+      );
 
-        return { status: 200, data: query, nome: nome };
+      return { status: 200, data: queryIfNotTransaction };
     }
 
-
+    return { status: 200, data: query, nome: nome };
+  };
 }
-
-
 
 module.exports = HomeRepository;

@@ -179,7 +179,7 @@ async deleteUserById(){
  async showLoading() {
   const loading = await  this.loadingCtrl.create({
     message: 'Atualizando informações',
-    duration: 3000,
+    duration: 1000,
   });
 
   loading.present();

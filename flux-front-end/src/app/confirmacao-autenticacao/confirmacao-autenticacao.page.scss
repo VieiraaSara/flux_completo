@@ -35,14 +35,14 @@ body{
 .container-confirm h1 {
     margin: 0;
     padding: 0;
-    font-size: 24px; 
-  
+    font-size: 24px;
+
 }
 
 .container-confirm h2 {
     margin: 0;
-    padding-top: 5px; 
-    font-size: 18px; 
+    padding-top: 5px;
+    font-size: 18px;
 
 }
 
@@ -55,3 +55,29 @@ body{
     margin-top: 20px;
 }
 
+.btn-confirmar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Poppins', sans-serif;
+  margin-top: 25vh;
+  font-weight: 600;
+  width: 40vh;
+  padding: 20px;
+  font-size: 18px;
+  background-color: #92D1F9;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.btn-confirmar:active{
+  background-color: #6ea2c2;
+}
+
+span{
+  margin-top: 4px;
+  margin-left: 5px;
+  font-size: 18px;
+}

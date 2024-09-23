@@ -47,7 +47,7 @@
     <div class="info-section">
       <div class="info-item" *ngFor="let dat of data   | slice:0:1">
         <span>Saidas</span>
-        <span>{{dat.saidas}}</span>
+        <span [innerHTML]="'R$ '+ dat.saidas"></span>
       </div>
     </div>
     <hr class="separator" />
@@ -55,7 +55,7 @@
     <div class="info-section" *ngFor="let dat of data   | slice:0:1">
       <div class="info-item">
         <span>Entradas</span>
-        <span>{{dat.entradas}}</span>
+        <span [innerHTML]="'R$ '+ dat.entradas"></span>
       </div>
     </div>
     <hr class="separator" />
@@ -63,7 +63,8 @@
     <div class="info-section" *ngFor="let dat of data   | slice:0:1">
       <div class="info-item">
         <span>Saldo Disponível</span>
-        <span>{{dat.saldo_total_geral}}</span>
+
+        <span [innerHTML]="'R$ '+ dat.saldo_total_geral"></span>
       </div>
     </div>
 
@@ -77,9 +78,9 @@
 
     <div class="info-section" *ngFor="let dat of data">
       <div class="info-item">
-        <span>{{dat.descricao}}</span>
+        <span class="descricao">{{dat.descricao}}</span>
         <span>{{dat.data_transacao}}</span>
-        <span>{{dat.valor}}</span>
+        <span [innerHTML]="'R$ '+ dat.valor"></span>
       </div>
       <hr class="separator" />
     </div>

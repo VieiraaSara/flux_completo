@@ -22,6 +22,9 @@ class CarteiraController {
                 return res.status(response.status).json(response.data);
 
             } else {
+                console.log(response.status);
+                console.log(response.status);
+                console.log(response.status);
                 return res.status(response.status).json({ message: response.data })
             }
         } catch (error) {

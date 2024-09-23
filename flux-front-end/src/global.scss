@@ -46,10 +46,12 @@
 
 /* Custom styles for the alert */
 .my-custom-class {
-  --background: rgba(0, 3, 44, 0.15);
-
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(3.5px);
+  --background: rgba( 26, 29, 29, 0.8 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 9px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -61,6 +63,7 @@
   transition: 0.3s ease-in;
   margin:0 auto;
 
+
 }
 .my-custom-class .alert-button-cancel:hover {
   text-decoration-line: underline;
@@ -71,6 +74,7 @@
   color: red;
   transition: 0.3s ease-in;
   margin:0 auto;
+
 
 }
 
@@ -86,6 +90,7 @@
   font-size: 18px;
   color: #fcfcfc;
   text-align: center;
+
 }
 
 
@@ -93,3 +98,15 @@
   border-radius: 12px;
 }
 
+// button {
+//   font-family: 'Poppins', sans-serif;
+//   font-weight: 600;
+//   width: 100%;
+//   padding: 20px;
+//   font-size: 18px;
+//   background-color: #92D1F9;
+//   color: rgb(0, 0, 0);
+//   border: none;
+//   border-radius: 50px;
+//   cursor: pointer;
+// }

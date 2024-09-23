@@ -23,8 +23,8 @@ class TransacaoService {
 
     if (!query || query.data.length === 0) {
       return {
-        status: 204,
-        message: "Você ainda não realizou transações",
+        status: query.status,
+        message: query.data
       };
     }
     const resultPorcentAndQuery = query.data
@@ -64,6 +64,8 @@ class TransacaoService {
 
     return { status: 200, data: { totalGeral, resultPorcentAndQuery } };
   };
+
+
 
   static listarExtratoGeral = async (id_user) => {
     const query = await transacaoRepository.buscarExtratoGeral(id_user);
