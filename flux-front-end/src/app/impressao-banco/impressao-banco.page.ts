@@ -33,7 +33,6 @@ export class ImpressaoBancoPage implements OnInit {
         try {
           const parsedData = JSON.parse(params['data']);
 
-          // Verifique se parsedData é um array
           if (Array.isArray(parsedData)) {
             this.data = parsedData.map((item: any) => ({
               nome: item.nome,

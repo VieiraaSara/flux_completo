@@ -403,3 +403,83 @@ ion-content {
   text-decoration: none;
   color: #000;
 }
+
+
+.step-by-step {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.step {
+  text-align: center;
+  width: 30%;
+}
+
+.step-number {
+  background-color: #000e5a;
+  color: white;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.step-info h5 {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.step-info p {
+  font-size: 14px;
+  color: #555;
+}
+
+.step-button {
+  margin-top: 10px;
+}
+
+.step-button a {
+  text-decoration: none;
+  color: white;
+  background-color: #000e5a;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+  .step-by-step {
+    flex-direction: column; 
+    align-items: center;
+  }
+
+  .step {
+    width: 80%; 
+    margin-bottom: 20px; 
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .step-info h5 {
+    font-size: 14px;
+  }
+
+  .step-info p {
+    font-size: 12px;
+  }
+
+  .step-button a {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

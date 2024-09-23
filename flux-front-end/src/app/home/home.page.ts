@@ -18,6 +18,32 @@ export class HomePage implements OnInit {
 
 
 
+  steps = [
+    {
+      number: 1,
+      title: 'Cadastrar Banco',
+      description: 'Cadastre o valor que você tem no banco.',
+      buttonText: 'Ir para Cadastro',
+      link: '/conta-bancaria/:id'
+    },
+    {
+      number: 2,
+      title: 'Cadastrar Chave PIX',
+      description: 'Cadastre sua chave PIX na sua conta bancária.',
+      buttonText: 'Ir para Conta Bancária',
+      link: '/cadastro-banco'
+    },
+    {
+      number: 3,
+      title: 'Realizar Transação',
+      description: 'Realize suas transações bancárias.',
+      buttonText: 'Ir para Transação',
+      link: '/transacao'
+    }
+  ];
+
+
+
   constructor(
     private tran: TransacaoService,
     private formBuilder: FormBuilder,

@@ -1,8 +1,12 @@
 <ion-content>
   <div class="global">
-    <div class="header">
+    <header class="header">
+      <button class="back-button" style="color: black" (click)="voltar($event)">
+        <img src="../../assets/image/Vector 14seta.png" alt="" />
+      </button>
       <h1>Bancos Disponíveis</h1>
-    </div>
+    </header>
+
 
     <div class="input-container">
       <input
@@ -15,15 +19,13 @@
     
     <div class="scrollable-content">
       <div class="footer">
-        <div *ngFor="let banco of filteredBancos" (click)="selecionarBanco(banco)">
+        <div *ngFor="let banco of filteredBancos">
           <div class="banco-entrada">
-            <img
-              [src]="banco.image" [alt]="banco.name" [class.selected]="selectedInstitution === banco.id_banco"
-            />
+            <img [src]="banco.image" [alt]="banco.name" />
             <div class="descricao">
               <div class="nome-desc">
                 <h5 style="margin-right: 15px" [innerHTML]="banco.name"></h5>
-                <h5 class="azul" style="margin-right: 5px">Selecionar</h5>
+                <h5 class="azul" style="margin-right: 5px" (click)="selecionarEBanco(banco.id_banco)">Selecionar</h5>
               </div>
             </div>
           </div>

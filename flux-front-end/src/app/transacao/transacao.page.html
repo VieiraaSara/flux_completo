@@ -7,9 +7,9 @@
       <!-- Valor da transação -->
       <p class="azul">Coloque o valor da sua transação</p>
       <div class="valor-container">
-        <button (click)="decreaseValue()">-</button>
-        <input type="number" [(ngModel)]="valor" min="0" step="1" readonly>
-        <button (click)="increaseValue()">+</button>
+        <button (click)="decreaseValue()" class="circle-btn">-</button>
+        <input type="number" [(ngModel)]="valor" min="0" step="1">
+        <button (click)="increaseValue()" class="circle-btn">+</button>
       </div>
 
       <!-- Selecione o banco de envio -->

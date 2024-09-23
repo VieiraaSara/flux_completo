@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ContaBancariaService } from '../services/conta-bancaria.service';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 interface Banco {
   id_banco: number;
@@ -25,7 +27,9 @@ export class MaisBancosPage implements OnInit {
 
   constructor(
     private contaBancariaService: ContaBancariaService,
-    private authService: AuthService
+    private authService: AuthService, 
+    private router: Router,
+    public navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -37,8 +41,8 @@ export class MaisBancosPage implements OnInit {
     }
   }
 
-  selecionarBanco(banco: Banco) {
-    this.selectedInstitution = banco.id_banco;
+  selecionarEBanco(id_banco: number) {
+    this.router.navigate(['/conta-bancaria', id_banco]);
   }
 
   listarInstituicoes() {
@@ -53,6 +57,10 @@ export class MaisBancosPage implements OnInit {
           console.error('Erro ao listar instituições:', err);
         });
     }
+  }
+
+  voltar($event: MouseEvent) {
+    this.navCtrl.navigateBack('/conta-bancaria/:id');
   }
 
   onSearchChange() {

@@ -69,7 +69,7 @@ const routes: Routes = [
     loadChildren: () => import('./mais-bancos/mais-bancos.module').then(m => m.MaisBancosPageModule)
   },
   {
-    path: 'conta-bancaria',
+    path: 'conta-bancaria/:id',
     loadChildren: () => import('./conta-bancaria/conta-bancaria.module').then(m => m.ContaBancariaPageModule)
   },
   {

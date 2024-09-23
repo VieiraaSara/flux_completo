@@ -3,7 +3,7 @@ import { ContaBancariaService } from 'src/app/services/conta-bancaria.service';
 import { AuthService } from 'src/app/services/auth.service'; 
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+  import { ActivatedRoute } from '@angular/router';
 interface Banco {
   id_banco:number;
   id: number;
@@ -32,13 +32,17 @@ export class ContaBancariaPage implements OnInit {
   bancos: Banco[] = [];
   token: string | null = null;
 
+
+
+  // No construtor, adicione o ActivatedRoute
   constructor(
     private contaBancariaService: ContaBancariaService,
     private authService: AuthService,
     private toastController: ToastController,
-    private router: Router 
+    private router: Router,
+    private route: ActivatedRoute // Adicionado ActivatedRoute
   ) {}
-
+  
   ngOnInit() {
     this.token = this.authService.getToken();  
     if (this.token) {
@@ -46,6 +50,15 @@ export class ContaBancariaPage implements OnInit {
     } else {
       console.error('Token não encontrado.');
     }
+  
+ 
+    this.route.paramMap.subscribe(params => {
+      const bancoId = params.get('id'); 
+      if (bancoId) {
+        this.selectedInstitution = +bancoId; 
+        console.log('Banco selecionado via URL:', this.selectedInstitution);
+      }
+    });
   }
 
   increaseValue() {
