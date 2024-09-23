@@ -27,7 +27,7 @@ export class CadastroUsuarioPage implements OnInit {
     this.cadastroForm = this.formBuilder.group({
 
       nome: ['', [Validators.required, Validators.minLength(3)]],
-      cpf: ['', [Validators.required, Validators.maxLength(14)]], 
+      cpf: ['', [Validators.required, Validators.maxLength(14)]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -43,20 +43,20 @@ export class CadastroUsuarioPage implements OnInit {
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 5000, 
+      duration: 5000,
       position: 'bottom', // Posição do toast (top, bottom, middle)
       cssClass: 'toast-container'
     });
     toast.present();
   }
-  
+
 
 async cadastrar() {
   const formValues = this.cadastroForm.value;
-  
 
-  const cpfLimpo = formValues.cpf.replace(/\D/g, ''); 
-  
+
+  const cpfLimpo = formValues.cpf.replace(/\D/g, '');
+
   if (cpfLimpo.length !== 11) {
     this.presentToast('CPF inválido. Deve conter 11 dígitos.');
     return;
@@ -64,7 +64,7 @@ async cadastrar() {
 
   const user = {
     ...formValues,
-    cpf: cpfLimpo 
+    cpf: cpfLimpo
 
   };
 
