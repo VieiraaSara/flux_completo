@@ -55,7 +55,7 @@
                   </div>
                   <div class="valor-aum">
                     <p class="p-desc">{{item.descricao}}</p>
-                   <ion-icon name="chevron-down-outline"></ion-icon>
+                   <ion-icon name="chevron-down-outline" [ngClass]=" item.valor > 0 ? 'value-positive' : 'value-negative' "></ion-icon>
                    <!-- começar o ng style -->
                     <p class="porcentagem">  {{item.porcentagem}}</p>
                   </div>

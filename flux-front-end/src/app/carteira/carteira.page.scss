@@ -215,7 +215,7 @@ grid-template-columns: 180px 40px 200px;
 
 }
 
-ion-icon {
+ion-icon.value-negative {
   position: relative;
   color: #FF6464;
   font-size: 18px;
@@ -226,13 +226,13 @@ ion-icon {
 
 }
 
-// ion-icon {
-//   position: relative;
-//   color: #1eff00;
-//   font-size: 18px;
-//   justify-content: flex-end;
-//   align-content: end;
-//   margin: 0 25px;
-//   transform:rotate(180deg);
+ ion-icon.value-positive {
+   position: relative;
+   color: #2BB068;
+   font-size: 18px;
+   justify-content: flex-end;
+   align-content: end;
+   margin: 0 25px;
+   transform:rotate(180deg);
 
-// }
+ }
