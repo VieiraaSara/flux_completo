@@ -110,7 +110,7 @@ export class ContaBancariaPage implements OnInit {
           .then(() => {
             this.presentToast('Conta Cadastrada com sucesso!');
             console.log('Conta Bancária cadastrada com sucesso!');
-            this.router.navigate(['/codigo-autenticacao']);
+            this.router.navigate(['/cadastro-banco']);
           })
           .catch((err: any) => {
             console.error('Erro ao cadastrar conta:', err);
