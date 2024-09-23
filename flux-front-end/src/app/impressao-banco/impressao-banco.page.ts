@@ -60,40 +60,18 @@ export class ImpressaoBancoPage implements OnInit {
 
 
   }
-  async share($event: MouseEvent) {
-    const element = document.getElementById('pdfContent');
-    if (!element) return;
+  async shareExtrato($event: MouseEvent) {
+    const extratoTexto = this.data.map(item => 
+      `Nome: ${item.nome}\nCPF: ${item.cpf}\nValor Disponível: ${item.valor_disponivel}\nInstituição: ${item.nome_instituicao_financeira}\nSaldo Total: ${item.saldo_total_geral}\n`
+    ).join('\n');
 
-    // Gerar o canvas a partir do conteúdo HTML
-    const canvas = await html2canvas(element, { scale: 2 });
-    const imgData = canvas.toDataURL('image/png');
-
-    // Definir o PDF no formato A4
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-    // Dimensões do canvas
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-    const ratio = canvasWidth / canvasHeight;
-
-    // Ajustar o tamanho da imagem no PDF
-    const imgWidth = pdfWidth * 0.8; // 80% da largura do PDF
-    const imgHeight = imgWidth / ratio;
-
-    // Adicionar a imagem no PDF
-    pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-
-    // Salvar o PDF como ArrayBuffer
-    const pdfArrayBuffer = pdf.output('arraybuffer');
-
-    // Criar um Blob a partir do ArrayBuffer
-    const pdfBlob = new Blob([pdfArrayBuffer], { type: 'application/pdf' });
-
-    // Usar a função saveByteArray para baixar o PDF
-    this.saveByteArray('extrato_banco.pdf', new Uint8Array(await pdfBlob.arrayBuffer()));
+    await Share.share({
+      title: 'Extrato Bancário',
+      text: extratoTexto,
+      dialogTitle: 'Compartilhar Extrato',
+    });
   }
+
 
 
   async gerarPDF(event: MouseEvent) {

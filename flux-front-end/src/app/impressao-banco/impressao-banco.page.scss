@@ -84,6 +84,15 @@ body {
     text-align: center;
     cursor: pointer;
   }
+  ion-icon{
+    position: absolute;
+    right:  0;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #92D1F9;
+  }
 
   #pdfContent {
     width: 100%; /* Ocupar 100% da largura */
