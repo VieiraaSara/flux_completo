@@ -145,9 +145,11 @@ export class ConfigFluxPage implements OnInit {
         const response = await this.updateAccountService.atualizarInformacoesUsuario(user, this.id, token);
 
         if (response) {
-          alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
+          // alert('Usuário atualizado com sucesso: ' + JSON.stringify(response));
 
-          this.navCtrl.navigateRoot('tabs/home');
+          this.navCtrl.navigateRoot('tabs/home', { replaceUrl: true }).then(() => {
+            window.location.reload(); // Força o reload da página após a navegação
+          });
         } else {
           // console.error('Resposta não contém os dados esperados:', response);
 
