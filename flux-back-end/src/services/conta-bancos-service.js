@@ -12,7 +12,7 @@ const { verify } = require("jsonwebtoken");
 const ContaBancosRepository = require("../repositories/conta-bancos-repository");
 
 class ContaBancosService {
-  static realizarTransferencia = async ( 
+  static realizarTransferencia = async (
     conta_bancaria_origem_id,
     valor_transferencia,
     fkUsuarioId,
@@ -21,7 +21,7 @@ class ContaBancosService {
   ) => {
     try {
       const t = await sequelize.transaction();
-  
+
       const usuario = await Usuario.findByPk(fkUsuarioId);
       if (!usuario) {
         await t.rollback();
@@ -30,29 +30,29 @@ class ContaBancosService {
           status: 404,
         };
       }
-  
+
       const contaBancaria = await ContaBancosService.buscarContaBancaria(
         conta_bancaria_origem_id,
         fkUsuarioId
       );
-  
+
       if (!contaBancaria || !contaBancaria.data) {
         await t.rollback();
         return { message: contaBancaria.message, status: contaBancaria.status };
       }
-  
+
       const contaDestino = await ContaBancosService.buscarContaBancaria(
         id_conta_bancaria_destino,
         fkUsuarioId
       );
-  
+
       if (!contaDestino) {
         await t.rollback();
         return { message: "Conta de destino não encontrada", status: 404 };
       }
-  
+
       const saldoAtual = parseFloat(contaBancaria.data.Contum.saldo);
-  
+
       if (valor_transferencia > saldoAtual) {
         await t.rollback();
         return {
@@ -60,17 +60,33 @@ class ContaBancosService {
           status: 400,
         };
       }
-  
+
       const novoSaldoOrigem = saldoAtual - parseFloat(valor_transferencia);
       const saldoDestino = parseFloat(contaDestino.data.Contum.saldo);
       const novoSaldoDestino = saldoDestino + parseFloat(valor_transferencia);
-  
 
+      if (contaDestino.data.Pix.status === "VALIDANDO") {
+        console.log(
+          "Não é possivel realizar transferências se sua chave pix não está registrada"
+        );
+        return {
+          message:
+            "Não é possivel realizar transferências se sua chave pix não está registrada",
+          status: 400,
+        };
+      }
 
-      if(contaDestino.data.id_contaBancos === contaBancaria.data.id_contaBancos){
- 
-        console.log( 'Você não pode realizar uma transferência para uma mesma conta bancária');
-        return {message:'Você não pode realizar uma transferência para uma mesma conta bancária',status:400}
+      if (
+        contaDestino.data.id_contaBancos === contaBancaria.data.id_contaBancos
+      ) {
+        console.log(
+          "Você não pode realizar uma transferência para uma mesma conta bancária"
+        );
+        return {
+          message:
+            "Você não pode realizar uma transferência para uma mesma conta bancária",
+          status: 400,
+        };
       }
 
       await Promise.all([
@@ -85,7 +101,7 @@ class ContaBancosService {
           contaDestino.data.usuario_id
         ),
       ]);
-  
+
       await ContaBancosService.registrarTransacao(
         {
           conta_id: conta_bancaria_origem_id,
@@ -99,7 +115,7 @@ class ContaBancosService {
         },
         { transaction: t }
       );
-  
+
       await ContaBancosService.registrarTransacao(
         {
           conta_id: id_conta_bancaria_destino,
@@ -113,7 +129,7 @@ class ContaBancosService {
         },
         { transaction: t }
       );
-  
+
       await t.commit();
 
       const contaBancariaUpdate = await contaBancosrepository.findOne({
@@ -123,8 +139,7 @@ class ContaBancosService {
 
       return {
         message: "Transferência realizada com sucesso", // Mensagem de sucesso
-        data: 
-          contaBancariaUpdate.data,
+        data: contaBancariaUpdate.data,
         status: 201,
       };
     } catch (error) {
@@ -135,10 +150,9 @@ class ContaBancosService {
       };
     }
   };
-  
- 
+
   static buscarContasDoFlux = async (fkUsuarioId) => {
-    console.log('SERVICE',fkUsuarioId);
+    console.log("SERVICE", fkUsuarioId);
 
     const res = await contaBancosrepository.get(fkUsuarioId);
 
@@ -149,7 +163,6 @@ class ContaBancosService {
   };
 
   static async buscarContaBancaria(contaBancaria_id, usuario_id) {
-
     const conta = await contaBancosrepository.findOne({
       contaBancaria_id,
       usuario_id,
@@ -166,7 +179,6 @@ class ContaBancosService {
     const conta = await ContaBancosRepository.findOne({ conta_id, usuario_id });
 
     const saldoDisponivelNaConta = await conta.data.Contum.saldo;
-
 
     if (saldoDisponivelNaConta < valor) {
       return {

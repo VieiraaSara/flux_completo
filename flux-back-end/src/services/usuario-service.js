@@ -42,6 +42,10 @@ class UsuarioService {
             const cpfExistente = await Usuario.findOne({ where: { cpf: cpf } });
             const emailExistente = await Usuario.findOne({ where: { email: email } });
 
+
+            if(cpf.length < 11){
+                return { message: 'Quantidade de caracteres inválidos', status: 403 };  
+            }
             if (cpfExistente) {
                 return { message: 'Este CPF já pertence a outro usuário', status: 403 };
             }

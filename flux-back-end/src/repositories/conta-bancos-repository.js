@@ -38,10 +38,10 @@ class ContaBancosRepository {
 
     static findOne = async (body) => {
         const contaEncontrada = await ContaBancos.findOne({
-          include: {
+          include: [{
             model: ContaBancaria,
-           
-          },
+            
+          },{model: Pix}],
           where: {
             usuario_id: body.usuario_id,  
             id_contaBancos: body.contaBancaria_id  
