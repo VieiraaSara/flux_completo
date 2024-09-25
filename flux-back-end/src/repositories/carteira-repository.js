@@ -7,17 +7,18 @@ class CarteiraRepository {
   static get = async (id_user, limit) => {
     const query = await Banco.sequelize.query(
       `
-                     SELECT 
-    usuario.id_usuario,
+  SELECT 
     usuario.nome,
-   ROUND(transacao.valor, 2) AS valor,
+    transacao.conta_flux_origem_id,
+      banco_origem.image AS imagem_banco_origem,
+        banco_origem.name AS nome_banco_origem,
+    transacao.conta_bancos_destino_id,
+     banco_destino.image AS imagem_banco_destino,
+    ROUND(transacao.valor, 2) AS valor,
     transacao.tipo_operacao,
     transacao.descricao,
-    conta_bancaria.saldo AS saldo_conta_bancaria,
-    transacao.data_transacao,
-    banco.name as nome_banco,
-    banco.image,
-    (SELECT 
+    banco_destino.name AS nome_banco_destino,
+        (SELECT
             SUM(c.saldo)
         FROM
             conta_bancaria c
@@ -25,19 +26,18 @@ class CarteiraRepository {
             c.usuario_id = usuario.id_usuario) AS saldoTotalGeral
 FROM
     transacao
-        JOIN
-    conta_bancos ON conta_bancos.id_contaBancos = transacao.conta_flux_origem_id
-        JOIN
-    conta_bancaria  ON conta_bancos.contaBancaria_id = conta_bancaria.id_conta
-        JOIN
-    usuario ON usuario.id_usuario = conta_bancos.usuario_id
-        JOIN
-    banco ON banco.id_banco = conta_bancaria.banco_id
+        JOIN conta_bancos AS conta_origem ON conta_origem.id_contaBancos = transacao.conta_flux_origem_id
+        JOIN usuario ON usuario.id_usuario = conta_origem.usuario_id
+        JOIN conta_bancaria AS conta_bancaria_origem ON conta_bancaria_origem.id_conta = conta_origem.contaBancaria_id
+        JOIN banco AS banco_origem ON banco_origem.id_banco = conta_bancaria_origem.banco_id
+        JOIN conta_bancos AS conta_destino ON conta_destino.id_contaBancos = transacao.conta_bancos_destino_id
+        JOIN conta_bancaria AS conta_bancaria_destino ON conta_bancaria_destino.id_conta = conta_destino.contaBancaria_id
+        JOIN banco AS banco_destino ON banco_destino.id_banco = conta_bancaria_destino.banco_id
 WHERE
-    usuario.id_usuario = :id_user
-    ORDER BY transacao.data_transacao DESC
-    LIMIT  :limit
-
+    usuario.id_usuario = 1
+ORDER BY 
+    transacao.data_transacao DESC
+LIMIT 10;
     `,
       {
         replacements: { id_user: id_user, limit: limit },
@@ -46,7 +46,7 @@ WHERE
     );
 
     if (query.length === 0) {
-     const queryIfNotTransaction = await ContaBancaria.sequelize.query(
+      const queryIfNotTransaction = await ContaBancaria.sequelize.query(
         `
         SELECT 
             SUM(c.saldo) as saldoTotalGeral
