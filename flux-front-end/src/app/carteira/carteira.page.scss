@@ -15,6 +15,7 @@ ion-content {
   box-sizing: border-box;
   min-height: 100vh;
   max-height: 100vh;
+
 }
 
 .scrollable-content {
@@ -137,7 +138,10 @@ ion-content {
 .bancos {
   font-size: 14px;
 }
-
+.circle-bancos:active{
+  background-color: #0e0f0f;
+  transition: 0.1s ease-in;
+}
 .banco-entrada {
   display: flex;
   align-items: flex-start;

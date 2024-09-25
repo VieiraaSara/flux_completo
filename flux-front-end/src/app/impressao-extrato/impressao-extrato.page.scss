@@ -1,5 +1,5 @@
 //ESTILIZAÇÃO DA PÁGINA DE IMPRESSÃO DE EXTRATO BANCÁRIO
-/* 
+/*
   TCC - FLUX (Regis e Sara)
   Regis backend
   Sara frontend
@@ -57,6 +57,11 @@ body {
     border-radius: 50%;
 }
 
+.card-extrtotal:active{
+  background-color: #0e0f0f;
+  transition: 0.1s ease-in;
+}
+
 
 .bancos {
     display: flex;
@@ -74,12 +79,15 @@ body {
     width: 100%;
     max-width: 480px;
     display: flex;
-    flex-direction: row; 
-    align-items: center; 
-    justify-content: space-between; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
-
+.card-extrabanco:active{
+  background-color: #0e0f0f;
+  transition: 0.1s ease-out;
+}
 .card-extrabanco img {
     width: 50px;
     height: 50px;
@@ -98,5 +106,5 @@ body {
     margin: 0;
     color: #66B6FF;
     font-weight: 400;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
