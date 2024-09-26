@@ -20,7 +20,7 @@ class TransacaoService {
 
   static listarHistoricoTransacao = async (id_user) => {
     var query = await cateiraRepository.get(id_user, 10);
-console.log(query);
+
     if (!query || query.data.length === 0) {
       return {
         status: query.status,

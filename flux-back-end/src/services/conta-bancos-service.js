@@ -12,8 +12,6 @@ const { verify } = require("jsonwebtoken");
 const ContaBancosRepository = require("../repositories/conta-bancos-repository");
 
 class ContaBancosService {
-
-
   static realizarTransferencia = async (
     conta_bancaria_origem_id,
     valor_transferencia,
@@ -21,8 +19,8 @@ class ContaBancosService {
     descricao_transacao,
     id_conta_bancaria_destino
   ) => {
-    const t = await sequelize.transaction();
     try {
+      const t = await sequelize.transaction();
 
       const usuario = await Usuario.findByPk(fkUsuarioId);
       if (!usuario) {
@@ -52,7 +50,7 @@ class ContaBancosService {
         await t.rollback();
         return { message: "Conta de destino não encontrada", status: 404 };
       }
-   
+
       const saldoAtual = parseFloat(contaBancaria.data.Contum.saldo);
 
       if (valor_transferencia > saldoAtual) {
@@ -91,49 +89,47 @@ class ContaBancosService {
         };
       }
 
-
-
       await Promise.all([
         contaBancariaRepository.put(
           contaBancaria.data.Contum.id_conta,
           novoSaldoOrigem,
-          contaBancaria.data.usuario_id,
-          { transaction: t }
+          contaBancaria.data.usuario_id
         ),
         contaBancariaRepository.put(
           contaDestino.data.Contum.id_conta,
           novoSaldoDestino,
-          contaDestino.data.usuario_id,
-          { transaction: t }
+          contaDestino.data.usuario_id
         ),
       ]);
-  
 
+      await ContaBancosService.registrarTransacao(
+        {
+          conta_id: conta_bancaria_origem_id,
+          valor: -valor_transferencia,
+          data_transacao: new Date(),
+          tipo_operacao: "transferência",
+          descricao: descricao_transacao,
+          usuario_id: fkUsuarioId,
+          conta_flux_origem_id: conta_bancaria_origem_id,
+          conta_bancos_destino_id: id_conta_bancaria_destino,
+        },
+        { transaction: t }
+      );
 
-      await ContaBancosService.registrarTransacao({
-        valor: -valor_transferencia,
-        data_transacao: new Date(),
-        tipo_operacao: "transferência",
-        descricao: descricao_transacao,
-        usuario_id: fkUsuarioId,
-        conta_flux_origem_id: conta_bancaria_origem_id,
-        conta_bancos_destino_id: id_conta_bancaria_destino,
-    }, { transaction: t });
-    
-    await ContaBancosService.registrarTransacao({
-        valor: valor_transferencia,
-        data_transacao: new Date(),
-        tipo_operacao: "depósito",
-        descricao: descricao_transacao,
-        usuario_id: fkUsuarioId,
-        conta_flux_origem_id: conta_bancaria_origem_id,
-        conta_bancos_destino_id: id_conta_bancaria_destino,
-    }, { transaction: t });
+      await ContaBancosService.registrarTransacao(
+        {
+          conta_id: id_conta_bancaria_destino,
+          valor: valor_transferencia,
+          data_transacao: new Date(),
+          tipo_operacao: "depósito",
+          descricao: descricao_transacao,
+          usuario_id: contaDestino.usuario_id,
+          conta_flux_origem_id: conta_bancaria_origem_id,
+          conta_bancos_destino_id: id_conta_bancaria_destino,
+        },
+        { transaction: t }
+      );
 
-     
-      // console.log('transacaoOrigem: ', transacaoOrigem);
-      console.log('-----------------------------------------------------------------');
-      // console.log('transacaoDestino: ', transacaoDestino);
       await t.commit();
 
       const contaBancariaUpdate = await contaBancosrepository.findOne({
@@ -142,12 +138,12 @@ class ContaBancosService {
       });
 
       return {
-        message: "Transferência realizada com sucesso", 
+        message: "Transferência realizada com sucesso", // Mensagem de sucesso
         data: contaBancariaUpdate.data,
         status: 201,
       };
     } catch (error) {
-      await t.rollback();
+      await t.rollback(); // Garanta que a transação seja revertida em caso de erro
       return {
         message: "Falha na requisição: " + error.message,
         status: 500,
@@ -201,9 +197,7 @@ class ContaBancosService {
     );
   }
   static async registrarTransacao(dadosTransacao) {
-    console.log('--------------------------------------------');
-   console.log(dadosTransacao);
-   console.log('--------------------------------------------');
+    // console.log(dadosTransacao);
     const res = await Transacao.create(dadosTransacao);
 
     return { data: res };

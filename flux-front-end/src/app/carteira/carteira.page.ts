@@ -10,30 +10,8 @@ import { jwtDecode } from 'jwt-decode';
   styleUrls: ['./carteira.page.scss'],
 })
 export class CarteiraPage implements OnInit {
-
-
-
-  // "conta_flux_origem_id": 8,
-  // "imagem_banco_origem": "https://cdn.transfeera.com/banks/default_bank.svg",
-  // "nome_banco_origem": "Banco Alfa",
-  // "conta_bancos_destino_id": 29,
-  // "imagem_banco_destino": "https://cdn.transfeera.com/banks/inter.png",
-  // "valor": "-10.00",
-  // "tipo_operacao": "transferencia",
-  // "descricao": "saindo",
-  // "nome_banco_destino": "Banco Inter",
-  // "saldoTotalGeral": "2575.35",
-  // "porcentagem": "-0.39%"
-
-
   carteira: any[] = [];
   saldoTotalGeral: any[] = [];
-
-  nome_banco_origem:string = '';
-  nome_banco_destino:string = '';
-  imagem_banco_origem: string ='';
-  imagem_banco_destino: string ='';
-
   valor: any;
   porcentagem: any;
   descricao:any;
@@ -61,12 +39,9 @@ export class CarteiraPage implements OnInit {
               saldoTotalGeral: item.saldoTotalGeral,
               porcentagem: item.porcentagem,
               descricao: item.descricao,
-              nome_banco_origem: item.nome_banco_origem,
-              nome_banco_destino:item.nome_banco_destino,
-              imagem_banco_origem:item.imagem_banco_origem,
-              imagem_banco_destino:item.imagem_banco_destino,
+              nome_banco: item.nome_banco,
               valor: item.valor,
-              imageBank:item.imagem_banco_origem,
+              imageBank:item.image,
               detailsVisible: false,
             }));
           } else {

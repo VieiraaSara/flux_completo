@@ -170,7 +170,7 @@ ion-content {
 }
 .grid {
   display: grid;
-  grid-template-columns:repeat(1, 60px 200px) 60px 200px;
+  grid-template-columns: 60px 200px;
   grid-template-rows: 30px 40px;
 }
 .nome-desc {
