@@ -53,7 +53,7 @@ LIMIT 10;
         FROM
             conta_bancaria c
         WHERE
-            c.usuario_id = :id_user `,
+            c.usuario_id = :id_user  `,
         {
           replacements: { id_user: id_user },
           type: QueryTypes.SELECT,
