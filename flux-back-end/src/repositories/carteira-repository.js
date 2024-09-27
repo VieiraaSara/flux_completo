@@ -34,7 +34,7 @@ FROM
         JOIN conta_bancaria AS conta_bancaria_destino ON conta_bancaria_destino.id_conta = conta_destino.contaBancaria_id
         JOIN banco AS banco_destino ON banco_destino.id_banco = conta_bancaria_destino.banco_id
 WHERE
-    usuario.id_usuario = 1
+    usuario.id_usuario = :id_user
 ORDER BY 
     transacao.data_transacao DESC
 LIMIT 10;
