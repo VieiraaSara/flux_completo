@@ -13,16 +13,21 @@ import html2canvas from 'html2canvas';
 })
 export class ImpressaoBancoPage implements OnInit {
   data: any[] = [];
-  nome: any;
-  cpf: any;
-  key: any;
-  nome_instituicao_financeira: any;
-  data_transacao: any;
-  descricao: any;
-  valor: any;
-  saldo_total_geral: any;
-  saidas: any;
-  entradas: any;
+
+  nome:any;
+  cpf:any;
+  key:any;
+  nome_instituicao_financeira_origem:any;
+  nome_instituicao_financeira_destino:any;
+  idContaBancariaDestino:any;
+  idContaBancariaOrigem:any;
+  data_transacao:any;
+  descricao:any;
+  valor:any;
+  saldoDisponivel:any;
+  saidas:any;
+  entradas:any;
+
 
 
   constructor(private route: ActivatedRoute, public navCtrl: NavController) { }
@@ -38,11 +43,11 @@ export class ImpressaoBancoPage implements OnInit {
               nome: item.nome,
               cpf: item.cpf,
               key: item.key,
-              nome_instituicao_financeira: item.nome_instituicao_financeira,
-              data_transacao:  this.formatarData(item.data_transacao),
+              nome_instituicao_financeira: item.nome_instituicao_financeira_origem,
+              data_transacao: this.formatarData(item.data_transacao),
               descricao: item.descricao,
               valor: item.valor,
-              saldo_total_geral: item.saldo_total_geral,
+              saldoDisponivel: item.saldoContaBancariaOrigem,
               saidas: item.saidas,
               entradas: item.entradas,
 
@@ -61,7 +66,7 @@ export class ImpressaoBancoPage implements OnInit {
 
   }
   async shareExtrato($event: MouseEvent) {
-    const extratoTexto = this.data.map(item => 
+    const extratoTexto = this.data.map(item =>
       `Nome: ${item.nome}\nCPF: ${item.cpf}\nValor Disponível: ${item.valor_disponivel}\nInstituição: ${item.nome_instituicao_financeira}\nSaldo Total: ${item.saldo_total_geral}\n`
     ).join('\n');
 
@@ -149,7 +154,7 @@ export class ImpressaoBancoPage implements OnInit {
   formatarData(dataISO: string): string {
     const data = new Date(dataISO);
     const dia = data.getDate().toString().padStart(2, '0');
-    const mes = (data.getMonth() + 1).toString().padStart(2, '0'); 
+    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
     const ano = data.getFullYear();
     return `${dia}/${mes}/${ano}`;
   }
