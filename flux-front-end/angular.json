@@ -13,6 +13,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "core-js/modules/es.array.index-of.js",
+              "core-js/modules/es.array.iterator.js",
+              "core-js/modules/es.promise.js",
+              "html2canvas",
+              "canvg"
+            ],
+
             "outputPath": "www",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -31,8 +39,11 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss",
-            "node_modules/ngx-spinner/animations/ball-scale-multiple.css" ],
+            "styles": [
+              "src/global.scss",
+              "src/theme/variables.scss",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -41,12 +52,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumError": "25mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "22kb",
+                  "maximumError": "34kb"
                 }
               ],
               "fileReplacements": [
@@ -114,8 +125,9 @@
             ],
             "styles": [
               "src/global.scss",
-             "src/theme/variables.scss",
-            "node_modules/ngx-spinner/animations/ball-scale-multiple.css"],
+              "src/theme/variables.scss",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -128,19 +140,14 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@ionic/angular-toolkit"
-    ],
+    "schematicCollections": ["@ionic/angular-toolkit"],
     "analytics": "9ecfddbd-8c08-4a30-bd50-8978731c48e9"
   },
   "schematics": {

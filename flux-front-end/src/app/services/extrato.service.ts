@@ -14,7 +14,6 @@ export class ExtratoService {
 
   getExtratoGeral(token: string): Observable<any> {
 
-
     return this.http.get(`${this.apiUrl}impressao-geral?token=${token}`).pipe(
       catchError(this.handleError)
     );
@@ -22,6 +21,7 @@ export class ExtratoService {
   }
 
   getExtratoBancario(token: string,contaBancariaID: any):Observable<any> {
+
 
     return this.http.get(`${this.apiUrl}imprimir-extrato-bancario/${contaBancariaID}?token=${token}`).pipe(
       catchError(this.handleError)

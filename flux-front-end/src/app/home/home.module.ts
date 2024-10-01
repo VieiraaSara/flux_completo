@@ -8,7 +8,7 @@ import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
 import { HomePageRoutingModule } from './home-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faV } from '@fortawesome/free-solid-svg-icons';
 import { Swiper } from 'swiper/types';
@@ -22,7 +22,8 @@ import { Swiper } from 'swiper/types';
     ScrollingModule,
     DragScrollComponent,
     DragScrollItemDirective,
-
+    NgxSkeletonLoaderModule,
+    NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', loadingText: 'This item is actually loading...' }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [HomePage]

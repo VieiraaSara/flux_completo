@@ -39,34 +39,34 @@ FROM
   static buscarExtratoBancario = async (id_user, contaBancariaId) => {
     const query = await Banco.sequelize.query(
       `
-                     SELECT 
-    usuario.nome,
-    usuario.cpf,
-    pix.key,
-    banco.name as nome_instituicao_financeira,
-    transacao.data_transacao,
-    transacao.descricao,
-    transacao.valor,
-    conta_bancaria.saldo AS saldo_total_geral,
-   
-    (SELECT 
-            SUM(a.valor)
-        FROM
-            transacao AS a
-                JOIN
-            conta_bancos AS cb ON a.conta_flux_origem_id = cb.id_contaBancos
-        WHERE
-            cb.contaBancaria_id = :contaBancariaId AND a.valor < 0) AS saidas,
-    (SELECT 
-            SUM(a.valor)
-        FROM
-            transacao AS a
-                JOIN
-            conta_bancos AS cb ON a.conta_flux_origem_id = cb.id_contaBancos
-        WHERE
-            cb.contaBancaria_id = :contaBancariaId AND a.valor > 0) AS entradas
-FROM
-    transacao
+    SELECT 
+        usuario.nome,
+        usuario.cpf,
+        pix.key,
+        banco.name as nome_instituicao_financeira,
+        transacao.data_transacao,
+        transacao.descricao,
+        transacao.valor,
+        conta_bancaria.saldo AS saldo_total_geral,
+    
+        (SELECT 
+                SUM(a.valor)
+            FROM
+                transacao AS a
+                    JOIN
+                conta_bancos AS cb ON a.conta_flux_origem_id = cb.id_contaBancos
+            WHERE
+                cb.contaBancaria_id = :contaBancariaId AND a.valor < 0) AS saidas,
+        (SELECT 
+                SUM(a.valor)
+            FROM
+                transacao AS a
+                    JOIN
+                conta_bancos AS cb ON a.conta_flux_origem_id = cb.id_contaBancos
+            WHERE
+                cb.contaBancaria_id = :contaBancariaId AND a.valor > 0) AS entradas
+    FROM
+            transacao
         JOIN
     conta_bancos ON transacao.conta_flux_origem_id = conta_bancos.id_contaBancos
         JOIN
@@ -80,6 +80,7 @@ FROM
 WHERE
     usuario.id_usuario = :id_user
         AND conta_bancos.contaBancaria_id = :contaBancariaId
+          
 ORDER BY transacao.data_transacao DESC;
   
       `,

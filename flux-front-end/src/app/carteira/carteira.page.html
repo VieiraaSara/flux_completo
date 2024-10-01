@@ -6,14 +6,13 @@
           <h1>Saldo total</h1>
           <div class="title-direita">
             <div class="circle">
-              <img src="../../assets/image/Dark.png" alt="">
+              <img src="../../assets/image/Dark.png" alt="" />
             </div>
 
             <div class="title-junto">
               <h2>Banco Flux</h2>
 
               <div *ngIf="saldoTotalGeral && saldoTotalGeral.length > 0">
-
                 <h2 [innerHTML]="'R$ '+ saldoTotalGeral"></h2>
               </div>
             </div>
@@ -23,61 +22,78 @@
         <div class="footer">
           <div class="coluna">
             <div class="bancos">
-              <a routerLink="/tabs/meus-bancos" style="text-decoration: none; color: #ffffff;">
-              <div class="circle-bancos">
-                <img src="../../assets/image/banco.png" alt="Banco">
-                <p>Bancos</p>
-              </div></a>
+              <a
+                routerLink="/tabs/meus-bancos"
+                style="text-decoration: none; color: #ffffff"
+              >
+                <div class="circle-bancos">
+                  <img src="../../assets/image/banco.png" alt="Banco" />
+                  <p>Bancos</p>
+                </div></a
+              >
             </div>
             <div class="impressoes">
-              <a routerLink="/tabs/impressao-extrato" style="text-decoration: none; color: #ffffff;">
-              <div class="circle-bancos">
-                <img src="../../assets/image/impressao.png" alt="Impressão">
-                <p>Impressões</p>
-              </div></a>
+              <a
+                routerLink="/tabs/impressao-extrato"
+                style="text-decoration: none; color: #ffffff"
+              >
+                <div class="circle-bancos">
+                  <img src="../../assets/image/impressao.png" alt="Impressão" />
+                  <p>Impressões</p>
+                </div></a
+              >
             </div>
           </div>
 
           <h4 class="relatorio-total">Relatório Total</h4>
 
-<!-- Loop para exibir cada item da carteira -->
-<div class="banco-entrada" *ngFor="let item of carteira">
-  <!-- Verificando se o valor é negativo para exibir o banco de origem -->
-  <div class="descricao" *ngIf="item.valor < 0">
-    <div class="grid">
-      <img [src]="item.imagem_banco_origem" class="img-bank">
-      <div class="cada">
-        <div class="nome-desc">
-          <h5 class="nome-banco">{{item.nome_banco_origem}}</h5>
-          <h5 class="valor">R$ {{item.valor}}</h5>
-        </div>
-        <div class="valor-aum">
-          <p class="p-desc">{{item.descricao}}</p>
-          <ion-icon name="chevron-down-outline" [ngClass]=" item.valor > 0 ? 'value-positive' : 'value-negative' "></ion-icon>
-          <p class="porcentagem">{{item.porcentagem}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+          <!-- Loop para exibir cada item da carteira -->
+          <div class="banco-entrada" *ngFor="let item of carteira">
+            <!-- Verificando se o valor é negativo para exibir o banco de origem -->
+            <div class="descricao" *ngIf="item.valor < 0">
+              <div class="grid">
+                <img [src]="item.imagem_banco_origem" class="img-bank" />
+                <div class="cada">
+                  <div class="nome-desc">
+                    <h5 class="nome-banco">{{item.nome_banco_origem}}</h5>
+                    <h5 class="valor">R$ {{item.valor}}</h5>
+                  </div>
+                  <div class="valor-aum">
+                    <p class="p-desc">{{item.descricao}}</p>
+                    <ion-icon
+                      name="chevron-down-outline"
+                      [ngClass]=" item.valor > 0 ? 'value-positive' : 'value-negative' "
+                    ></ion-icon>
+                    <p class="porcentagem">{{item.porcentagem}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  <!-- Verificando se o valor é positivo para exibir o banco de destino -->
-  <div class="descricao" *ngIf="item.valor > 0">
-    <div class="grid">
-      <img [src]="item.imagem_banco_destino" class="img-bank">
-      <div class="cada">
-        <div class="nome-desc">
-          <h5 class="nome-banco">{{item.nome_banco_destino}}</h5>
-          <h5 class="valor">R$ {{item.valor}}</h5>
-        </div>
-        <div class="valor-aum">
-          <p class="p-desc">{{item.descricao}}</p>
-          <ion-icon name="chevron-down-outline" [ngClass]=" item.valor > 0 ? 'value-positive' : 'value-negative' "></ion-icon>
-          <p class="porcentagem">{{item.porcentagem}}</p>
+            <!-- Verificando se o valor é positivo para exibir o banco de destino -->
+            <div class="descricao" *ngIf="item.valor > 0">
+              <div class="grid">
+                <img [src]="item.imagem_banco_destino" class="img-bank" />
+                <div class="cada">
+                  <div class="nome-desc">
+                    <h5 class="nome-banco">{{item.nome_banco_destino}}</h5>
+                    <h5 class="valor">R$ {{item.valor}}</h5>
+                  </div>
+                  <div class="valor-aum">
+                    <p class="p-desc">{{item.descricao}}</p>
+                    <ion-icon
+                      name="chevron-down-outline"
+                      [ngClass]=" item.valor > 0 ? 'value-positive' : 'value-negative' "
+                    ></ion-icon>
+                    <p class="porcentagem">{{item.porcentagem}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fim do loop -->
         </div>
       </div>
     </div>
   </div>
-</div>
-          <!-- Fim do loop -->
-        </div></div></div></div>
 </ion-content>

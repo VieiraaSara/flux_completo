@@ -21,53 +21,65 @@
 
 
 
-<div *ngIf="notifications && notifications.length > 1">
-  <h4 style="margin-bottom: 100px;">Fluxo da Conta</h4>
+    <div *ngIf="notifications && notifications.length > 1">
+      <h4 style="margin-bottom: 100px;">Fluxo da Conta</h4>
 
-  <div class="notifications-container">
-    <swiper-container class="cards"
-      [loop]="true"
-      direction="vertical"
-      effect="coverflow"
-      [coverflowEffect]="{
-        rotate: 0,
-        stretch: 0,
-        depth: 20,
-        modifier: 1,
-        slideShadows: true
-      }"
-      [centeredSlides]="true"
-      [slidesPerView]="3"
-    >
-      <!-- Slides de Notificação -->
-      <swiper-slide class="notification" *ngFor="let notification of notifications; let i = index"
-        [class.expanded]="notification.detailsVisible" [ngClass]="{'show': i < 3}">
-        <div class="notification-header">
-          <img [src]="notification.logoUrl" class="notification-logo" alt="Logo" />
-          <div class="notification-content">
-            <p class="notification-title">{{ notification.title }}</p>
-            <p class="notification-subtitle">{{ notification.subtitle }}</p>
-          </div>
-          <button class="toggle-details" (click)="toggleDetails(notification)">
-            <img src="assets/image/down.png" alt="Toggle Details" />
-          </button>
-        </div>
+      <div class="notifications-container">
 
-        <div class="notification-details" *ngIf="notification.detailsVisible">
-          <a routerLink="">Ver no banco</a>
-          <a href="#excluir" id="excluir">Excluir</a>
-          <a routerLink="">Mais</a>
-        </div>
-        <div class="notification-shadow"></div>
-      </swiper-slide>
-    </swiper-container>
-  </div>
-</div>
+        <swiper-container class="cards"
+          [loop]="true"
+          direction="vertical"
+          effect="coverflow"
+          [coverflowEffect]="{
+            rotate: 0,
+            stretch: 0,
+            depth: 20,
+            modifier: 1,
+            slideShadows: true
+
+          }"
+          [centeredSlides]="true"
+          [slidesPerView]="3"
+          >
+
+          <swiper-slide *ngFor="let notification of notifications; let i = index">
+
+            <div class="notification-header" *ngIf="notification.valor < 0">
+              <img [src]="notification.logoBancoOrigem" class="notification-logo" alt="Logo Origem" />
+              <div class="notification-content">
+                <p class="notification-title">{{ notification.title }}</p>
+                <p class="notification-subtitle" [innerHTML]=" notification.subtitleOrigem "></p>
+              </div>
+              <button class="toggle-details" (click)="toggleDetails(notification)">
+                <img src="assets/image/down.png" alt="Toggle Details" />
+              </button>
+            </div>
 
 
+            <div class="notification-header" *ngIf="notification.valor > 0">
+              <img [src]="notification.logoBancoDestino" class="notification-logo" alt="Logo Destino" />
+              <div class="notification-content">
+                <p class="notification-title">{{ notification.title }}</p>
+                <p class="notification-subtitle" [innerHTML]=" notification.subtitleDestino"></p>
+              </div>
+              <button class="toggle-details" (click)="toggleDetails(notification)">
+                <img src="assets/image/down.png" alt="Toggle Details" />
+              </button>
+            </div>
 
 
+            <div class="notification-details" *ngIf="notification.detailsVisible">
+              <a routerLink="">Ver no banco</a>
+              <a href="#excluir" id="excluir">Excluir</a>
+              <a routerLink="">Mais</a>
+            </div>
+            <div class="notification-shadow"></div>
+          </swiper-slide>
 
+        </swiper-container>
+
+      </div>
+    </div>
   </div>
 
 </ion-content>
