@@ -1,8 +1,10 @@
-"use strict";
+
 const { DataTypes, Model, Sequelize } = require('sequelize');
 const Usuario = require('./usuario');
 const ContaBancaria = require('./conta-bancaria');
 const Banco = require('./banco');
+
+
 class ContaBancos extends Model {
     static init(sequelize) {
         return super.init({
@@ -19,6 +21,7 @@ class ContaBancos extends Model {
                     onDelete: 'CASCADE',
                     onUpdate: 'CASCADE'
                 }
+
             },
             // usuario_id: {
             //     type: DataTypes.INTEGER,
@@ -40,16 +43,20 @@ class ContaBancos extends Model {
                     onUpdate: 'CASCADE'
                 }
             },
-            status: {
-                type: DataTypes.ENUM('ATIVO', 'INATIVO'),
+          
+            status:{
+                type: DataTypes.ENUM('ATIVO','INATIVO'),
                 allowNull: false,
                 defaultValue: 'ATIVO'
             },
-        }, {
+        },
+         {
             sequelize,
             tableName: 'conta_bancos',
             timestamps: true,
         });
     }
 }
+
+
 module.exports = ContaBancos;

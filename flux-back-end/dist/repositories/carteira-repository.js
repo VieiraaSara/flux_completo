@@ -1,23 +1,12 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var _a;
 const { Sequelize, QueryTypes, where } = require("sequelize");
 const Transacao = require("../models/transacao");
 const Banco = require("../models/banco");
 const ContaBancaria = require("../models/conta-bancaria");
+
 class CarteiraRepository {
-}
-_a = CarteiraRepository;
-CarteiraRepository.get = (id_user, limit) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = yield Banco.sequelize.query(`
+  static get = async (id_user, limit) => {
+    const query = await Banco.sequelize.query(
+      `
   SELECT 
     usuario.nome,
     transacao.conta_flux_origem_id,
@@ -49,23 +38,33 @@ WHERE
 ORDER BY 
     transacao.data_transacao DESC
 LIMIT 10;
-    `, {
+    `,
+      {
         replacements: { id_user: id_user, limit: limit },
         type: QueryTypes.SELECT,
-    });
+      }
+    );
+
     if (query.length === 0) {
-        const queryIfNotTransaction = yield ContaBancaria.sequelize.query(`
+      const queryIfNotTransaction = await ContaBancaria.sequelize.query(
+        `
         SELECT 
             SUM(c.saldo) as saldoTotalGeral
         FROM
             conta_bancaria c
         WHERE
-            c.usuario_id = :id_user  `, {
-            replacements: { id_user: id_user },
-            type: QueryTypes.SELECT,
-        });
-        return { status: 206, data: queryIfNotTransaction };
+            c.usuario_id = :id_user  `,
+        {
+          replacements: { id_user: id_user },
+          type: QueryTypes.SELECT,
+        }
+      );
+
+      return { status: 206, data: queryIfNotTransaction };
     }
+
     return { status: 200, data: query };
-});
+  };
+}
+
 module.exports = CarteiraRepository;
