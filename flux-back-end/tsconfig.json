@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist", // Especifica a pasta de saída
+      "module": "commonjs", // Especifica o sistema de módulo
+      "target": "es6", // Define a versão do JavaScript alvo
+      "esModuleInterop": true, // Necessário para compatibilidade com módulos CommonJS
+      "strict": true, // Habilita verificações de tipo estritas
+      "skipLibCheck": true // Ignora verificações de arquivos de definição de tipo
+    },
+    "include": ["src/**/*"], // Inclua todos os arquivos na pasta src
+    "exclude": ["node_modules"] // Exclua a pasta node_modules
+  }
+  

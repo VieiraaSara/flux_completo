@@ -4,8 +4,8 @@
   "description": "back-end flux",
   "main": "./bin/server.js",
   "scripts": {
-    "start": "nodemon ./bin/server.js",
-    "build": "tsc",
+    "start": " ./bin/server.js",
+    "build": "tsc && cp -r ./src ./dist",
     "test": "echo 'Error: no test specified'; false"
   },
   "repository": {
