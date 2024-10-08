@@ -5,7 +5,7 @@
   "main": "./bin/server.js",
   "scripts": {
     "start": "node ./bin/server.js",
-    "build": "mkdir -p dist && cp -r src/* dist/",
+    "build": "npm rebuild bcrypt && mkdir -p dist && cp -r src/* dist/",
     "test": "echo 'Error: no test specified'; false"
   },
   "repository": {
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/RegisCostaPedro/flux-back-end#readme",
   "dependencies": {
     "axios": "^1.7.5",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

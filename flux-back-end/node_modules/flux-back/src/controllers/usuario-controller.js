@@ -1,5 +1,5 @@
 const repository = require('../repositories/usuario-repository');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const ValidationContract = require('../validators/fluent-validator');
 const authService = require('../services/auth-service');
