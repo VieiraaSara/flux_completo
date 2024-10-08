@@ -4,7 +4,7 @@ const express = require('express');
 const app = require('../src/app');
 
 // Normaliza a porta
-const PORT = normalizePort(process.env.PORT || 3000);
+const PORT = normalizePort(process.env.PORT || 10000);
 app.set('port', PORT);
 
 // Cria o servidor HTTP
