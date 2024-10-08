@@ -64,8 +64,10 @@
         <small>As senhas não coincidem.</small>
       </div>
 
+
       <button type="submit" [disabled]="cadastroForm.invalid">Cadastrar</button>
     </form>
+    <p>Você concorda com os <a routerLink="/termos-condicoes">termos e condições</a>?<input type="checkbox" name="" id="" required></p>
     <p class="forgot-password">Já tem uma conta? <strong><a [routerLink]="['/login']">Clique aqui</a></strong></p>
   </div>
 </body>
