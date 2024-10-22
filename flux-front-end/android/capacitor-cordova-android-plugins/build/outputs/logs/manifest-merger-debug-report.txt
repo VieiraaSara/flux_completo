@@ -1,0 +1,54 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:2:1-15:12
+INJECTED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:2:1-15:12
+	package
+		INJECTED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+	xmlns:amazon
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:3:1-57
+	xmlns:android
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:4:1-13:15
+receiver#nl.xservices.plugins.ShareChooserPendingIntent
+ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:1-9:12
+	android:enabled
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:73-95
+	android:exported
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:96-119
+	android:name
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:11-72
+intent-filter#action:name:android.intent.action.SEND
+ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:6:3-8:19
+action#android.intent.action.SEND
+ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:5-56
+	android:name
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:13-54
+provider#nl.xservices.plugins.FileProvider
+ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:1-12:12
+	android:grantUriPermissions
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:92-126
+	android:authorities
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:11-66
+	android:exported
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:67-91
+	android:name
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:127-175
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:3-104
+	android:resource
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:65-102
+	android:name
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:14-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:14:1-76
+	android:name
+		ADDED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:14:18-74
+uses-sdk
+INJECTED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml

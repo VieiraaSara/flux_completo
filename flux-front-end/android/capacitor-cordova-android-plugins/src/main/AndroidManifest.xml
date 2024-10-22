@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:amazon="http://schemas.amazon.com/apk/res/android">
+<application  >
+<receiver android:name="nl.xservices.plugins.ShareChooserPendingIntent" android:enabled="true" android:exported="true">
+  <intent-filter>
+    <action android:name="android.intent.action.SEND"/>
+  </intent-filter>
+</receiver>
+<provider android:authorities="${applicationId}.sharing.provider" android:exported="false" android:grantUriPermissions="true" android:name="nl.xservices.plugins.FileProvider">
+  <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/sharing_paths"/>
+</provider>
+</application>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+</manifest>

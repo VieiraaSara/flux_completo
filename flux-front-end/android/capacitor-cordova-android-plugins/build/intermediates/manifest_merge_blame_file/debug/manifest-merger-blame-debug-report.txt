@@ -1,0 +1,49 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+3    xmlns:android="http://schemas.android.com/apk/res/android"
+4    package="capacitor.cordova.android.plugins" >
+5
+6    <uses-sdk android:minSdkVersion="22" />
+7
+8    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+8-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:14:1-76
+8-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:14:18-74
+9
+10    <application>
+10-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:4:1-13:15
+11        <receiver
+11-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:1-9:12
+12            android:name="nl.xservices.plugins.ShareChooserPendingIntent"
+12-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:11-72
+13            android:enabled="true"
+13-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:73-95
+14            android:exported="true" >
+14-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:96-119
+15            <intent-filter>
+15-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:6:3-8:19
+16                <action android:name="android.intent.action.SEND" />
+16-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:5-56
+16-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:13-54
+17            </intent-filter>
+18        </receiver>
+19
+20        <provider
+20-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:1-12:12
+21            android:name="nl.xservices.plugins.FileProvider"
+21-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:127-175
+22            android:authorities="${applicationId}.sharing.provider"
+22-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:11-66
+23            android:exported="false"
+23-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:67-91
+24            android:grantUriPermissions="true" >
+24-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:92-126
+25            <meta-data
+25-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:3-104
+26                android:name="android.support.FILE_PROVIDER_PATHS"
+26-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:14-64
+27                android:resource="@xml/sharing_paths" />
+27-->C:\Users\Usuario\Desktop\newApp_flux\flux_completo\flux-front-end\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:65-102
+28        </provider>
+29    </application>
+30
+31</manifest>

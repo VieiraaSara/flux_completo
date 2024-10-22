@@ -1,0 +1,37 @@
+[33m02a09d97[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to 02a09d97bbdb67c7786d1045cc86562f519ca9b4
+[33mb7ddd90c[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33mb7ddd90c[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: reset: moving to HEAD
+[33mb7ddd90c[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{3}: commit (merge): Merge branch 'main' of https://github.com/VieiraaSara/flux_completo
+[33m02a09d97[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{4}: checkout: moving from deploy to main
+[33me856a7cf[m[33m ([m[1;31morigin/deploy[m[33m, [m[1;32mdeploy[m[33m)[m HEAD@{5}: commit: Criando nova branch para implantação
+[33m02a09d97[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{6}: checkout: moving from main to deploy
+[33m02a09d97[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{7}: commit: Fix: arrumando impressão de extrato
+[33m8a388cf3[m HEAD@{8}: commit: fix: Ajustando histórico de transações
+[33mfddeea50[m HEAD@{9}: commit (merge): Merge branch 'main' of https://github.com/VieiraaSara/flux_completo
+[33me87bcf5b[m HEAD@{10}: reset: moving to HEAD
+[33me87bcf5b[m HEAD@{11}: commit: Fix: ajuste na requisição
+[33m64160e3e[m HEAD@{12}: commit: Fix: Ajustando interações de clique
+[33m0947d250[m HEAD@{13}: commit: Fix: Ajustando requisição para a pagina de carteira
+[33mc674b7d7[m HEAD@{14}: pull --tags origin main: Merge made by the 'ort' strategy.
+[33m126f8a50[m HEAD@{15}: commit: Fix: Ajustando validações de requisições
+[33m803c6c39[m HEAD@{16}: commit: Fix: Ajustando cor da mensagem de erro no cadastro
+[33m3f30581e[m HEAD@{17}: commit: Feat: Ajustando alyout de transação e criação de conta bancaria
+[33m7c2e697a[m HEAD@{18}: pull --tags origin main: Fast-forward
+[33mb0368fb9[m HEAD@{19}: pull --tags origin main: Merge made by the 'ort' strategy.
+[33m9fe88f1a[m HEAD@{20}: commit: Fix: Ajuste de redirecionamento de usuário
+[33m5709e096[m HEAD@{21}: commit: Fix: Ajustando requisição para a home page
+[33m12d1a980[m HEAD@{22}: commit: Fix: Ajustando requisição para endpoint de carteira
+[33mc87dd51e[m HEAD@{23}: commit: Fix: Ajustando layout de confirmação de chave pix e card de sair ou excluir conta
+[33m14f19130[m HEAD@{24}: commit: Fix: Ajustando layout da página de impressão de extrato
+[33mb6fc6800[m HEAD@{25}: pull --tags origin main: Merge made by the 'ort' strategy.
+[33m2956e80e[m HEAD@{26}: commit: Fix: Ajustando layout da página de carteira
+[33mc5fc24ae[m HEAD@{27}: commit: Fix: Consertando serviço de transação
+[33ma88fefae[m HEAD@{28}: commit: Feat: Integrando transação entre contas
+[33m238d4ca3[m HEAD@{29}: commit: Feat: Criando endpoint de listagem de contas flux
+[33m98197823[m HEAD@{30}: pull --tags: Fast-forward
+[33mdb55eb30[m HEAD@{31}: commit: Feat: Integrando criação de chave PIX
+[33m61df2a4e[m HEAD@{32}: commit: fix: ajsute na identação
+[33ma4260431[m HEAD@{33}: pull --tags: Fast-forward
+[33mc056f40f[m HEAD@{34}: commit: Feat: Criando impressão de extrato bancario
+[33m7723ba8e[m HEAD@{35}: commit: Feat: Gerando impressão de extrato geral
+[33m0f56a545[m HEAD@{36}: clone: from https://github.com/VieiraaSara/flux_completo.git
