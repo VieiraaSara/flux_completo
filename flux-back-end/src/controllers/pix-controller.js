@@ -28,11 +28,12 @@ class PixController {
                 contaBancaria_id);
 
 
-            if (response.status === 201) {
-                return res.status(response.status).send(response.data);
-            } else {
-                return res.status(response.status).send({ message: response.message });
-            }
+                if (response.status === 200) {
+                    return res.status(200).send(response.data);
+                }
+                 else {
+                    return res.status(response.status).send({ message: response.message });
+                }
 
         } catch (error) {
             res.status(400).send({
