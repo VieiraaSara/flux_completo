@@ -39,16 +39,25 @@ FROM
   static buscarExtratoBancario = async (id_user, contaBancariaId) => {
     const query = await Banco.sequelize.query(
       `
-                     SELECT 
+  SELECT 
     usuario.nome,
     usuario.cpf,
     pix.key,
-    banco.name as nome_instituicao_financeira,
+    banco_origem.name AS nome_instituicao_financeira_origem,
+    banco_destino.name AS nome_instituicao_financeira_destino,
+    conta_bancaria_destino.id_conta as idContaBancariaDestino,
+    conta_bancaria_origem.id_conta as idContaBancariaOrigem,
+    conta_bancaria_origem.saldo saldoContaBancariaOrigem,
+    conta_bancaria_destino.saldo as saldoContaBancariaDestino,
     transacao.data_transacao,
     transacao.descricao,
     transacao.valor,
-    conta_bancaria.saldo AS saldo_total_geral,
-   
+    (SELECT 
+            SUM(c.saldo)
+        FROM
+            conta_bancaria c
+        WHERE
+            c.usuario_id = usuario.id_usuario) AS saldoTotalGeral,
     (SELECT 
             SUM(a.valor)
         FROM
@@ -68,19 +77,29 @@ FROM
 FROM
     transacao
         JOIN
-    conta_bancos ON transacao.conta_flux_origem_id = conta_bancos.id_contaBancos
+    conta_bancos AS conta_origem ON transacao.conta_flux_origem_id = conta_origem.id_contaBancos
         JOIN
-    pix ON conta_bancos.pix_id = pix.id_pix
+    pix ON conta_origem.pix_id = pix.id_pix
         JOIN
-    usuario ON conta_bancos.usuario_id = usuario.id_usuario
+    usuario ON conta_origem.usuario_id = usuario.id_usuario
         JOIN
-    conta_bancaria ON conta_bancaria.id_conta = conta_bancos.contaBancaria_id
+    conta_bancaria AS conta_bancaria_origem ON conta_bancaria_origem.id_conta = conta_origem.contaBancaria_id
         JOIN
-    banco ON banco.id_banco = conta_bancaria.banco_id
+    banco AS banco_origem ON banco_origem.id_banco = conta_bancaria_origem.banco_id
+        JOIN
+    conta_bancos AS conta_destino ON conta_destino.id_contaBancos = transacao.conta_bancos_destino_id
+        JOIN
+    conta_bancaria AS conta_bancaria_destino ON conta_bancaria_destino.id_conta = conta_destino.contaBancaria_id
+        JOIN
+    banco AS banco_destino ON banco_destino.id_banco = conta_bancaria_destino.banco_id
 WHERE
+    
     usuario.id_usuario = :id_user
-        AND conta_bancos.contaBancaria_id = :contaBancariaId
+    AND 
+        conta_origem.contaBancaria_id = :contaBancariaId
+
 ORDER BY transacao.data_transacao DESC;
+
   
       `,
       {

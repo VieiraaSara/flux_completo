@@ -27,7 +27,7 @@ ContaBancos.belongsTo(Pix, { foreignKey: 'pix_id', onDelete: 'CASCADE' });
 ContaBancaria.belongsTo(Banco, { foreignKey: 'banco_id' });
 Banco.hasMany(ContaBancaria, { foreignKey: 'banco_id' });
 
-conexao.sync({ alter: true });
+// conexao.sync({ alter: true });
 
 module.exports = {
   Usuario,

@@ -5,7 +5,7 @@ const authService = require('../services/auth-service')
 class BancoController {
 
     //Buscar todos os bancos com transfeera api
-    static listarBancos = async (req, res) => {
+    static listarBancos =  async (req, res) => {
 
         try {
             const token = req.body.token || req.query.token || req.headers['x-access-token'];

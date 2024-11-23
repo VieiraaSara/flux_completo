@@ -59,7 +59,8 @@ class PixController {
 
             if (response.status === 200) {
                 return res.status(200).send(response.data);
-            } else {
+            }
+             else {
                 return res.status(response.status).send({ message: response.message });
             }
 
@@ -164,9 +165,18 @@ class PixController {
 
             const response = await pixService.deletarChave(idPix, usuario_id, emailUsuario, accessToken);
 
-            console.log(response.data);
+            
+            console.log(response.status);
 
             if (response.status === 200) {
+                console.warn(response.status);
+                console.warn(response.status);
+                console.warn(response.status);
+                return res.status(response.status).json(response.data);
+            }else if(response.status === 201){
+                console.warn(response.status);
+                console.warn(response.status);
+                console.warn(response.status);
                 return res.status(response.status).json(response.data);
             } else {
                 return res.status(response.status).send({ message: response.message });

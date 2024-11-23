@@ -1,6 +1,6 @@
 const { where } = require('sequelize');
 const Usuario = require('../models/usuario');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 class UsarioRepository {
 

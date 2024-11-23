@@ -10,10 +10,10 @@ class CarteiraRepository {
   SELECT 
     usuario.nome,
     transacao.conta_flux_origem_id,
-      banco_origem.image AS imagem_banco_origem,
-        banco_origem.name AS nome_banco_origem,
+    banco_origem.image AS imagem_banco_origem,
+    banco_origem.name AS nome_banco_origem,
     transacao.conta_bancos_destino_id,
-     banco_destino.image AS imagem_banco_destino,
+    banco_destino.image AS imagem_banco_destino,
     ROUND(transacao.valor, 2) AS valor,
     transacao.tipo_operacao,
     transacao.descricao,

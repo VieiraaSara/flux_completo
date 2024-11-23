@@ -2,10 +2,9 @@
   "name": "flux-back",
   "version": "1.0.0",
   "description": "back-end flux",
-  "main": "./bin/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node ./bin/server.js",
-    "build": "npm rebuild bcrypt && mkdir -p dist && cp -r src/* dist/",
+    "start": "nodemon ./bin/server.js",
     "test": "echo 'Error: no test specified'; false"
   },
   "repository": {
@@ -20,9 +19,10 @@
   "homepage": "https://github.com/RegisCostaPedro/flux-back-end#readme",
   "dependencies": {
     "axios": "^1.7.5",
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "debug": "^4.3.7",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "flux-back": "file:",
@@ -30,7 +30,7 @@
     "i": "^0.3.7",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
-    "mysql2": "^3.11.3",
+    "mysql2": "^3.10.3",
     "sequelize": "^6.37.3",
     "sequelize-cli": "^6.6.2",
     "swagger-ui-express": "^5.0.1",

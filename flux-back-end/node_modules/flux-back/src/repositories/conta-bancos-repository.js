@@ -64,7 +64,6 @@ class ContaBancosRepository {
     // relacionar o pix com a conta bancos
     static post = async (body) => {
 
-
         const res = await ContaBancos.create({
             pix_id: body.id_pix,
             usuario_id: body.usuario_id,

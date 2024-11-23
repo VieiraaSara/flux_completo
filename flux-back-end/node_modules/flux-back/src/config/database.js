@@ -1,8 +1,11 @@
 
 const { Sequelize } = require('sequelize');
+/* Crie um banco com o nome 'flux_db', o 
+segundo parãmetro da linha abaixo é o seu usuario
+e o segundo parâmetro é a senha do seu banco */
 
-const conexao = new Sequelize('bnuzxcjsxt0upmrdrdpo', 'utn3gom6kvdvh4si', 'UH7IAEGtvoNs0q3px69v', {
-    host: 'bnuzxcjsxt0upmrdrdpo-mysql.services.clever-cloud.com',
+const conexao = new Sequelize('flux_db', 'root', '', {
+    host: 'localhost',
    dialect: 'mysql',
     define: {
         timestamps: false,
