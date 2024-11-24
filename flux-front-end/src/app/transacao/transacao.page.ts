@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TransacaoService } from '../services/transacao.service';
 import { PixService } from '../services/pix.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-transacao',
@@ -21,7 +22,9 @@ export class TransacaoPage implements OnInit {
   constructor(
     private transacaoService: TransacaoService,
     private pixService: PixService,
-    private router: Router
+    private router: Router,
+    public navCtrl: NavController,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -116,5 +119,8 @@ console.log(transacaoEnvio);
         }
       );
     }
+  }
+  voltar($event: MouseEvent) {
+    this.navCtrl.navigateBack('/tabs/home');
   }
 }

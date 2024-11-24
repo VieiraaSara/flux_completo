@@ -1,5 +1,12 @@
 <ion-content>
   <div class="global">
+    <header>
+      <ion-icon
+      name="arrow-back"
+      class="back-button"
+      (click)="voltar($event)"
+    ></ion-icon>
+    </header>
     <div class="login-container">
       <img src="../../assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
       <h1>Faça sua transação!</h1>
@@ -44,7 +51,7 @@
       </div>
 
       <!-- Botão para enviar a transação -->
-      <button (click)="enviarTransacao()">Enviar transação</button>
+      <button (click)="enviarTransacao()" class="btn-enviar-tran">Enviar transação</button>
     </div>
   </div>
 </ion-content>

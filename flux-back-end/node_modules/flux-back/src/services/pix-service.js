@@ -145,7 +145,6 @@ class PixService {
       };
 
       const verifyResponse = await axios.request(verifyOptions);
-
       // Consultar o status após a verificação
       const statusOptions = {
         method: "GET",
@@ -159,7 +158,6 @@ class PixService {
 
       const statusResponse = await axios.request(statusOptions);
       const keyRegistredStatus = statusResponse.data.status;
-
       const updatedStatus =
         keyRegistredStatus == "REGISTRADA" ? "REGISTRADA" : keyRegistredStatus;
 
@@ -209,7 +207,6 @@ class PixService {
       };
 
       const verifyResponse = await axios.request(verifyOptions);
-
       // Consultar o status após a verificação
       const statusOptions = {
         method: "GET",

@@ -9,7 +9,7 @@
   background-color: #000000;
   display: flex;
   justify-content: center;
-  margin: 0;
+
 }
 
 
@@ -30,10 +30,34 @@
   width: 100%;
 }
 
+.header {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  position: relative;
+
+}
+
+ion-icon.back-button {
+  position: absolute;
+  background: none;
+  border: none;
+  padding: 20px 30px;
+  cursor: pointer;
+  font-size: 30px;
+  border-radius: 22px;
+  transition: 0.1s ease-out;
+  color: #44b7ff;
+}
+
+ion-icon.back-button:active {
+  color: #000e5a;
+}
 .logo {
   width: 90px;
   height: 70px;
   margin-bottom: 10px;
+  margin-top: 2rem;
 }
 
 h1 {
@@ -111,7 +135,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button.btn-cad-banco:hover,button.btn-azul:hover {
   background-color: #44b7ff;
 }
 
@@ -144,4 +168,3 @@ div::selection{
     }
 
 
-    

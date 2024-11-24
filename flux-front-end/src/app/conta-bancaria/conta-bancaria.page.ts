@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContaBancariaService } from 'src/app/services/conta-bancaria.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { IonicSlides } from '@ionic/angular';
@@ -48,7 +48,7 @@ export class ContaBancariaPage implements OnInit {
     private toastController: ToastController,
     private router: Router,
     private cdr: ChangeDetectorRef,
-
+   public navCtrl: NavController,
     private route: ActivatedRoute // Adicionado ActivatedRoute
   ) { }
 
@@ -139,5 +139,9 @@ export class ContaBancariaPage implements OnInit {
           console.error('Erro ao cadastrar conta:', err);
         });
     }
+  }
+
+  voltar($event: MouseEvent) {
+    this.navCtrl.navigateBack('/tabs/home');
   }
 }

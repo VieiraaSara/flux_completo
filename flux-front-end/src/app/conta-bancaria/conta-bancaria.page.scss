@@ -1,4 +1,3 @@
-
 //ESTILIZAÇÃO DA PÁGINA DE CADASTRO DO BANCO POR PIX
 /*
   TCC - FLUX (Regis e Sara)
@@ -21,32 +20,45 @@
   width: 100%;
 }
 
-.logo {
-  width: 90px;
-  height: 70px;
-  margin-bottom: 10px;
+.header {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  position: relative;
 }
 
+ion-icon.back-button {
+  position: absolute;
+  background: none;
+  border: none;
+  padding: 20px 30px;
+  cursor: pointer;
+  font-size: 30px;
+  border-radius: 22px;
+  transition: 0.1s ease-out;
+  color: #44b7ff;
+}
 
-
+ion-icon.back-button:active {
+  color: #000e5a;
+}
 .logo {
   width: 90px;
   height: 70px;
   margin-bottom: 10px;
+  margin-top: 2rem;
 }
 
 h1 {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   font-size: 30px;
   color: #fff;
-
 }
 
-
 h5 {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 20px;
   margin-bottom: 20px;
   color: #fff;
@@ -60,35 +72,31 @@ h5 {
   justify-content: center;
 }
 
-.input-container input {
-
-}
-
 .input-container {
   position: relative;
   margin-bottom: 20px;
 }
 
 .input-container label {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: block;
   text-align: left;
   margin-bottom: 5px;
   font-weight: bold;
   color: #fff;
 }
-.input-saldo{
-text-align: center;
+.input-saldo {
+  text-align: center;
 }
 .input-container input {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   width: 100%;
   padding: 20px;
   padding-left: 80px;
   border-radius: 50px;
-  background-color: #171C1C;
+  background-color: #171c1c;
   border: none;
-  color: #9395A4;
+  color: #9395a4;
   font-size: 18px;
   height: 60px;
   text-align: center;
@@ -97,10 +105,6 @@ text-align: center;
 .input-container input:focus {
   outline: none;
   border: 2px solid #000ceb;
-}
-
-.input-circle {
-
 }
 
 .input-container input:focus {
@@ -113,51 +117,40 @@ text-align: center;
   top: 50%;
   left: 15px;
   transform: translateY(-50%);
-  background-color: #000E5A;
+  background-color: #000e5a;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FDFDFD;
+  color: #fdfdfd;
   font-size: 18px;
-
 }
 
 button {
-
-}
-
-button {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   width: 100%;
   padding: 20px;
   font-size: 18px;
-  background-color: #92D1F9;
+  background-color: #92d1f9;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 50px;
   cursor: pointer;
-
 }
-
-button:hover {
+button.cadastro-btn:hover,
+button.btn-azul:hover {
   background-color: #44b7ff;
   transition: 0.1s ease-in;
 }
 
 .forgot-password {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: 10px;
   color: #007bff;
   cursor: pointer;
-
-}
-
-.container-disponiveis {
-
 }
 
 .container-disponiveis p {
@@ -166,8 +159,6 @@ button:hover {
   color: #007bff;
 }
 .container-disponiveis {
-
-
 }
 
 .logo-bancos {
@@ -176,10 +167,10 @@ button:hover {
   justify-content: center;
   gap: 30px;
   display: grid;
-  grid-template-columns: repeat(4,30px);
+  grid-template-columns: repeat(4, 30px);
 }
 
-.logo-bancos p{
+.logo-bancos p {
   color: #ffffff;
   font-size: 10px;
 }
@@ -193,7 +184,7 @@ button:hover {
 }
 
 .logo-bancos img {
-  width: 20px;  /* Tamanho menor para as logos */
+  width: 20px; /* Tamanho menor para as logos */
   height: 20px;
   border-radius: 10px;
   margin-bottom: 5px; /* Espaçamento entre logo e nome */
@@ -210,7 +201,7 @@ button:hover {
   }
 
   .logo-bancos img {
-    width: 25px;  /* Tamanho menor ainda em telas menores */
+    width: 25px; /* Tamanho menor ainda em telas menores */
     height: 25px;
   }
 
@@ -219,45 +210,40 @@ button:hover {
   }
 }
 
-
 p.azul {
   display: flex;
   justify-content: start;
   color: #007bff;
-
 }
 
-
-
-.logo-bancos{
+.logo-bancos {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.logo-bancos img{
+.logo-bancos img {
   width: 40px;
   height: 40px;
   margin-right: 10px;
 }
 
-.azul{
+.azul {
   display: flex;
   justify-content: start;
   color: #007bff;
 }
 
-.btn-azul{
-
+.btn-azul {
   background-color: #000ceb;
   color: #fff;
   width: 50%;
   margin-top: 10px;
   height: 5%;
-transition: 0.1s ease-in;
+  transition: 0.1s ease-in;
 }
 
-button.cadastro-btn{
+button.cadastro-btn {
   transition: 0.1s ease-in;
 }
 .valor-container {
@@ -271,7 +257,7 @@ button.cadastro-btn{
 .valor-container button {
   width: 40px;
   height: 40px;
-  background-color: #000E5A;
+  background-color: #000e5a;
   color: white;
   border: none;
   border-radius: 50%;
@@ -293,10 +279,8 @@ button.cadastro-btn{
   border-radius: 5px 5px 0 0;
   background-color: #171c1c7c;
   color: #fff;
-  border-bottom: 1px solid #92D1F9;
-
+  border-bottom: 1px solid #92d1f9;
 }
-
 
 .valor-container {
   display: flex;
@@ -333,13 +317,8 @@ input[type="number"] {
   margin: 10px;
 }
 
-
 .logo-bancos img.selected {
-
-padding: 1px;
+  padding: 1px;
   filter: drop-shadow(2px 3px 0px #0056b3);
   transition: 0.2s ease-in;
 }
-
-
-

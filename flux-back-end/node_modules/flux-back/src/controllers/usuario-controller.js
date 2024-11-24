@@ -72,7 +72,6 @@ class UsuarioController {
     //Cadastrar usuário
     static cadastrarUsuario = async (req, res) => {
 
-
         try {
             let contract = new ValidationContract();
           
@@ -88,9 +87,8 @@ class UsuarioController {
             const usuario = await service.create(nome, cpf, email, senha);
 
 
-
             if (usuario.status === 201) {
-                res.status(201).send(usuario.data);
+                res.status(201).json(usuario.data);
             } else {
                 res.status(usuario.status).send({ message: usuario.message });
             }
@@ -102,14 +100,24 @@ class UsuarioController {
             })
         }
     }
+
+    static validarConta = async (req,res) =>{
+        const codigoDeConfirmacao = req.body.codigoDeConfirmacao;
+        const response = await service.validarCodigoDeConfirmacao(codigoDeConfirmacao);
+      
+this.cadastrarUsuario
+        if (response.status === 200) {
+            return  res.status(response.status).json(response.data);
+        } else {
+           return res.status(response.status).send({ message: response.message });
+        }
+
+    }
     //Atualizar usuário
     static atualizarUsuario = async (req, res) => {
 
         try {
         
-
-
-
             const usuario = await service.update(req.params.id, req.body);
 
             if (usuario.status === 201) {
@@ -119,10 +127,10 @@ class UsuarioController {
             }
 
         } catch (error) {
-            // return res.status(500).send({
-            //     message: "Falha ao processar requisição: " + error
-            // });
-            throw error;
+           return res.status(500).send({
+                message: "Falha ao processar requisição: " + error
+            });
+         
         }
     }
 
@@ -177,6 +185,10 @@ class UsuarioController {
         }
     }
 
+    static recuperarSenha = async (req,res)=>{
+
+    }
+
     // Refresh token
     static refreshToken = async (req, res) => {
         try {
@@ -190,8 +202,6 @@ class UsuarioController {
             const usuario = await repository.getById(usuario_id_token);
          
            
-
-       
             if (!usuario || !usuario.data) {
                 res.status(404).send({ message: 'Usuário não encontrado' });
                 return;

@@ -27,7 +27,7 @@ class MailService {
   };
 
   static emailTemplate = async (nome, verifyCode) => {
-    return ` <!DOCTYPE html>
+    return `  <!DOCTYPE html>
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
 
 <head>
@@ -381,6 +381,15 @@ class MailService {
 							</tr>
 						</tbody>
 					</table>
+					  <table><!-- Footer Section -->
+      <tr>
+        <td class="footer">
+          <p>Comece agora com o flux! 🩵</p>
+          <div class="divider" style="border-top: 1px solid #e4daff"></div>
+          <p>© FLUX</p>
+        </td>
+      </tr>
+    </table>
 				</td>
 			</tr>
 		</tbody>

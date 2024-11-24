@@ -1,28 +1,49 @@
 <ion-content>
   <div class="global">
+    <header>
+      <ion-icon
+        name="arrow-back"
+        class="back-button"
+        (click)="voltar($event)"
+      ></ion-icon>
+    </header>
     <div class="login-container">
-      <img src="../../assets/image/Emblema pelos seus 10 designs criados no Canva.png" alt="Logo" class="logo">
+      <img
+        src="../../assets/image/Emblema pelos seus 10 designs criados no Canva.png"
+        alt="Logo"
+        class="logo"
+      />
       <h1>Cadastre sua Conta Bancária!</h1>
 
       <p class="azul">Coloque o valor disponível no seu banco</p>
 
       <div class="valor-container">
         <!-- <button (click)="decreaseValue()" class="circle-btn">-</button> -->
-        <input  currencyMask [(ngModel)]="valor" class="input-saldo" prefix="R$">
+        <input
+          currencyMask
+          [(ngModel)]="valor"
+          class="input-saldo"
+          prefix="R$"
+        />
         <!-- <button (click)="increaseValue()" class="circle-btn">+</button> -->
       </div>
 
-
       <div class="container-disponiveis">
-
         <p>Selecione a instituição do seu banco</p>
         <div class="logo-bancos">
-          <div *ngFor="let banco of bancosFiltrados" (click)="selecionarBanco(banco)">
-            <img [src]="banco.image" [alt]="banco.name" [class.selected]="selectedInstitution === banco.id_banco">
+          <div
+            *ngFor="let banco of bancosFiltrados"
+            (click)="selecionarBanco(banco)"
+          >
+            <img
+              [src]="banco.image"
+              [alt]="banco.name"
+              [class.selected]="selectedInstitution === banco.id_banco"
+            />
             <p [innerHTML]="banco.name"></p>
           </div>
         </div>
-        <button class="btn-azul"  routerLink="/mais-bancos">Veja Mais +</button>
+        <button class="btn-azul" routerLink="/mais-bancos">Veja Mais +</button>
       </div>
 
       <p class="azul">Selecione o tipo da sua conta</p>
@@ -33,6 +54,9 @@
         <option value="SALARIO">Salário</option>
       </select>
 
-      <button class="cadastro-btn" (click)="cadastrarConta()">Cadastrar Banco</button>
+      <button class="cadastro-btn" (click)="cadastrarConta()">
+        Cadastrar Banco
+      </button>
     </div>
   </div>
+</ion-content>

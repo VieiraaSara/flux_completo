@@ -13,9 +13,26 @@ import { NgIfContext } from '@angular/common';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+
+activeIndex: number = 0;
   notifications: any[] = [];
   nome: string = '';
+  carteira: any[] = [];
+  saldoTotalGeral: any[] = [];
 
+  nome_banco_origem:string = '';
+  nome_banco_destino:string = '';
+  imagem_banco_origem: string ='';
+  imagem_banco_destino: string ='';
+
+  valor: any;
+  porcentagem: any;
+  descricao:any;
+  nome_banco:any;
+  id: any;
+  image: any;
+  condicao: boolean = true;
 
 
   steps = [
@@ -63,10 +80,25 @@ export class HomePage implements OnInit {
           if (data && Array.isArray(data)) {
             this.notifications = data.map((item: any) => ({
               title: item.descricao,
-              subtitle: `Saldo: ${item.valor}, Banco: ${item.nome_banco}`,
-              logoUrl: item.image,
+              subtitleOrigem: `Saldo: R$ ${item.valor},<br> Banco: ${item.nome_banco_origem}`,
+              subtitleDestino: `Saldo: R$ +${item.valor},<br> Banco: ${item.nome_banco_destino}`,
+              logoBancoOrigem:item.imagem_banco_origem,
+              logoBancoDestino:item.imagem_banco_destino,
               nome:item.nome,
+              saldoTotalGeral: item.saldoTotalGeral,
+
+
+              nome_banco_origem: item.nome_banco_origem,
+              nome_banco_destino:item.nome_banco_destino,
+              imagem_banco_origem:item.imagem_banco_origem,
+              imagem_banco_destino:item.imagem_banco_destino,
+              valor: item.valor,
+
               detailsVisible: false,
+
+
+
+
             }));
 
           } else if(data){
@@ -158,4 +190,6 @@ export class HomePage implements OnInit {
   swiperSlideChanged(e: any){
     console.log('cahnged: ', e);
   }
+
+
 }

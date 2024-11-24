@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ContaBancariaService } from '../services/conta-bancaria.service';
 import { AuthService } from '../services/auth.service';
 import { PixService } from '../services/pix.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 interface Banco {
   id_banco: number;
@@ -16,7 +17,7 @@ interface Conta {
   id_conta: number;
   saldo: string;
   tipo_conta: string;
-  Banco: Banco; 
+  Banco: Banco;
 }
 
 interface Pix{
@@ -24,8 +25,8 @@ interface Pix{
   key_type: string
   key:string
   conta_bancaria_id: number
-  
-  
+
+
 }
 @Component({
   selector: 'app-cadastro-banco',
@@ -34,20 +35,21 @@ interface Pix{
 })
 export class CadastroBancoPage implements OnInit {
   id: string = '';
-  key: string = ''; 
-  key_type: string = ''; 
+  key: string = '';
+  key_type: string = '';
   selectedInstitution: number | null = null;
-  contas: Conta[] = [];  
+  contas: Conta[] = [];
   token: string | null = null;
 
   constructor(
     private authService: AuthService,
     private pixService: PixService,
-    private router: Router  
+    private router: Router,
+    private route: ActivatedRoute, public navCtrl: NavController
   ) {}
 
   ngOnInit() {
-    this.token = this.authService.getToken();  
+    this.token = this.authService.getToken();
     if (this.token) {
       this.listarContasBancarias();
     } else {
@@ -58,7 +60,7 @@ export class CadastroBancoPage implements OnInit {
   listarContasBancarias() {
     if (this.token) {
       this.pixService.getContaBancaria(this.token)
-        .then((response: Conta[]) => {  
+        .then((response: Conta[]) => {
           console.log('Resposta da API:', response);
           this.contas = response;
         })
@@ -80,14 +82,14 @@ export class CadastroBancoPage implements OnInit {
         key: this.key,
         conta_bancaria_id: this.selectedInstitution
       };
-  
+
       this.pixService.cadastrarPix(this.token, pix)
         .then((response) => {
           console.log('Pix cadastrado com sucesso!', response);
           if (response && response.id) {
-            this.id = response.id;  
+            this.id = response.id;
             console.log('ID do Pix:', this.id);
-            localStorage.setItem('id_pix', this.id);  
+            localStorage.setItem('id_pix', this.id);
             this.router.navigate(['/codigo-autenticacao']);
           }
         })
@@ -96,5 +98,7 @@ export class CadastroBancoPage implements OnInit {
         });
     }
   }
-  
+  voltar($event: MouseEvent) {
+    this.navCtrl.navigateBack('/tabs/home');
+  }
 }
